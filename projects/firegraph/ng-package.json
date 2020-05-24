@@ -6,7 +6,7 @@
   },
   "whitelistedNonPeerDependencies": [
     "tslib",
-    "jsonpath",
+    "@astronautlabs/jsonpath",
     "subsink"
   ]
 }
