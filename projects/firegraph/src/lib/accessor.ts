@@ -1,6 +1,6 @@
 
 export const MULTIPLE_VALUES = Symbol('Multiple values');
-import * as jsonpath from 'jsonpath';
+import { JSONPath } from '@astronautlabs/jsonpath';
 import { template } from './template';
 
 export class Accessor {
@@ -35,8 +35,9 @@ export class Accessor {
             // json path
             let changed = false;
             let found = false;
+            
             for (let obj of objects) {
-                let results = jsonpath.apply(obj, path, old => {
+                let results = JSONPath.apply(obj, path, old => {
                     if (old !== value)
                         changed = true;
                     return value;
@@ -158,7 +159,7 @@ export class Accessor {
 
             let distinctValues = [];
 
-            for (let [object, matches] of objects.map(o => [o, jsonpath.query(o, path)])) {
+            for (let [object, matches] of objects.map(o => [o, JSONPath.query(o, path)])) {
                 if (matches.length > 1) {
                     throw new Error(`More than one match for expression '${path}' in object ${JSON.stringify(object, undefined, 2)}`);
                 }

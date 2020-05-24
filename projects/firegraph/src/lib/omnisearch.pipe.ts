@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as jp from 'jsonpath';
+import { JSONPath } from '@astronautlabs/jsonpath';
 
 @Pipe({
     name: 'omnisearch'
@@ -41,7 +41,7 @@ export class OmnisearchPipe implements PipeTransform {
             let matches : any[];
             
             try {
-                matches = jp.query(x, expr);
+                matches = JSONPath.query(x, expr);
             } catch (e) {
                 jsonPathFailed = true;
                 console.warn(`Failed to parse JSONPath '${expr}':`);
