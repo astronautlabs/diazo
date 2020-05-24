@@ -63,24 +63,273 @@ export class FiregraphEditorComponent {
         window.addEventListener('resize', this.windowResizeHandler);
     }
 
-    private windowResizeHandler;
-
     ngOnDestroy() {
         window.removeEventListener('resize', this.windowResizeHandler);
     }
 
-    @Input()
-    readonly = false;
+    private windowResizeHandler;
+    private _propertySearch = '';
+    private _nodeSearch = '';
+    private _showProperties : boolean = undefined;
+    private _showPropertiesByDefault = true;
+    private _graph : Firegraph = {
+        nodes: [],
+        edges: []
+    };
 
-    @Input()
-    locked = false;
-
-    @Input()
-    providers : Provider[] = [];
-
+    accessor = new Accessor();
     menuProp : FiregraphProperty;
     nodeMenuPosition: Position;
     newNodePosition: Position;
+    propertyManipulator : any;
+    graphContext : FiregraphContext;
+    selectedNodeContext : FiregraphNodeContext;
+    selectedNodeContexts : FiregraphNodeContext[] = [];
+    errorSearchQuery : string = '';
+    _availableNodes : FiregraphNodeSet[] = [];
+    selectedPropertySets : FiregraphPropertySet[] = [];
+    labelCache = new WeakMap<FiregraphNode, string>();
+    matchingNodeSets : FiregraphNodeSet[];
+    matchingNodes : FiregraphNode[];
+
+    get propertySearch() {
+        return this._propertySearch;
+    }
+
+    set propertySearch(value) {
+        this._propertySearch = value;
+        setTimeout(() => this.updateSelectedPropertySets());
+    }
+
+    get nodeSearch() {
+        return this._nodeSearch;
+    }
+
+    set nodeSearch(value) {
+        this._nodeSearch = value;
+        setTimeout(() => this.updateSelectedNodeSets());
+    }
+
+    get showProperties() {
+        if (this._showProperties === undefined)
+            return this._showPropertiesByDefault;
+        return this._showProperties;
+    }
+
+    set showProperties(value) {
+        this._showProperties = value;
+    }
+
+    monacoOptions = {
+        theme: 'vs-dark', 
+        language: 'json',
+        automaticLayout: true
+    };
+
+    markdownMonacoOptions = {
+        theme: 'vs-dark', 
+        language: 'markdown',
+        automaticLayout: true
+    };
+
+    tsMonacoOptions = {
+        theme: 'vs-dark', 
+        language: 'typescript',
+        automaticLayout: true
+    };
+
+    /**
+     * Fired when the FiregraphContext has been acquired from the underlying
+     * Firegraph component. FiregraphContext represents the operating state 
+     * (model) of the Firegraph editor.
+     */
+    @Output()
+    contextChanged = new Subject<FiregraphContext>();
+
+    /**
+     * Fired when the graph has been changed by the user. More technically
+     * this is fired when a change transaction is "committed" to the Firegraph
+     * Context. These change transactions underpin Firegraph's support for Undo/Redo.
+     */
+    @Output() 
+    graphChanged = new Subject<Firegraph>();
+
+    /**
+     * If true, the Firegraph editor will be placed in Read Only mode. The user 
+     * can still move nodes around, but new nodes cannot be created, existing nodes
+     * cannot be removed, and edges cannot be changed.
+     */
+    @Input()
+    readonly = false;
+
+    /**
+     * If true, the Firegraph editor will allow no changes to the graph whatsoever.
+     * When this is true, `readonly` is also considered to be true. The difference
+     * between `locked` and `readonly` is mainly that the nodes cannot be moved around
+     * by the user.
+     */
+    @Input()
+    locked = false;
+
+    /**
+     * Allows the consumer to pass in a set of dependency injection providers 
+     * which will be used whenever a custom property editor or custom node is 
+     * created. Use this to pass in services needed by your custom controls.
+     */
+    @Input()
+    providers : Provider[] = [];
+
+    @ViewChild('container')
+    container : FiregraphComponent;
+
+    /**
+     * Specify an array of PropertySets which will be shown for all nodes that
+     * exist in the graph. These PropertySets will be shown after the ones defined
+     * on the node itself.
+     */
+    @Input()
+    universalPropertySets : FiregraphPropertySet[] = [];
+
+    /**
+     * When true, the edges of the graph will be rendered with a flow animation.
+     * Use this to indicate that the graph is currently "running".
+     */
+    @Input()
+    active : boolean = undefined;
+
+    /**
+     * Allows the consumer to pass in the set of nodes that will be available 
+     * for the user to add to the graph via the New Node menu (right click).
+     */
+    @Input()
+    get availableNodes() {
+        return this._availableNodes;
+    }
+    set availableNodes(value) {
+        this._availableNodes = value;
+        if (this._graph)
+            this.inflateGraph(this._graph);
+    }
+
+    /**
+     * Allows the consumer to specify dynamic option sources for use with 
+     * properties of type "select". Since properties are static declarations,
+     * it is generally not possible to dynamically populate the options of a 
+     * "select" property. The "optionSources" system provides a good way to 
+     * do this. To use it, define a property such as {type: "select", optionSource: "mySource"}
+     * and specify "optionSources" as { mySource: { option1: "Option 1", option2: "Option 2"}}.
+     * The Firegraph editor will automatically populate these options into the select
+     * box in the Properties panel.
+     */
+    @Input()
+    optionSources : Record<string, Record<string, FiregraphPropertyOptionGroup[]>>;
+    
+    /**
+     * Specify a set of custom components that will be used to render specific types of 
+     * nodes. The key of this map should match the "$.type" property of a node you wish
+     * to use a custom component with. The value is the Angular component class.
+     * 
+     * The custom component can inject the `FiregraphNodeContext` instance in order 
+     * to interact with the node state.
+     */
+    @Input()
+    nodeTypeMap : Record<string, any>;
+
+    /**
+     * Specify a set of custom components that will be used to render specific types of
+     * properties. Each custom property type specifies a "namespace" and an "id". 
+     * You use this custom type in the `properties` declaration on a node (or via 
+     * universalPropertySets) by specifying `property.type = "namespace:id"` 
+     * (for example).
+     */
+    @Input()
+    customPropertyTypes : FiregraphCustomPropertyType[] = [];
+
+    /**
+     * Specify a set of "value types" which are used to declare the types of 
+     * edges that can be created within the graph. The value type system 
+     * supports compatibility by class heirarchy by default, and custom value
+     * type classes can even redefine the notion of compatibility however they want.
+     * Compatibility here refers to whether a slot with one "value" is allowed to be 
+     * connected to a slot with another "value".
+     * 
+     * Value types also define the color and appearance of the edge when rendered
+     * within Firegraph.
+     */
+    @Input()
+    valueTypes : { new() : FiregraphValueType; }[] = [];
+
+    /**
+     * Specify the Firegraph object that this editor should work with.
+     * The object is passed by reference here, and the object will be 
+     * modified by the Firegraph editor *in place*. Note that you can 
+     * also receive immutable snapshots of the graph via the 
+     * `graphChanged` event.
+     */
+    @Input()
+    get graph() {
+        return this._graph;
+    }
+
+    set graph(value) {
+        this._graph = value;
+        if (this._graph)
+            this.inflateGraph(this._graph);
+    }
+
+    /**
+     * Bind to this event to receive Save events from the user
+     * (Firegraph Editor does not do anything special with a Save 
+     * request by default, that is up to the consumer). This fires
+     * when the user presses Ctrl+S / Cmd+S.
+     */
+    @Output()
+    saveRequested = new Subject<void>();
+
+    get selectionReadOnly() {
+        if (this.readonly)
+            return true;
+
+        let readonly = false;
+
+        for (let node of this.selectedNodes) {
+            if (!node) {
+                console.warn(`selectedNodes contains null entry!`);
+            }
+            if (node.readonly) {
+                readonly = true;
+                break;
+            }
+        }
+
+        return readonly;
+    }
+
+    /**
+     * Provides (for convenience) the "MULTIPLE_VALUES" special token
+     * value. This is used to represent that among the nodes selected 
+     * within the editor, the values of a specific property differ between
+     * them. In the editor, this will show up as "Multiple values" in the 
+     * property sheet, which typically prevents you from editing the property.
+     */
+    get MULTIPLE_VALUES() {
+        return MULTIPLE_VALUES;
+    }
+
+    /**
+     * Get the currently selected FiregraphNode (the first one if there are multiple
+     * nodes selected)
+     */
+    get selectedNode() {
+        return this.selectedNodeContext.state;
+    }
+
+    /**
+     * Get the currently selected FiregraphNodes.
+     */
+    get selectedNodes() {
+        return this.selectedNodeContexts.map(x => x.state).filter(x => x);
+    }
 
     setNewNodePosition(position : Position) {
         if (!this.graphContext)
@@ -92,9 +341,6 @@ export class FiregraphEditorComponent {
             top: position.top - this.graphContext.panY - 20
         };
     }
-
-    @ViewChild('container')
-    container : FiregraphComponent;
 
     hideNodeMenu() {
         if (this.container)
@@ -133,38 +379,9 @@ export class FiregraphEditorComponent {
         this.hideNodeMenu();
     }
 
-    get selectionReadOnly() {
-        if (this.readonly)
-            return true;
-
-        let readonly = false;
-
-        for (let node of this.selectedNodes) {
-            if (!node) {
-                console.warn(`selectedNodes contains null entry!`);
-            }
-            if (node.readonly) {
-                readonly = true;
-                break;
-            }
-        }
-
-        return readonly;
-    }
-
-    private _propertySearch = '';
-    private _nodeSearch = '';
-
-    propertyManipulator : any;
-    graphContext : FiregraphContext;
-    selectedNodeContext : FiregraphNodeContext;
-    selectedNodeContexts : FiregraphNodeContext[] = [];
-
     isCustomPropertyType(type : string) {
         return !!this.getCustomPropertyType(type);
     }
-
-    errorSearchQuery : string = '';
 
     getCustomPropertyType(type : string) {
         return this.customPropertyTypes.find(x => type === `${x.namespace}:${x.id}`);
@@ -179,72 +396,10 @@ export class FiregraphEditorComponent {
         return array;
     }
 
-    get MULTIPLE_VALUES() {
-        return MULTIPLE_VALUES;
-    }
-    
-    get selectedNode() {
-        return this.selectedNodeContext.state;
-    }
-
-    get selectedNodes() {
-        return this.selectedNodeContexts.map(x => x.state).filter(x => x);
-    }
-
-    monacoOptions = {
-        theme: 'vs-dark', 
-        language: 'json',
-        automaticLayout: true
-    };
-
-    markdownMonacoOptions = {
-        theme: 'vs-dark', 
-        language: 'markdown',
-        automaticLayout: true
-    };
-
-    tsMonacoOptions = {
-        theme: 'vs-dark', 
-        language: 'typescript',
-        automaticLayout: true
-    };
-
-    @Output()
-    contextChanged = new Subject<FiregraphContext>();
-
-    @Output() 
-    graphChanged = new Subject<Firegraph>();
-
     onGraphChanged(graph : Firegraph) {
         this.graphChanged.next(graph);
     }
     
-    @Input()
-    universalPropertySets : FiregraphPropertySet[] = [];
-    selectedPropertySets : FiregraphPropertySet[] = [];
-
-    @Input()
-    active : boolean = undefined;
-
-    _availableNodes : FiregraphNodeSet[] = [];
-
-    @Input()
-    get availableNodes() {
-        return this._availableNodes;
-    }
-
-    set availableNodes(value) {
-        this._availableNodes = value;
-        if (this._graph)
-            this.inflateGraph(this._graph);
-    }
-
-    @Input()
-    optionSources : Record<string, Record<string, FiregraphPropertyOptionGroup[]>>;
-    
-    @Input()
-    nodeTypeMap : Record<string, any>;
-
     getOptionsFromSource(sourceDescriptor : string): FiregraphPropertyOptionGroup[] {
         let set = sourceDescriptor;
         let key = 'default';
@@ -259,31 +414,6 @@ export class FiregraphEditorComponent {
 
         return this.optionSources[set][key];
     }
-
-    @Input()
-    customPropertyTypes : FiregraphCustomPropertyType[] = [];
-
-    @Input()
-    valueTypes : { new() : FiregraphValueType; }[] = [];
-
-    _graph : Firegraph = {
-        nodes: [],
-        edges: []
-    };
-
-    @Input()
-    get graph() {
-        return this._graph;
-    }
-
-    set graph(value) {
-        this._graph = value;
-        if (this._graph)
-            this.inflateGraph(this._graph);
-    }
-
-    @Output()
-    saveRequested = new Subject<void>();
 
     propertyNeedsMenu(prop : FiregraphProperty) {
         return prop.allowAnnotation !== false || prop.slottable;
@@ -328,27 +458,6 @@ export class FiregraphEditorComponent {
         return null;
     }
 
-    accessor = new Accessor();
-    
-    get propertySearch() {
-        return this._propertySearch;
-    }
-
-    set propertySearch(value) {
-        this._propertySearch = value;
-        setTimeout(() => this.updateSelectedPropertySets());
-    }
-
-    get nodeSearch() {
-        return this._nodeSearch;
-    }
-
-    set nodeSearch(value) {
-        this._nodeSearch = value;
-        setTimeout(() => this.updateSelectedNodeSets());
-    }
-
-    labelCache = new WeakMap<FiregraphNode, string>();
     labelForNode(node : FiregraphNode) {
         if (this.labelCache.has(node))
             return this.labelCache.get(node);
@@ -397,9 +506,6 @@ export class FiregraphEditorComponent {
         this.matchingNodeSets = sets;
         this.matchingNodes = [].concat(...sets.map(x => x.nodes));
     }
-
-    matchingNodeSets : FiregraphNodeSet[];
-    matchingNodes : FiregraphNode[];
 
     updateSelectedPropertySets() {
         let sets = [];
@@ -515,18 +621,5 @@ export class FiregraphEditorComponent {
                 })
             }
         });
-    }
-
-    private _showProperties : boolean = undefined;
-    private _showPropertiesByDefault = true;
-
-    get showProperties() {
-        if (this._showProperties === undefined)
-            return this._showPropertiesByDefault;
-        return this._showProperties;
-    }
-
-    set showProperties(value) {
-        this._showProperties = value;
     }
 }

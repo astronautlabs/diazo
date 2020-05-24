@@ -20,6 +20,7 @@ mat-form-field {
     display: flex;
     height: 100%;
     max-height: calc(100vh - 12.25em);
+    position: relative;
 
     aside {
         width: 15em;
@@ -235,6 +236,7 @@ fg-node-source-button.highlighted {
 
     label {
         padding-left: 1.5em;
+        flex-grow: 1;
     }
 }
 
