@@ -12,8 +12,8 @@
     "ngx-monaco-editor": "^9.0.0"
   },
   "dependencies": {
-    "tslib": "^1.10.0",
-    "@astronautlabs/jsonpath": "^1.0.5",
-    "subsink": "^1.0.1"
+    "@astronautlabs/jsonpath": "^1.0.6",
+    "subsink": "^1.0.1",
+    "tslib": "^1.10.0"
   }
 }
