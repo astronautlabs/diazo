@@ -1,0 +1,19 @@
+{
+  "name": "@astronautlabs/firegraph",
+  "private": false,
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^9.1.9",
+    "@angular/core": "^9.1.9",
+    "@angular/animations": "~9.1.9",
+    "@angular/cdk": "^9.2.4",
+    "@angular/forms": "~9.1.9",
+    "@angular/material": "^9.2.4",
+    "ngx-monaco-editor": "^9.0.0"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0",
+    "jsonpath": "^1.0.2",
+    "subsink": "^1.0.1"
+  }
+}

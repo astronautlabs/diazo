@@ -1,0 +1,46 @@
+:host {
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5em;
+    width: 100%;
+
+    &:hover {
+        background: #eee;
+        color: black;
+    }
+}
+
+span.preview {
+    color: #999;
+    background-color: #eee;
+    text-transform: uppercase;
+    font-size: 8px;
+    border-radius: 5px;
+    padding: 3px 7px;
+    margin-right: 6px;
+}
+
+mat-icon {
+    display: block;
+    margin: 0 auto;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+}
+
+div.label {
+    text-align: center;
+}
+
+:host-context(.mat-dark-theme) {
+    span.preview {
+        background-color: #333;
+        color: #ccc;
+    }
+}

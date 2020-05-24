@@ -1,0 +1,60 @@
+<mat-menu #graphMenu="matMenu">
+    <button mat-menu-item>hot damn</button>
+</mat-menu>
+
+<button 
+    class="graph-menu-trigger"
+    #graphMenuTrigger
+    [style.visibility]="'hidden'" 
+    [style.width]="'1px'"
+    [style.height]="'1px'"
+    [style.pointer-events]="'none'"
+    [style.position]="'absolute'"
+    [style.left]="mousePosition?.left+'px'"
+    [style.top]="mousePosition?.top+'px'"
+    mat-button [matMenuTriggerFor]="graphMenu"
+    >Menu</button>
+
+<div #plate class="plate">
+    <ng-content></ng-content>
+
+    <ng-container *ngFor="let node of (graph?.nodes || []); trackBy nodeIdentity">
+        <fg-dynamic-node [node]="node"></fg-dynamic-node>
+    </ng-container>
+
+    <ng-container *ngIf="draftNode">
+        <fg-dynamic-node [drafted]="true" [node]="draftNode"></fg-dynamic-node>
+    </ng-container>
+
+</div>
+
+    <!--
+    [style.left]="menuPosition?.left+'px'"
+    [style.top]="menuPosition?.top+'px'"
+    -->
+<div 
+    class="node-menu" 
+    [class.visible]="nodeMenuVisible" 
+    [style.position]="'absolute'"
+    [cdkDragFreeDragPosition]="menuPosition"
+    #nodeMenu
+    cdkDrag
+    (cdkDragMoved)="updateNodeMenuHeight()"
+    >
+
+    <div class="underlay" cdkDragHandle></div>
+    <div class="main" #menuContents>
+        <ng-content select=".node-menu"></ng-content>
+    </div>
+</div>
+
+<div class="underlay" 
+    (click)="onClick($event)" 
+    (dblclick)="onDoubleClick($event)" 
+    (mousedown)="onMouseDown($event)" 
+    (touchstart)="onTouchStart($event)"
+    (contextmenu)="onContextMenu()">
+    <!-- <pre>{{graph | json}}</pre> -->
+</div>
+
+<canvas #canvas class="overlay"></canvas>

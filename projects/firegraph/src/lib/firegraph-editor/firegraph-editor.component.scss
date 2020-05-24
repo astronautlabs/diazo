@@ -1,0 +1,264 @@
+
+.v-flex {
+    display: flex;
+    flex-direction: column;   
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.field-pair {
+    display: flex;
+    justify-content: space-between;
+    mat-form-field {
+        width: calc(50% - 0.5em);
+    }
+}
+
+.graph-view {
+    display: flex;
+    height: 100%;
+    max-height: calc(100vh - 12.25em);
+
+    aside {
+        width: 15em;
+        overflow-y: auto;
+        max-height: 100%;
+        padding: 0.25em;
+        max-width: 100%;
+
+        &.properties {
+            width: auto;
+            overflow-x: hidden;
+            transition: 150ms width ease-in-out;
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: white;
+            max-width: calc(100vw - 1.75em);
+            z-index: 1;
+
+            &.visible {
+                width: 30em;
+                position: static;
+                background: inherit;
+            }
+        }
+    }
+
+    fg-container {
+        flex-grow: 1;
+    }
+}
+
+.graph {
+    height: 30em;
+    width: 100%;
+}
+
+mat-tab-group {
+    flex-grow: 1;
+}
+
+mat-form-field.has-multiple-values {
+    opacity: 0.5;
+}
+
+.property-search-bar {
+    margin-left: 1.5em;
+    width: calc(100% - 1.5em);
+}
+
+.node-menu {
+    width: 30em;
+    max-width: 100%;
+
+    .scroll-pane {
+        max-height: 60vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+
+.hint {
+    font-size: 12px;
+    color: #888;
+    margin-left: 1em;
+    margin-top: -1.5em;
+    margin-bottom: 2em;
+    position: relative;
+    z-index: 5;
+}
+
+ngx-monaco-editor + .hint {
+    margin-top: 0;
+}
+
+mat-checkbox + .hint {
+    margin-top: 1em;
+}
+
+:host ::ng-deep {
+    .hint {
+        .note {
+            font-size: 12px;
+            overflow: hidden;
+        }
+    }
+}
+
+.inline-matrix {
+    input[type=number] {
+        appearance: none;
+        border: 1px solid #ddd;
+        margin: 4px;
+        width: auto;
+
+        &:hover {
+            border: 1px solid #666;
+        }
+    }
+
+    &[data-width="2"] { & > * { width: calc(50% - 12px); } }
+    &[data-width="3"] { & > * { width: calc(33% - 12px); } }
+    &[data-width="4"] { & > * { width: calc(25% - 12px); } }
+    &[data-width="5"] { & > * { width: calc(20% - 12px); } }
+    &[data-width="6"] { & > * { width: calc(16.66% - 12px); } }
+    &[data-width="7"] { & > * { width: calc(14.2857% - 12px); } }
+    &[data-width="8"] { & > * { width: calc(12.5% - 12px); } }
+    &[data-width="9"] { & > * { width: calc(11.11% - 12px); } }
+    &[data-width="10"] { & > * { width: calc(10% - 12px); } }
+}
+
+.matrix {
+    &[data-width="4"] {
+        & > * {
+            width: calc(25% - 2px);
+            margin: 0 1px;
+        }
+    }
+    
+    &[data-width="2"] {
+        & > * {
+            width: calc(50% - 4px);
+            margin: 0 2px;
+        }
+    }
+}
+
+.bitmask {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 1.5em;
+
+    & > * {
+        margin-right: 1em;
+    }
+}
+
+.slot-list {
+}
+
+::ng-deep {
+    .slot-list-item {
+        display: flex;
+        align-items: center;
+
+        & > * {
+            margin: 0 0.25em;
+        }
+    }
+}
+
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    background: white;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.slot-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.property-list {
+    display: flex;
+    flex-direction: column;
+
+    .property-list-item {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        width: 100%;
+
+        .property-container {
+            flex-grow: 1;
+            overflow: hidden;
+
+        }
+
+        .property-controls {
+            width: 3em;
+            flex-shrink: 0;
+            flex-grow: 0;
+            padding: 0 0.25em;
+        }
+    }
+}
+.property {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+fg-node-source-button.highlighted {
+    background: rgb(0, 255, 200);
+    border-radius: 4px;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+
+    label {
+        padding-left: 1.5em;
+    }
+}
+
+.nothing-selected {
+    padding: 2em;
+    text-align: center;
+}
+
+.node-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > * {
+        width: 20%;
+    }
+}
+
+:host-context(.mat-dark-theme) {
+    aside.properties {
+        background-color: rgba(0,0,0,0.7);
+        color: white;
+    }
+    
+    fg-node-source-button.highlighted {
+        background: rgb(0, 77, 60);
+    }
+}

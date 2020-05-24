@@ -1,0 +1,37 @@
+<mat-menu #graphMenu="matMenu">
+        <button mat-menu-item>
+            <mat-icon>file_copy</mat-icon>
+            Copy
+        </button>
+        <button mat-menu-item [disabled]="readonly">
+            <mat-icon>control_point</mat-icon>
+            Duplicate
+        </button>
+        
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item [disabled]="readonly">
+        <mat-icon>delete</mat-icon>
+        Remove
+    </button>
+</mat-menu>
+
+<button 
+    class="graph-menu-trigger"
+    #graphMenuTrigger
+    [style.visibility]="'hidden'" 
+    [style.width]="'1px'"
+    [style.height]="'1px'"
+    [style.pointer-events]="'none'"
+    [style.position]="'absolute'"
+    [style.left]="mousePosition?.left+'px'"
+    [style.top]="mousePosition?.top+'px'"
+    mat-button [matMenuTriggerFor]="graphMenu"
+    >Menu</button>
+    
+<div class="titlebar">
+    <ng-content select="label"></ng-content>
+</div>
+<div class="body">
+    <ng-content select="main"></ng-content>
+</div>

@@ -1,0 +1,375 @@
+<mat-menu #propertyMenu="matMenu">
+    <ng-template matMenuContent let-prop="prop">
+
+        <button *ngIf="isPropSlotted(prop)" mat-menu-item (click)="removePropertySlot(prop)">
+            <mat-icon>close</mat-icon>
+            Remove Slot
+        </button>
+        <button *ngIf="!isPropSlotted(prop)" mat-menu-item [disabled]="!prop.slottable" (click)="createPropertySlot(prop)">
+            <mat-icon>add</mat-icon>
+            Create Slot
+        </button>
+        <button [disabled]="prop.allowAnnotation === false" mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            Edit Notes
+        </button>
+    </ng-template>
+</mat-menu>
+
+<div class="graph-view">
+    <fg-container 
+        #container
+        [readonly]="readonly" 
+        [locked]="locked"
+        [active]="active"
+        (contextChanged)="acquireGraphContext($event)" 
+        (nodeMenuPositionChanged)="setNewNodePosition($event)"
+        [graph]="graph"
+        [nodeTypeMap]="nodeTypeMap"
+        (graphChanged)="onGraphChanged($event)"
+        (saveRequested)="saveRequested.next()"
+        >
+        <div class="node-menu">
+            <form (submit)="insertSelectedNode()">
+                <mat-form-field class="property-search-bar">
+                    <mat-label>Search</mat-label>
+                    <input class="search-box" type="text" 
+                        matInput 
+                        name="search"
+                        autocomplete="off"
+                        (focus)="nodeMenuKeyboardMode = true"
+                        (blur)="nodeMenuKeyboardMode = false"
+                        (keydown)="onNodeMenuSearchKeyDown($event)"
+                        [(ngModel)]="nodeSearch" 
+                        />
+                </mat-form-field>
+            </form>
+
+            <div class="scroll-pane">
+                <mat-accordion [multi]="nodeSearch != ''">
+                    <mat-expansion-panel 
+                        [expanded]="nodeSearch != ''" 
+                        *ngFor="let set of matchingNodeSets"
+                        >
+                        <mat-expansion-panel-header>
+                            {{set.label}}
+                        </mat-expansion-panel-header>
+        
+                        <div class="node-container">
+                            <fg-node-source-button 
+                                *ngFor="let node of set.nodes"
+                                [class.highlighted]="nodeMenuKeyboardMode && getIndexOfMatchingNode(node) === selectedMatchingNodeIndex"
+                                [position]="newNodePosition"
+                                [context]="graphContext" 
+                                (mouseenter)="selectedMatchingNodeIndex = getIndexOfMatchingNode(node)"
+                                (inserted)="hideNodeMenu()"
+                                [attr.data-matched-node-index]="getIndexOfMatchingNode(node)"
+                                [template]="node">{{labelForNode(node)}}</fg-node-source-button>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+    </fg-container>
+    <aside class="properties" [class.visible]="showProperties">
+
+        <div class="toolbar">
+            <ng-container *ngIf="showProperties">
+                <label>
+                    Properties
+                </label>
+                <div class="spacer"></div>
+            </ng-container>
+
+            <button mat-icon-button (click)="showProperties = !showProperties">
+                <mat-icon *ngIf="showProperties">close</mat-icon>
+                <mat-icon *ngIf="!showProperties">menu</mat-icon>
+            </button>
+            
+        </div>
+
+        <ng-container *ngIf="showProperties">
+            <ng-container *ngIf="selectedNodes.length === 0">
+                <div class="nothing-selected">
+                    <em>Select a node to view its properties.</em>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="selectedNodes.length > 0">
+                <mat-form-field class="property-search-bar">
+                    <mat-label>Search</mat-label>
+                    <input type="text" matInput [(ngModel)]="propertySearch" />
+                </mat-form-field>
+
+                <mat-accordion [multi]="true">
+                    <ng-container *ngFor="let propSet of selectedPropertySets; trackBy identity">
+
+                        <mat-expansion-panel [expanded]="true">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    {{propSet.label}}
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    {{propSet.description}}
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <div class="property-list v-flex">
+                                <div class="property-list-item" *ngFor="let prop of propSet.properties; trackBy path;">
+
+                                    <div class="property-container" *ngIf="isPropSlotted(prop)">
+                                        <mat-form-field appearance="outline" floatLabel="always">
+                                            <mat-label>{{prop.label}}</mat-label>
+                                            <input matInput readonly style="font-style: italic;" type="text" value="(Set in graph)" />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="property-container" *ngIf="!isPropSlotted(prop)">
+
+                                        <ng-container *ngIf="prop.type === 'position'">
+                                            <div class="field-pair">
+                                                <mat-form-field appearance="outline" [floatLabel]="propertyManipulator['x?'] === MULTIPLE_VALUES ? 'auto' : 'always'">
+                                                    <mat-label>
+                                                        X
+                                                        <ng-container *ngIf="propertyManipulator['x?'] === MULTIPLE_VALUES">
+                                                            (Multiple Values)
+                                                        </ng-container>
+                                                    </mat-label>
+                                                    <input matInput type="number" [(ngModel)]="propertyManipulator.x" />
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline" [floatLabel]="propertyManipulator['y?'] === MULTIPLE_VALUES ? 'auto' : 'always'">
+                                                    <mat-label>
+                                                        Y
+                                                        <ng-container *ngIf="propertyManipulator['y?'] === MULTIPLE_VALUES">
+                                                            (Multiple Values)
+                                                        </ng-container>
+                                                    </mat-label>
+                                                    <input matInput type="number" [(ngModel)]="propertyManipulator.y" />
+                                                </mat-form-field>
+                                                
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="prop.type !== 'position'">
+                                            <ng-container *ngIf="prop.type === 'bitmask'">
+                                                <div class="property">
+                                                    <label>{{prop.label}}</label>
+                                                </div>
+                                                <div class="bitmask">
+                                                    <mat-checkbox 
+                                                        *ngFor="let label of prop.bitmask.labels; index as i"
+                                                        [(ngModel)]="propertyManipulator[prop.path + '&' + i]">{{label}}</mat-checkbox>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="prop.type === 'text'">
+                                                <mat-form-field appearance="outline" [floatLabel]="propertyManipulator[prop.path + '?'] === MULTIPLE_VALUES ? 'auto' : 'always'">
+                                                    <mat-label>
+                                                        {{prop.label}}
+                                                        <ng-container *ngIf="propertyManipulator[prop.path + '?'] === MULTIPLE_VALUES">
+                                                            (Multiple Values)
+                                                        </ng-container>
+                                                    </mat-label>
+                                                    <input type="text" [readonly]="selectionReadOnly || prop.readonly" matInput [(ngModel)]="propertyManipulator[prop.path]" />
+                                                    
+                                                </mat-form-field>
+                                            </ng-container>
+                                            <ng-container *ngIf="prop.type === 'json'">
+                                                <div class="property">
+                                                    <label>{{prop.label}}</label>
+                                                </div>
+                                                <ngx-monaco-editor 
+                                                    [options]="monacoOptions"
+                                                    [(ngModel)]="propertyManipulator[prop.path]"></ngx-monaco-editor>
+                                            </ng-container>
+                                            <ng-container *ngIf="prop.type === 'markdown'">
+                                                <div class="property">
+                                                    <label>{{prop.label}}</label>
+                                                </div>
+                                                <ngx-monaco-editor 
+                                                    [options]="markdownMonacoOptions"
+                                                    [(ngModel)]="propertyManipulator[prop.path]"></ngx-monaco-editor>
+                                            </ng-container>
+                                            <ng-container *ngIf="prop.type === 'typescript'">
+                                                <div class="property">
+                                                    <label>{{prop.label}}</label>
+                                                </div>
+                                                <ngx-monaco-editor 
+                                                    [options]="tsMonacoOptions"
+                                                    [(ngModel)]="propertyManipulator[prop.path]"></ngx-monaco-editor>
+                                            </ng-container>
+                                            <ng-container *ngIf="prop.type === 'textarea'">
+                                                <mat-form-field appearance="outline" [floatLabel]="propertyManipulator[prop.path + '?'] === MULTIPLE_VALUES ? 'auto' : 'always'">
+                                                    <mat-label>
+                                                        {{prop.label}}
+                                                        <ng-container *ngIf="propertyManipulator[prop.path + '?'] === MULTIPLE_VALUES">
+                                                            (Multiple Values)
+                                                        </ng-container>
+                                                    </mat-label>
+                                                    <textarea style="min-height: 7em; font-family: monospace;" [readonly]="selectionReadOnly || prop.readonly" matInput [(ngModel)]="propertyManipulator[prop.path]"></textarea>
+                                                </mat-form-field>
+                                            </ng-container>
+                                            <ng-container *ngIf="prop.type === 'number'">
+                                                <mat-form-field appearance="outline" [floatLabel]="propertyManipulator[prop.path + '?'] === MULTIPLE_VALUES ? 'auto' : 'always'">
+                                                    <mat-label>
+                                                        {{prop.label}}
+                                                        <ng-container *ngIf="propertyManipulator[prop.path + '?'] === MULTIPLE_VALUES">
+                                                            (Multiple Values)
+                                                        </ng-container>
+                                                    </mat-label>
+                                                    <input type="number" [readonly]="selectionReadOnly || prop.readonly" matInput [(ngModel)]="propertyManipulator[prop.path]" />
+                                                    
+                                                </mat-form-field>
+                                            </ng-container>
+                                            <ng-container *ngIf="prop.type === 'inline-matrix'">
+                                                <div class="inline-matrix" [attr.data-width]="prop.inlineMatrix.width">
+
+                                                    <ng-container *ngFor="let i of numericRange(0, prop.inlineMatrix.width*prop.inlineMatrix.height)">
+                                                        <input type="number" />
+                                                    </ng-container>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="prop.type === 'matrix'">
+                                                <div class="property">
+                                                    <label>{{prop.label}}</label>
+                                                </div>
+                                                <div class="matrix" [attr.data-width]="prop.matrix.width">
+                                                    <mat-form-field appearance="outline" [floatLabel]="propertyManipulator['x?'] === MULTIPLE_VALUES ? 'auto' : 'always'" *ngFor="let cell of prop.matrix.cells">
+                                                        <mat-label>
+                                                            {{cell.label}}
+                                                            <ng-container *ngIf="propertyManipulator['?'] === MULTIPLE_VALUES">
+                                                                (Multiple Values)
+                                                            </ng-container>
+                                                        </mat-label>
+                                                        <input matInput type="number" [(ngModel)]="propertyManipulator[cell.path]" />
+                                                    </mat-form-field>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="prop.type === 'select'">
+                                                <mat-form-field appearance="outline" [floatLabel]="propertyManipulator[prop.path + '?'] === MULTIPLE_VALUES ? 'auto' : 'always'">
+                                                    <mat-label>
+                                                        {{prop.label}}
+                                                        <ng-container *ngIf="propertyManipulator[prop.path + '?'] === MULTIPLE_VALUES">
+                                                            (Multiple Values)
+                                                        </ng-container>
+                                                    </mat-label>
+                                                    <mat-select [disabled]="selectionReadOnly || prop.readonly" [(value)]="propertyManipulator[prop.path]">
+                                                        <ng-container *ngIf="prop.optionSource">
+                                                            <ng-container *ngFor="let group of getOptionsFromSource(prop.optionSource); trackBy value;">
+                                                                <ng-container *ngIf="group.options.length == 1">
+                                                                    <mat-option [value]="group.options[0].value">{{group.label}}</mat-option>    
+                                                                </ng-container>
+                                                                <ng-container *ngIf="group.options.length > 1">
+                                                                    <mat-optgroup [label]="group.label">
+                                                                        <mat-option 
+                                                                            *ngFor="let option of group.options"
+                                                                            [value]="option.value"
+                                                                            >{{option.label}}</mat-option>    
+                                                                    </mat-optgroup>
+                                                                </ng-container>
+                                                            </ng-container>
+
+                                                            
+                                                        </ng-container>
+                                                        <ng-container *ngIf="!prop.optionSource">
+                                                            <mat-option 
+                                                                [value]="option.value" 
+                                                                *ngFor="let option of prop.options; trackBy value;"
+                                                                >{{option.label}}</mat-option>
+                                                        </ng-container>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </ng-container>
+                                            <ng-container *ngIf="prop.type === 'flags'">
+                                                <mat-form-field appearance="outline" [floatLabel]="propertyManipulator[prop.path + '?'] === MULTIPLE_VALUES ? 'auto' : 'always'">
+                                                    <mat-label>
+                                                        {{prop.label}}
+                                                        <ng-container *ngIf="propertyManipulator[prop.path + '?'] === MULTIPLE_VALUES">
+                                                            (Multiple Values)
+                                                        </ng-container>
+                                                    </mat-label>
+                                                    <mat-select [disabled]="selectionReadOnly || prop.readonly" [(value)]="propertyManipulator[prop.path]" multiple>
+                                                        <mat-option [value]="option.value" *ngFor="let option of prop.options; trackBy value;">{{option.label}}</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </ng-container>
+                                            <ng-container *ngIf="prop.type === 'boolean'">
+                                                <mat-checkbox [(ngModel)]="propertyManipulator[prop.path]" [disabled]="selectionReadOnly || prop.readonly">
+                                                    {{prop.label}}
+                                                    <ng-container *ngIf="propertyManipulator[prop.path + '?'] === MULTIPLE_VALUES">
+                                                        (Multiple Values)
+                                                    </ng-container>
+                                                </mat-checkbox>
+                                            </ng-container>
+                                            <ng-container *ngIf="isCustomPropertyType(prop.type)">
+                                                <fg-custom-property-editor 
+                                                    [graphContext]="graphContext"
+                                                    [providers]="providers"
+                                                    [selectedNodes]="selectedNodes" 
+                                                    [property]="prop" 
+                                                    [componentType]="getCustomPropertyType(prop.type).component">
+                                                    </fg-custom-property-editor>
+                                            </ng-container>
+                                        </ng-container>
+                                        
+                                        <div 
+                                            class="hint" 
+                                            *ngIf="prop.description" 
+                                            [innerHTML]="prop.description | trustHtml"
+                                            ></div>
+                                    </div>
+
+                                    <div class="property-controls">
+                                        <button mat-icon-button 
+                                            *ngIf="propertyNeedsMenu(prop)"
+                                            [matMenuTriggerFor]="propertyMenu" 
+                                            [matMenuTriggerData]="{prop: prop}"
+                                            >
+                                            <mat-icon>more_vert</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </ng-container>
+                
+                    <mat-expansion-panel *ngIf="selectedNodes.length > 0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Slots
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <ng-container *ngIf="selectedNodes.length > 1">
+                            <em>Slot editing not available for multiple nodes</em>
+                        </ng-container>
+                        <ng-container *ngIf="selectedNodes.length === 1">
+
+                            <div class="slot-list" cdkDropList (cdkDropListDropped)="reorderSlots($event)">
+                                <div class="slot-list-item" *ngFor="let slot of selectedNodes[0].slots" cdkDrag>
+                                    <button mat-icon-button cdkDragHandle>
+                                        <mat-icon>menu</mat-icon>
+                                    </button>
+                                    <mat-slide-toggle [checked]="!slot.hidden" (change)="slot.hidden = !$event.checked"></mat-slide-toggle>
+                                    <div>
+                                        {{slot.label}}
+                                    </div>
+                                </div>
+                            </div>
+                            <pre>{{selectedNodes[0].slots | json}}</pre>
+                        </ng-container>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                JSON
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                All properties
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+                        <pre>{{(selectedNodes.length > 1 ? selectedNodes : selectedNodes[0]) | json}}</pre>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </ng-container>
+        </ng-container>
+    </aside>
+</div>

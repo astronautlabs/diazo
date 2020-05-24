@@ -1,0 +1,41 @@
+<fg-node [id]="node?.id" [ownState]="drafted ? node : null">
+    <label *ngIf="node.style !== 'inline'">
+        {{M?.label}}
+    </label>
+    <main>
+        <fg-node-host 
+            [component]="component" 
+            (instanceChanged)="instance = $event"
+            ></fg-node-host>
+
+        <div class="inputs">
+            <ng-container *ngFor="let slot of (instance?.slots || node?.slots || [])">
+                <fg-slot 
+                    *ngIf="slot.type === 'input'"
+                    [id]="slot.id" 
+                    [type]="slot.type"
+                    [label]="slot.label"
+                    [hidden]="slot.hidden"
+                    [value]="slot.value"
+                    >{{slot.label}}</fg-slot>
+            </ng-container>
+        </div>
+
+        <label *ngIf="node.style === 'inline'">
+            {{M?.label}}
+        </label>
+        
+        <div class="outputs">
+            <ng-container *ngFor="let slot of (instance?.slots || node?.slots || [])">
+                <fg-slot 
+                    *ngIf="slot.type !== 'input'"
+                    [id]="slot.id" 
+                    [type]="slot.type"
+                    [label]="slot.label"
+                    [hidden]="slot.hidden"
+                    [value]="slot.value"
+                    >{{slot.label}}</fg-slot>
+            </ng-container>
+        </div>
+    </main>
+</fg-node>

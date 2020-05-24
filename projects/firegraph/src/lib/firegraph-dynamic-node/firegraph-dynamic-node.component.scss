@@ -1,0 +1,8 @@
+main {
+    display: flex;
+    align-items: flex-start;
+
+    .inputs, .outputs {
+        flex-grow: 1;
+    }
+}

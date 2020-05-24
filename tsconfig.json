@@ -14,7 +14,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "firegraph": [
+        "dist/firegraph/firegraph",
+        "dist/firegraph"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
