@@ -291,7 +291,7 @@ export class FiregraphEditorComponent {
 
     inflateGraph(graph : Firegraph) {
         for (let node of graph.nodes) {
-            if (node.data.unit === 'reroute')
+            if (node.data && node.data.unit === 'reroute')
                 continue;
             
             let templateNode = this.findTemplateNode(node);
