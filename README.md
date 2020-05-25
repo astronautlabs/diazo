@@ -1,6 +1,5 @@
 # Firegraph
-- [Documentation](https://astronautlabs.github.io/firegraph/).
-- [Example](https://astronautlabs.github.io/firegraph-example/).
+[Documentation](https://astronautlabs.github.io/firegraph/) | [Example](https://astronautlabs.github.io/firegraph-example/)
 
 An MIT-licensed slot-driven directed-acyclical-graph (DAG) editor for Angular. This 
 component was built for use in Astronaut Labs' Livefire product suite because 
