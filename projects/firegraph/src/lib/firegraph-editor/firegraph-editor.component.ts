@@ -7,12 +7,19 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { FiregraphComponent } from '../firegraph/firegraph.component';
 import * as uuid from 'uuid/v4';
 
+/**
+ * Provides a full-featured Firegraph editor, including a searchable 
+ * New Node list and a powerful property sheet implementation.
+ */
 @Component({
     selector: 'fg-editor',
     templateUrl: './firegraph-editor.component.html',
     styleUrls: ['./firegraph-editor.component.scss']
 })
 export class FiregraphEditorComponent {
+    /**
+     * @hidden
+     */
     constructor(
         private matSnackBar : MatSnackBar,
         private elementRef : ElementRef<HTMLElement>
@@ -55,6 +62,9 @@ export class FiregraphEditorComponent {
         })
     }
 
+    /**
+     * @hidden
+     */
     ngOnInit() {
         this.windowResizeHandler = () => {
             this._showPropertiesByDefault = (window.innerWidth > 500);
@@ -63,6 +73,9 @@ export class FiregraphEditorComponent {
         window.addEventListener('resize', this.windowResizeHandler);
     }
 
+    /**
+     * @hidden
+     */
     ngOnDestroy() {
         window.removeEventListener('resize', this.windowResizeHandler);
     }
@@ -76,22 +89,77 @@ export class FiregraphEditorComponent {
         nodes: [],
         edges: []
     };
+    private _availableNodes : FiregraphNodeSet[] = [];
+    private accessor = new Accessor();
+    private labelCache = new WeakMap<FiregraphNode, string>();
 
-    accessor = new Accessor();
-    menuProp : FiregraphProperty;
     nodeMenuPosition: Position;
     newNodePosition: Position;
+
+    /**
+     * A proxy object which is capable of getting or setting property 
+     * values across the nodes that are currently selected in the editor.
+     * The keys of this object are interpreted as either JSONPath (when the 
+     * key starts with '$') or Firegraph's custom object path format (otherwise).
+     */
     propertyManipulator : any;
+    
+    /**
+     * Stores the current graph context object. This represents the state 
+     * logic for the graph being edited within the Firegraph editor
+     */
     graphContext : FiregraphContext;
+
+    /**
+     * Get the currently selected node context (the first one
+     * if multiple nodes are currently selected)
+     */
     selectedNodeContext : FiregraphNodeContext;
+
+    /**
+     * Get the currently selected node-contexts
+     */
     selectedNodeContexts : FiregraphNodeContext[] = [];
-    errorSearchQuery : string = '';
-    _availableNodes : FiregraphNodeSet[] = [];
+
+    /**
+     * Provides the PropertySets which are currently visible 
+     * subject to the search query entered by the user.
+     */
     selectedPropertySets : FiregraphPropertySet[] = [];
-    labelCache = new WeakMap<FiregraphNode, string>();
+
+    /**
+     * Provides the NodeSets which are currently visible 
+     * in the New Node menu, subject to the search query 
+     * entered by the user.
+     */
     matchingNodeSets : FiregraphNodeSet[];
+
+    /**
+     * Provides the Nodes which are currently visible 
+     * in the New Node menu, subject to the search query 
+     * entered by the user. This is a flattening of the nodes
+     * found in `matchingNodeSets`.
+     */
     matchingNodes : FiregraphNode[];
 
+    /**
+     * When true, the Node Menu is in keyboard mode, and certain
+     * keystrokes (up/down/enter) can be used to select and insert
+     * a node visible in the menu, This works in concert with 
+     * `matchingNodes`.
+     */
+    nodeMenuKeyboardMode = false;
+
+    /**
+     * The index of a node in the New Node menu that the user has 
+     * selected via Keyboard Mode.
+     */
+    selectedMatchingNodeIndex = 0;
+
+    /**
+     * The text the user has entered into the Property Sheet's 
+     * Search box.
+     */
     get propertySearch() {
         return this._propertySearch;
     }
@@ -101,6 +169,10 @@ export class FiregraphEditorComponent {
         setTimeout(() => this.updateSelectedPropertySets());
     }
 
+    /**
+     * The text the user has entered into the Node Menu's
+     * Search box.
+     */
     get nodeSearch() {
         return this._nodeSearch;
     }
@@ -110,6 +182,13 @@ export class FiregraphEditorComponent {
         setTimeout(() => this.updateSelectedNodeSets());
     }
 
+    /**
+     * True when the user has made the Properties sidebar visible.
+     * False when the user has hidden it. This also has special behavior
+     * if the user has not yet shown/hidden the sidebar -- if the 
+     * screen size is small enough to be considered "mobile", then this
+     * will return false. Otherwise it will be true.
+     */
     get showProperties() {
         if (this._showProperties === undefined)
             return this._showPropertiesByDefault;
@@ -120,18 +199,27 @@ export class FiregraphEditorComponent {
         this._showProperties = value;
     }
 
-    monacoOptions = {
+    /**
+     * Options used for Monaco when editing JSON.
+     */
+    jsonMonacoOptions = {
         theme: 'vs-dark', 
         language: 'json',
         automaticLayout: true
     };
 
+    /**
+     * Options used for Monaco when editing Markdown.
+     */
     markdownMonacoOptions = {
         theme: 'vs-dark', 
         language: 'markdown',
         automaticLayout: true
     };
 
+    /**
+     * Options used for Monaco when editing TypeScript.
+     */
     tsMonacoOptions = {
         theme: 'vs-dark', 
         language: 'typescript',
@@ -179,6 +267,10 @@ export class FiregraphEditorComponent {
     @Input()
     providers : Provider[] = [];
 
+    /**
+     * Provides access to the underlying <fg-container> component which 
+     * implements the Firegraph renderer.
+     */
     @ViewChild('container')
     container : FiregraphComponent;
 
@@ -286,6 +378,11 @@ export class FiregraphEditorComponent {
     @Output()
     saveRequested = new Subject<void>();
 
+    /**
+     * This is true if the selection of nodes is considered "readonly".
+     * The selection is considered readonly if any selected node is 
+     * marked as "readonly".
+     */
     get selectionReadOnly() {
         if (this.readonly)
             return true;
@@ -311,6 +408,7 @@ export class FiregraphEditorComponent {
      * within the editor, the values of a specific property differ between
      * them. In the editor, this will show up as "Multiple values" in the 
      * property sheet, which typically prevents you from editing the property.
+     * @hidden
      */
     get MULTIPLE_VALUES() {
         return MULTIPLE_VALUES;
@@ -331,6 +429,12 @@ export class FiregraphEditorComponent {
         return this.selectedNodeContexts.map(x => x.state).filter(x => x);
     }
 
+    /**
+     * Specify where a new node should be inserted. This is used 
+     * by the New Node menu to determine where a node should be 
+     * placed when it is not dragged into the view.
+     * @hidden
+     */
     setNewNodePosition(position : Position) {
         if (!this.graphContext)
             return;
@@ -342,11 +446,28 @@ export class FiregraphEditorComponent {
         };
     }
 
+    /**
+     * Hide the node menu if it is currently visible.
+     */
     hideNodeMenu() {
         if (this.container)
             this.container.hideNodeMenu();
     }
 
+    /**
+     * Show the node menu if it is not currently visible.
+     */
+    showNodeMenu() {
+        if (this.container)
+            this.container.showNodeMenu();
+    }
+
+    /**
+     * Insert the node that is currently selected in the New Node menu.
+     * This is used by the Keyboard Mode of the node menu to insert the 
+     * node upon pressing "Enter".
+     * @hidden
+     */
     insertSelectedNode() {
         let template = this.matchingNodes[this.selectedMatchingNodeIndex];
 
@@ -379,14 +500,28 @@ export class FiregraphEditorComponent {
         this.hideNodeMenu();
     }
 
+    /**
+     * Return true if the given Property Type is a custom type.
+     * This is determined by looking up the type using the `customPropertyTypes`
+     * field.
+     * @hidden
+     */
     isCustomPropertyType(type : string) {
         return !!this.getCustomPropertyType(type);
     }
 
+    /**
+     * Get a custom property type from the `customPropertyTypes` field.
+     * The passed string should be in the form "namespace:id"
+     * @hidden
+     */
     getCustomPropertyType(type : string) {
         return this.customPropertyTypes.find(x => type === `${x.namespace}:${x.id}`);
     }
 
+    /**
+     * @hidden
+     */
     numericRange(min, max, step = 1) {
         let array = [];
 
@@ -396,10 +531,18 @@ export class FiregraphEditorComponent {
         return array;
     }
 
+    /**
+     * @hidden
+     */
     onGraphChanged(graph : Firegraph) {
         this.graphChanged.next(graph);
     }
     
+    /**
+     * Locate the given dynamic option source with the given name from `optionSources`.
+     * Used to support dynamic options sources for "select" properties.
+     * @hidden
+     */
     getOptionsFromSource(sourceDescriptor : string): FiregraphPropertyOptionGroup[] {
         let set = sourceDescriptor;
         let key = 'default';
@@ -415,10 +558,29 @@ export class FiregraphEditorComponent {
         return this.optionSources[set][key];
     }
 
+    /**
+     * Returns true if the given property would have any enabled options within
+     * the standard property menu (shown to the right of the property view).
+     * If false, the editor will hide the menu entirely.
+     * @hidden
+     */
     propertyNeedsMenu(prop : FiregraphProperty) {
         return prop.allowAnnotation !== false || prop.slottable;
     }
 
+    /**
+     * Annotate all nodes in the given graph with the properties specified 
+     * within the `availableNodes` setting. It is typical for consumers of 
+     * Firegraph to strip the `properties` part of all nodes in a graph for 
+     * space efficiency, because for some domains the amount of properties 
+     * on a node can be substantial. Furthermore, the properties specified 
+     * within `availableNodes` may have changed since the graph object was 
+     * originally created. This inflation process automatically 
+     * re-adds the necessary property definitions onto the graph nodes 
+     * ensuring that the available properties are always up to date with
+     * those defined by your application.
+     * @hidden
+     */
     inflateGraph(graph : Firegraph) {
         for (let node of graph.nodes) {
             if (node.data && node.data.unit === 'reroute')
@@ -440,6 +602,12 @@ export class FiregraphEditorComponent {
         }
     }
 
+    /**
+     * Find a node within `availableNodes` which matches the given node.
+     * This is used to implement graph inflation (see `inflateGraph`) whereby 
+     * we update the `properties` section of all nodes in the graph.
+     * @hidden
+     */
     findTemplateNode(node : FiregraphNode) {
         if (!node.data || !node.data.unit)
             return null;
@@ -458,6 +626,10 @@ export class FiregraphEditorComponent {
         return null;
     }
 
+    /**
+     * Determine the label to use for the given node.
+     * @hidden
+     */
     labelForNode(node : FiregraphNode) {
         if (this.labelCache.has(node))
             return this.labelCache.get(node);
@@ -468,13 +640,21 @@ export class FiregraphEditorComponent {
         return label;
     }
 
-    nodeMenuKeyboardMode = false;
-    selectedMatchingNodeIndex = 0;
-
+    /**
+     * Get the index of the given node within the `matchingNodes` array.
+     * This is used to annotate the DOM nodes found within the Node Menu
+     * in support of its keyboard selection mode.
+     * @hidden
+     */
     getIndexOfMatchingNode(node : FiregraphNode) {
         return this.matchingNodes.indexOf(node);
     }
 
+    /**
+     * Special handling for keyboard input when the user is focused on the Search
+     * box in the New Node menu.
+     * @hidden
+     */
     onNodeMenuSearchKeyDown(event : KeyboardEvent) {
         if (event.key === 'ArrowDown') {
             this.selectedMatchingNodeIndex += 1;
@@ -496,6 +676,11 @@ export class FiregraphEditorComponent {
             button.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
+    /**
+     * Update the set of visible node sets based on the search query entered 
+     * into the New Node menu's Search box by the user (`nodeSearch`).
+     * @hidden
+     */
     updateSelectedNodeSets() {
         let sets = this.availableNodes.slice();
         sets = sets.map(x => Object.assign({}, x));
@@ -507,6 +692,11 @@ export class FiregraphEditorComponent {
         this.matchingNodes = [].concat(...sets.map(x => x.nodes));
     }
 
+    /**
+     * Update the set of visible property sets based on the search query
+     * entered into the Properties sidebar Search box by the user (`propertySearch`)
+     * @hidden
+     */
     updateSelectedPropertySets() {
         let sets = [];
         
@@ -530,18 +720,34 @@ export class FiregraphEditorComponent {
         this.selectedPropertySets = sets;
     }
 
+    /**
+     * trackBy v.path
+     * @hidden
+     */
     path(v) {
         return v.path;
     }
 
+    /**
+     * trackBy v.id
+     * @hidden
+     */
     identity(v) {
         return v.id;
     }
 
+    /**
+     * trackBy v.value
+     * @hidden
+     */
     value(v) {
         return v.value;
     }
 
+    /**
+     * Bound to <fg-container>'s `contextChanged` event
+     * @hidden
+     */
     acquireGraphContext(context : FiregraphContext) {
         setTimeout(() => {
             this.graphContext = context;
@@ -573,14 +779,28 @@ export class FiregraphEditorComponent {
         });
     }
 
+    /**
+     * Used with cdkDrag to implement reorderable slots within the Properties sidebar.
+     * @hidden
+     */
     reorderSlots(event) {
         moveItemInArray(this.selectedNodes[0].slots, event.previousIndex, event.currentIndex);
     }
 
+    /**
+     * Returns true if the given property has been converted into a 
+     * Property Slot.
+     * @hidden
+     */
     isPropSlotted(prop : FiregraphProperty) {
         return this.selectedNodes.some(node => node.slots.some(x => x.id === `property:${prop.path}`))
     }
     
+    /**
+     * Removes property slots related to the given property from the 
+     * nodes that are currently selected.
+     * @hidden
+     */
     removePropertySlot(property : FiregraphProperty) {
         let nodeIds = this.selectedNodes.map(x => x.id);
 
@@ -600,6 +820,11 @@ export class FiregraphEditorComponent {
         });
     }
 
+    /**
+     * Creates new property slots related to the given property on all selected
+     * nodes.
+     * @hidden
+     */
     createPropertySlot(property : FiregraphProperty) {
         let nodeIds = this.selectedNodes.map(x => x.id);
 

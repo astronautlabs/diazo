@@ -175,7 +175,7 @@
                                                     <label>{{prop.label}}</label>
                                                 </div>
                                                 <ngx-monaco-editor 
-                                                    [options]="monacoOptions"
+                                                    [options]="jsonMonacoOptions"
                                                     [(ngModel)]="propertyManipulator[prop.path]"></ngx-monaco-editor>
                                             </ng-container>
                                             <ng-container *ngIf="prop.type === 'markdown'">
