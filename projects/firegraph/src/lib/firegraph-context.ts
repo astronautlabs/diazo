@@ -620,28 +620,160 @@ export interface FiregraphSlotRule {
     template : FiregraphSlot;
 }
 
+/**
+ * Value types define the appearance and behavior of node slots within a graph.
+ * Types are cooperatively convertible. This means that when a user is creating
+ * an edge between two slots with different value types:
+ * - If either the source or destination value type allows an 
+ *   implicit conversion
+ *   * Then, the conversion is allowed and the connection
+ *     is created.
+ * 
+ * All edges are validated using this simple type system. From this simple 
+ * interface we can construct a large number of possible schemes for validating
+ * a connection between two slots in the graph.
+ * 
+ * For instance, {@linkcode FiregraphTypeBase} provides an easy way to implement
+ * this interface, providing validation based on the inheritance heirarchy of 
+ * the classes involved. For most applications of value types this is the 
+ * obvious solution, and the low-level `isCompatible()` API is provided as an 
+ * escape hatch to implement a wide variety of possible connection validation
+ * strategies. We use this within the Firegraph editor to implement 
+ * {@linkcode WildcardType} for example.
+ * 
+ */
 export interface FiregraphValueType {
 
+    /**
+     * This function should analyze a pair of slots, represented 
+     * as editor context objects, and determine if a connection is 
+     * allowed between them. The graph state at this point does not 
+     * reflect the new connection between the two, only edges existing
+     * before the new edge was added will be present. 
+     * 
+     * It is guaranteed that at least one of the `output` and/or `input` 
+     * slots have specified a value of this type. This method is only 
+     * called for interactions which involve this value type.
+     * 
+     * Implementations could:
+     * - Consider what existing edges already exist between the slots
+     * - Consider the `value` of the input and the output slots
+     * - Consider the state of the graph as a whole 
+     * - Consider the state of the containing application
+     * - Anything else inferrable given the context of your domain
+     * 
+     * @param output 
+     * @param input 
+     */
     isCompatible(
         output : FiregraphSlotContext,
         input : FiregraphSlotContext
     ) : boolean;
 
+    /**
+     * Specifies the registered ID for this value type.
+     * This must be distinct across the editor where this 
+     * value type is loaded. A slot will reference this ID
+     * in its `value` definition:
+     * 
+     * ```typescript
+     * let slot : FiregraphSlot = {
+     *   // ...
+     *   value: { type: 'IDHERE' }
+     * }
+     * ```
+     */
     id : string;
+
+    /**
+     * The HTML/CSS color which should be used to render edges 
+     * which have a value of this type.
+     */
     color : string;
+
+    /**
+     * The name of this value, this will be used in tooltips and 
+     * other hints in the UI.
+     */
     name : string;
+
+    /**
+     * A short description for this value type
+     */
     description : string;
+
+    /**
+     * The shape that should be used for the slot handle on the node within
+     * the editor.
+     */
     slotShape? : "circle" | "square" | "arrow";
+
+    /**
+     * The line width for edges that have a value of this type
+     */
     lineWidth? : number;
+
+    /**
+     * When true, the editor will consider edges where the source slot is 
+     * already connected to be valid. Otherwise such edges will be considered
+     * invalid.
+     */
     splittable? : boolean;
+
+    /**
+     * When true, the editor will consider edges where the destination slot is
+     * already connected to be valid. Otherwise such edges will be considered
+     * invalid.
+     */
     mergeable? : boolean;
 
-
+    /**
+     * When defined, the editor will call this function to determine what name
+     * to show within the editor, passing in the slot related to the request.
+     * This can be used to customize the name shown for this value type based
+     * on the context of where it appears.
+     */
     getNameByContext?(slot : FiregraphSlotContext) : string;
+
+    /**
+     * When defined, the editor will call this function to determine what color
+     * to use for edges of this value type within the editor, passing in the slot
+     * related to the request. This can be used to customize the color used for 
+     * this value type based on the context of where it appears.
+     */
     getColorByContext?(slot : FiregraphSlotContext) : string;
+
+    /**
+     * When defined, the editor will call this function to determine what shape
+     * to use for the editor handles of slots which have values of this type.
+     * @param slot 
+     */
     getSlotShapeByContext?(slot : FiregraphSlotContext) : "circle" | "square" | "arrow";
 }
 
+/**
+ * Provides an abstract base class for new Firegraph value types that provides
+ * heirarchical compatibility by default.
+ * 
+ * Custom value types which inherit from `FiregraphTypeBase` will automatically
+ * grant implicit conversions which broaden the "value" of the edge and deny
+ * conversions which narrow the "value of the edge.
+ * 
+ * Given:
+ * 
+ * ```typescript
+ * export class TypeA extends FiregraphTypeBase {}
+ * export class TypeB extends TypeA {}
+ * ```
+ * 
+ * - A connection from an output slot of `TypeB` **can be assigned** to an input slot of 
+ * `TypeA`
+ * - A connection from an output slot of `TypeA` **cannot be assigned** to an input slot of `TypeB`
+ * 
+ * This may or may not be the behavior you want from your custom value types.
+ * You can override the {@linkcode isCompatible} method to change this behavior,
+ * or implement {@linkcode FiregraphValueType} directly instead. 
+ */
 export class FiregraphTypeBase implements Partial<FiregraphValueType> {
     isCompatible(
         output : FiregraphSlotContext,
@@ -666,6 +798,39 @@ export class FiregraphTypeBase implements Partial<FiregraphValueType> {
     }
 }
 
+/**
+ * Provides a special value type that works by inference. You create 
+ * named wildcard values within your slots using {@link WildcardType.named()}
+ * and the Firegraph editor will automatically infer what value the slot really
+ * is by analyzing other existing edges in the graph. You can use this if the 
+ * node can take any value in, but the output should follow what the input edge 
+ * is. Note that this works in any direction. If you attach an edge to the 
+ * wildcard output on your node, the corresponding input(s) will immediately 
+ * reflect that inference.
+ * 
+ * So for example:
+ * ```typescript
+ * <FiregraphNode>{
+ *      label: 'My Node',
+ *      slots: [
+ *          {
+ *              id: 'input1',
+ *              type: 'input',
+ *              value: WildcardType.named('T')
+ *          },
+ *          {
+ *              id: 'output1',
+ *              type: 'output',
+ *              value: WildcardType.named('T')
+ *          },
+ *      ]
+ * }
+ * ```
+ * 
+ * If you connect an edge to either the `input1` or `output1` slots, the other
+ * slot will immediately reflect the value type of that edge.
+ * 
+ */
 export class WildcardType extends FiregraphTypeBase implements FiregraphValueType {
     id = 'wildcard';
     color = 'pink';
@@ -787,6 +952,33 @@ export interface FiregraphSlot {
     label : string;
     type : 'input' | 'output' | 'passthrough';
     hidden? : boolean;
+
+    /**
+     * The value associated with this slot.
+     * 
+     * Conceptually, the value of a slot defines the type of content that 
+     * is "transported" by edges that connect to it. Practically, this 
+     * lets the editor ensure that the user cannot connect incompatible 
+     * slots to each other.
+     * 
+     * 
+     * Values are also the mechanism by which the presentational elements of 
+     * edges in the graph (ie color, width, labels) are customized. 
+     * 
+     * Each `value` consists of a {@link FiregraphValueType | value type} 
+     * and a set of _parameters_.
+     * Most simple value types do not depend on the parameters included within
+     * the actual `value` declared on a `slot`, but some do. The parameters 
+     * of a value may impact whether the editor allows a connection from one
+     * slot to another.
+     * 
+     * Value types are referenced via a registered ID. See 
+     * {@link FiregraphEditorComponent.valueTypes}
+     * for information about providing these to the editor.
+     * 
+     * For more about value types, see {@link FiregraphValueType}
+     * 
+     */
     value? : FiregraphValue;
     dynamic? : boolean;
 }
