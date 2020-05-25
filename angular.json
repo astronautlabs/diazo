@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "firegraph": {
+    "diazo": {
       "projectType": "library",
-      "root": "projects/firegraph",
-      "sourceRoot": "projects/firegraph/src",
+      "root": "projects/diazo",
+      "sourceRoot": "projects/diazo/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/firegraph/tsconfig.lib.json",
-            "project": "projects/firegraph/ng-package.json"
+            "tsConfig": "projects/diazo/tsconfig.lib.json",
+            "project": "projects/diazo/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/firegraph/tsconfig.lib.prod.json"
+              "tsConfig": "projects/diazo/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/firegraph/src/test.ts",
-            "tsConfig": "projects/firegraph/tsconfig.spec.json",
-            "karmaConfig": "projects/firegraph/karma.conf.js"
+            "main": "projects/diazo/src/test.ts",
+            "tsConfig": "projects/diazo/tsconfig.spec.json",
+            "karmaConfig": "projects/diazo/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/firegraph/tsconfig.lib.json",
-              "projects/firegraph/tsconfig.spec.json"
+              "projects/diazo/tsconfig.lib.json",
+              "projects/diazo/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -46,5 +46,5 @@
   "cli": {
     "analytics": "e10ae426-62cf-4a19-bfed-291233281245"
   },
-  "defaultProject": "firegraph"
+  "defaultProject": "diazo"
 }

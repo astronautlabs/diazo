@@ -1,19 +1,19 @@
-# @astronautlabs/firegraph
+# @astronautlabs/diazo
 
 An MIT-licensed slot-driven directed-acyclical-graph (DAG) editor for Angular. This 
 component was built for use in Astronaut Labs' Livefire product suite because 
 there was no good existing open-source editor. We wanted to fix that, so we 
 hope you find lots of great ways to use this editor in your projects!
 
-Firegraph is inspired by Blueprint, the visual programming language of 
-Unreal Engine. Firegraph itself is just the editor that would power such
+Diazo is inspired by Blueprint, the visual programming language of 
+Unreal Engine. Diazo itself is just the editor that would power such
 an experience, and the library itself is completely domain-agnostic. 
-You can use Firegraph in your apps to introduce visual node-graph functionality 
+You can use Diazo in your apps to introduce visual node-graph functionality 
 in any domain where it makes sense to apply it, and we encourage you to do so!
 
 ## Concepts
 
-Firegraph operates on a simple directed-acyclical-graph (DAG) data structure 
+Diazo operates on a simple directed-acyclical-graph (DAG) data structure 
 which is transparently available to you as the consumer of the library. The 
 DAG is specified as a set of nodes with distinct IDs which each specify a set of
 input and output slots. The DAG also tracks a set of edges which
@@ -22,27 +22,27 @@ link one slot on a particular node to another slot on a different node.
 ## Usage
 
 ```html
-    <fg-editor
+    <dz-editor
         [graph]="myGraph"
         [availableNodes]="availableNodes"
-        ></fg-editor>
+        ></dz-editor>
 ```
 
-There are many more bindable properties and events that `<fg-editor>` makes 
+There are many more bindable properties and events that `<dz-editor>` makes 
 available, but the above are what's needed to provide a basic experience.
 
 ### `[graph]="myGraph"`
 
-The most important input to Firegraph is the graph object itself. The graph 
+The most important input to Diazo is the graph object itself. The graph 
 object specifies the nodes and edges that make up the graph you can see in 
 the editor.
 
 One might satisfy this binding by declaring `myGraph` as seen below.
 ```typescript
-import { Firegraph } from '@astronautlabs/firegraph';
+import { Diazo } from '@astronautlabs/diazo';
 
 export class MyComponent {
-    myGraph : Firegraph = { nodes: [], edges: [] };
+    myGraph : Diazo = { nodes: [], edges: [] };
 }
 ```
 
@@ -55,11 +55,11 @@ right clicking). `availableNodes` is an array of NodeSets.
 Each NodeSet defines a labelled group of template nodes. Let's add a 
 node set with a few simple template nodes:
 ```typescript
-import { Firegraph } from '@astronautlabs/firegraph';
+import { Diazo } from '@astronautlabs/diazo';
 
 export class MyComponent {
-    myGraph : Firegraph = { nodes: [], edges: [] };
-    availableNodes : FiregraphNodeSet[] = [
+    myGraph : Diazo = { nodes: [], edges: [] };
+    availableNodes : DiazoNodeSet[] = [
         {
             id: 'general',
             label: 'General',
@@ -94,7 +94,7 @@ Template nodes can specify a set of _properties_ which will be shown on the Prop
 sidebar. Similar to the available node set, properties are grouped into labelled sets.
 
 ```js
-let node : FiregraphNode = {
+let node : DiazoNode = {
     data: {
         unit: 'my-output',
         someProperty: 'abc'

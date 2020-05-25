@@ -1,23 +1,23 @@
-<fg-node [id]="node?.id" [ownState]="drafted ? node : null">
+<dz-node [id]="node?.id" [ownState]="drafted ? node : null">
     <label *ngIf="node.style !== 'inline'">
         {{M?.label}}
     </label>
     <main>
-        <fg-node-host 
+        <dz-node-host 
             [component]="component" 
             (instanceChanged)="instance = $event"
-            ></fg-node-host>
+            ></dz-node-host>
 
         <div class="inputs">
             <ng-container *ngFor="let slot of (instance?.slots || node?.slots || [])">
-                <fg-slot 
+                <dz-slot 
                     *ngIf="slot.type === 'input'"
                     [id]="slot.id" 
                     [type]="slot.type"
                     [label]="slot.label"
                     [hidden]="slot.hidden"
                     [value]="slot.value"
-                    >{{slot.label}}</fg-slot>
+                    >{{slot.label}}</dz-slot>
             </ng-container>
         </div>
 
@@ -27,15 +27,15 @@
         
         <div class="outputs">
             <ng-container *ngFor="let slot of (instance?.slots || node?.slots || [])">
-                <fg-slot 
+                <dz-slot 
                     *ngIf="slot.type !== 'input'"
                     [id]="slot.id" 
                     [type]="slot.type"
                     [label]="slot.label"
                     [hidden]="slot.hidden"
                     [value]="slot.value"
-                    >{{slot.label}}</fg-slot>
+                    >{{slot.label}}</dz-slot>
             </ng-container>
         </div>
     </main>
-</fg-node>
+</dz-node>

@@ -16,9 +16,9 @@
       "dom"
     ],
     "paths": {
-      "firegraph": [
-        "dist/firegraph/firegraph",
-        "dist/firegraph"
+      "diazo": [
+        "dist/diazo/diazo",
+        "dist/diazo"
       ]
     }
   },

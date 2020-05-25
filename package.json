@@ -1,5 +1,5 @@
 {
-  "name": "firegraph",
+  "name": "@astronautlabs/diazo-workspace",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

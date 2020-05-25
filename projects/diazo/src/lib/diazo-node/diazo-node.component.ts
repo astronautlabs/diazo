@@ -1,18 +1,18 @@
 import { Component, ElementRef, ViewContainerRef, Input, HostListener, HostBinding, ViewChild } from "@angular/core";
-import { FiregraphContext, FiregraphNode, Position } from '../firegraph-context';
-import { FiregraphNodeContext } from '../firegraph-context';
+import { DiazoContext, DiazoNode, Position } from '../diazo-context';
+import { DiazoNodeContext } from '../diazo-context';
 import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
-    selector: 'fg-node',
-    templateUrl: './firegraph-node.component.html',
-    styleUrls: ['./firegraph-node.component.scss'],
-    providers: [FiregraphNodeContext]
+    selector: 'dz-node',
+    templateUrl: './diazo-node.component.html',
+    styleUrls: ['./diazo-node.component.scss'],
+    providers: [DiazoNodeContext]
 })
-export class FiregraphNodeComponent {
+export class DiazoNodeComponent {
     constructor(
-        private context : FiregraphContext,
-        private nodeContext : FiregraphNodeContext,
+        private context : DiazoContext,
+        private nodeContext : DiazoNodeContext,
         private elementRef : ElementRef<HTMLElement>,
     ) {
         nodeContext.graph = context;
@@ -41,7 +41,7 @@ export class FiregraphNodeComponent {
     }
     
     // @Input()
-    // get state() : FiregraphNode {
+    // get state() : DiazoNode {
     //     return this.nodeContext.state;
     // }
 
@@ -165,7 +165,7 @@ export class FiregraphNodeComponent {
     async startMoving(startEvent : MouseEvent) {
         if (startEvent.button === 2) {
             // panning
-            // TODO: deduplicate (also present in firegraph.component.ts)
+            // TODO: deduplicate (also present in diazo.component.ts)
 
             let startLeft = this.context.panX;
             let startTop = this.context.panY;

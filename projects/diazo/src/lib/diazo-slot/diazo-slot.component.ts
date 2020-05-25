@@ -1,18 +1,18 @@
 import { Component, Input, HostBinding, ElementRef, ViewChild, HostListener } from '@angular/core';
-import { FiregraphNodeContext, FiregraphSlotContext, FiregraphContext } from '../firegraph-context';
+import { DiazoNodeContext, DiazoSlotContext, DiazoContext } from '../diazo-context';
 import { SubSink } from 'subsink';
 
 @Component({
-    selector: 'fg-slot',
-    templateUrl: './firegraph-slot.component.html',
-    styleUrls: ['./firegraph-slot.component.scss'],
-    providers: [ FiregraphSlotContext ]
+    selector: 'dz-slot',
+    templateUrl: './diazo-slot.component.html',
+    styleUrls: ['./diazo-slot.component.scss'],
+    providers: [ DiazoSlotContext ]
 })
-export class FiregraphSlotComponent {
+export class DiazoSlotComponent {
     constructor(
-        private graphContext : FiregraphContext,
-        private nodeContext : FiregraphNodeContext,
-        private context : FiregraphSlotContext,
+        private graphContext : DiazoContext,
+        private nodeContext : DiazoNodeContext,
+        private context : DiazoSlotContext,
         private element : ElementRef<HTMLElement>
     ) {
         this.context.type = 'input';

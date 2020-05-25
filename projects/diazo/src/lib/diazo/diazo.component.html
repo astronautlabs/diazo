@@ -19,11 +19,11 @@
     <ng-content></ng-content>
 
     <ng-container *ngFor="let node of (graph?.nodes || []); trackBy nodeIdentity">
-        <fg-dynamic-node [node]="node"></fg-dynamic-node>
+        <dz-dynamic-node [node]="node"></dz-dynamic-node>
     </ng-container>
 
     <ng-container *ngIf="draftNode">
-        <fg-dynamic-node [drafted]="true" [node]="draftNode"></fg-dynamic-node>
+        <dz-dynamic-node [drafted]="true" [node]="draftNode"></dz-dynamic-node>
     </ng-container>
 
 </div>

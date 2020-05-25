@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
-import { FiregraphComponent } from './firegraph/firegraph.component';
-import { FiregraphDynamicNodeComponent } from './firegraph-dynamic-node/firegraph-dynamic-node.component';
-import { FiregraphNodeHostComponent } from './firegraph-node-host/firegraph-node-host.component';
-import { FiregraphSlotComponent } from './firegraph-slot/firegraph-slot.component';
-import { FiregraphNodeComponent } from './firegraph-node/firegraph-node.component';
+import { DiazoComponent } from './diazo/diazo.component';
+import { DiazoDynamicNodeComponent } from './diazo-dynamic-node/diazo-dynamic-node.component';
+import { DiazoNodeHostComponent } from './diazo-node-host/diazo-node-host.component';
+import { DiazoSlotComponent } from './diazo-slot/diazo-slot.component';
+import { DiazoNodeComponent } from './diazo-node/diazo-node.component';
 import { CommonModule } from '@angular/common';
-import { FiregraphEditorComponent } from './firegraph-editor/firegraph-editor.component';
-import { FiregraphNodeSourceComponent } from './firegraph-node-source/firegraph-node-source.component';
+import { DiazoEditorComponent } from './diazo-editor/diazo-editor.component';
+import { DiazoNodeSourceComponent } from './diazo-node-source/diazo-node-source.component';
 import { TrustHtmlPipe } from './trust-html.pipe';
 import { CustomPropertyEditorHostComponent } from './custom-property-editor-host/custom-property-editor-host.component';
 import { OmnisearchPipe } from './omnisearch.pipe';
@@ -31,13 +31,13 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const DECLARATIONS = [
     OmnisearchPipe,
-    FiregraphComponent,
-    FiregraphDynamicNodeComponent,
-    FiregraphNodeComponent,
-    FiregraphNodeHostComponent,
-    FiregraphSlotComponent,
-    FiregraphEditorComponent,
-    FiregraphNodeSourceComponent,
+    DiazoComponent,
+    DiazoDynamicNodeComponent,
+    DiazoNodeComponent,
+    DiazoNodeHostComponent,
+    DiazoSlotComponent,
+    DiazoEditorComponent,
+    DiazoNodeSourceComponent,
     CustomPropertyEditorHostComponent,
     TrustHtmlPipe
 ];
@@ -67,6 +67,6 @@ const DECLARATIONS = [
         MonacoEditorModule
     ]
 })
-export class FiregraphModule {
+export class DiazoModule {
 
 }

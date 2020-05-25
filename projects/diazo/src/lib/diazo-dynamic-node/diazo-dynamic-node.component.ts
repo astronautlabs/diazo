@@ -1,17 +1,17 @@
 import { Component, Input, ComponentFactoryResolver, Injector } from '@angular/core';
-import { FiregraphNode, FiregraphContext } from '../firegraph-context';
+import { DiazoNode, DiazoContext } from '../diazo-context';
 import { Accessor } from '../accessor';
 
 @Component({
-    selector: 'fg-dynamic-node',
-    templateUrl: './firegraph-dynamic-node.component.html',
-    styleUrls: ['./firegraph-dynamic-node.component.scss']
+    selector: 'dz-dynamic-node',
+    templateUrl: './diazo-dynamic-node.component.html',
+    styleUrls: ['./diazo-dynamic-node.component.scss']
 })
-export class FiregraphDynamicNodeComponent {
+export class DiazoDynamicNodeComponent {
     constructor(
         private componentResolver : ComponentFactoryResolver,
         private injector : Injector,
-        private context : FiregraphContext
+        private context : DiazoContext
     ) {
         let self = this;
         this.M = new Proxy({}, {
@@ -32,13 +32,13 @@ export class FiregraphDynamicNodeComponent {
     }
 
     accessor = new Accessor();
-    _node : FiregraphNode;
+    _node : DiazoNode;
 
     @Input()
     drafted : boolean;
     
     @Input()
-    get node() : FiregraphNode {
+    get node() : DiazoNode {
         return this._node;
     }
 

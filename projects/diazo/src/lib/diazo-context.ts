@@ -21,28 +21,28 @@ export interface Constructor<T> {
 
 /**
  * Used to represent a text notification that should be shown in the UI.
- * This is used by the {@link FiregraphContext | context} layer to signal the
- * {@link FiregraphEditorComponent | Firegraph editor} to show a message 
+ * This is used by the {@link DiazoContext | context} layer to signal the
+ * {@link DiazoEditorComponent | Diazo editor} to show a message 
  * via the snack bar (floating notifications shown along the bottom of 
  * the viewport). 
  */
-export interface FiregraphEditorNotification {
+export interface DiazoEditorNotification {
     message : string;
 }
 
 /**
- * Represents a single slot on a single node within a Firegraph. 
+ * Represents a single slot on a single node within a Diazo. 
  * This handles ephemeral state and accessing logic around the representation
- * of a slot within the Firegraph user interface.
+ * of a slot within the Diazo user interface.
  */
-export class FiregraphSlotContext {
+export class DiazoSlotContext {
     id : string;
     type : string;
-    node : FiregraphNodeContext;
-    value : FiregraphValue;
-    valueType : FiregraphValueType;
+    node : DiazoNodeContext;
+    value : DiazoValue;
+    valueType : DiazoValueType;
     getClientPosition? : () => Position;
-    validateEdge? : (edge : FiregraphEdge) => boolean;
+    validateEdge? : (edge : DiazoEdge) => boolean;
 
     get incomingEdges() {
         return this.node.graph.edges.filter(x => x.toNodeId === this.node.id && x.toSlotId === this.id);
@@ -63,7 +63,7 @@ export class FiregraphSlotContext {
         return this.node.graph;
     }
 
-    getOtherSlotOfEdge(edge : FiregraphEdge) {
+    getOtherSlotOfEdge(edge : DiazoEdge) {
         if (edge.fromNodeId === this.node.id && edge.fromSlotId === this.id) {
             return this.graph.getSlotByIds(edge.toNodeId, edge.toSlotId);
         } else {
@@ -73,7 +73,7 @@ export class FiregraphSlotContext {
 }
 
 /**
- * Represents the extends of a rectangle within the {@link FiregraphContext | context} layer 
+ * Represents the extends of a rectangle within the {@link DiazoContext | context} layer 
  * layer.
  */
 export interface Size {
@@ -82,15 +82,15 @@ export interface Size {
 }
 
 /**
- * Represents a saved Undo/Redo state within the {@link FiregraphContext | context} layer.
+ * Represents a saved Undo/Redo state within the {@link DiazoContext | context} layer.
  */
-export interface FiregraphUndoState {
-    graphBefore : Firegraph;
-    graphAfter : Firegraph;
+export interface DiazoUndoState {
+    graphBefore : Diazo;
+    graphAfter : Diazo;
     cause : string;
 }
 
-export class FiregraphPropertyContext {
+export class DiazoPropertyContext {
     constructor() {
         this._accessor = new Accessor();
         this._manipulator = new Proxy({}, {
@@ -130,9 +130,9 @@ export class FiregraphPropertyContext {
         });
     }
 
-    graphContext : FiregraphContext;
-    selectedNodes : FiregraphNode[];
-    property : FiregraphProperty;
+    graphContext : DiazoContext;
+    selectedNodes : DiazoNode[];
+    property : DiazoProperty;
 
     private _accessor : Accessor;
     private _manipulator : any;
@@ -149,29 +149,29 @@ export class FiregraphPropertyContext {
 /**
  * Represents a registered custom property type view. This is used 
  * to convey the list of custom property type views from the consumer of the 
- * library to the {@link FiregraphEditorComponent | Firegraph editor}.
+ * library to the {@link DiazoEditorComponent | Diazo editor}.
  */
-export interface FiregraphCustomPropertyType {
+export interface DiazoCustomPropertyType {
     namespace : string;
     id : string;
     component : any;
 }
 
 /**
- * Represents the context for a specific node within a Firegraph.
+ * Represents the context for a specific node within a Diazo.
  * This provides ephemeral state, convenient access, and interaction logic
- * around the user interface representation of a Firegraph node.
+ * around the user interface representation of a Diazo node.
  */
 @Injectable()
-export class FiregraphNodeContext {
+export class DiazoNodeContext {
     constructor() {
 
     }
 
-    ownState : FiregraphNode;
+    ownState : DiazoNode;
     id : string;
-    slots : FiregraphSlotContext[] = [];
-    graph : FiregraphContext;
+    slots : DiazoSlotContext[] = [];
+    graph : DiazoContext;
 
     get readonly() {
         return this.locked || !!this.state.readonly || this.graph.readonly;
@@ -203,7 +203,7 @@ export class FiregraphNodeContext {
         return this.edges.filter(x => x.fromNodeId === this.id);
     }
     
-    involvedInEdge(edge : FiregraphEdge) {
+    involvedInEdge(edge : DiazoEdge) {
         return (edge.toNodeId === this.id || edge.fromNodeId === this.id);
     }
 
@@ -252,7 +252,7 @@ export class FiregraphNodeContext {
         return this._positionChanged;
     }
 
-    modify(cause : string, callback : (node : FiregraphNode) => void) {
+    modify(cause : string, callback : (node : DiazoNode) => void) {
         this.graph.commit(cause, graph => {
             callback(graph.nodes.find(x => x.id === this.id));
         });
@@ -329,17 +329,17 @@ export class FiregraphNodeContext {
         return this.slots.find(x => x.id === id);
     }
 
-    registerSlot(slotContext : FiregraphSlotContext) {
+    registerSlot(slotContext : DiazoSlotContext) {
         this.slots.push(slotContext);
     }
 
-    deregisterSlot(slotContext : FiregraphSlotContext) {
+    deregisterSlot(slotContext : DiazoSlotContext) {
         let index = this.slots.findIndex(x => x === slotContext);
         if (index >= 0)
             this.slots.splice(index, 1);
     }
 
-    startEdge(slot : FiregraphSlotContext, event : MouseEvent) {
+    startEdge(slot : DiazoSlotContext, event : MouseEvent) {
         if (this.graph.readonly)
             return;
 
@@ -348,10 +348,10 @@ export class FiregraphNodeContext {
 }
 
 /**
- * Defines the structure of an edge within the {@linkcode Firegraph.edges | edges} property of a {@linkcode Firegraph}
+ * Defines the structure of an edge within the {@linkcode Diazo.edges | edges} property of a {@linkcode Diazo}
  * object.
  */
-export interface FiregraphEdge {
+export interface DiazoEdge {
     fromNodeId : string;
     fromSlotId : string;
     toNodeId : string;
@@ -360,78 +360,78 @@ export interface FiregraphEdge {
     valid? : boolean;
 }
 
-export interface FiregraphPropertyOption {
+export interface DiazoPropertyOption {
     value : string;
     label : string;
 }
 
-export interface FiregraphPropertyOptionGroup {
+export interface DiazoPropertyOptionGroup {
     label : string;
-    options : FiregraphPropertyOption[];
+    options : DiazoPropertyOption[];
 }
 
-export interface FiregraphProperty {
+export interface DiazoProperty {
     label? : string;
     path? : string;
     description? : string;
     readonly? : boolean;
     slottable? : boolean;
-    slotValue? : FiregraphValue;
+    slotValue? : DiazoValue;
     allowAnnotation? : boolean;
     
     type : 'number' | 'text' | 'bitmask' | 'json'
             | 'textarea' | 'select' | 'flags' | 'position' 
             | 'boolean' | 'matrix' | 'inline-matrix' | string;
     typeOptions? : any;
-    inlineMatrix? : FiregraphPropertyInlineMatrix;
-    matrix? : FiregraphPropertyMatrix;
-    bitmask? : FiregraphPropertyBitmask;
-    options? : FiregraphPropertyOption[];
+    inlineMatrix? : DiazoPropertyInlineMatrix;
+    matrix? : DiazoPropertyMatrix;
+    bitmask? : DiazoPropertyBitmask;
+    options? : DiazoPropertyOption[];
     optionSource? : string;
 }
 
-export interface FiregraphPropertyInlineMatrix {
+export interface DiazoPropertyInlineMatrix {
     width : number;
     height : number;
 }
 
-export interface FiregraphPropertyBitmask {
+export interface DiazoPropertyBitmask {
     labels? : string[];
 }
 
-export interface FiregraphPropertyMatrix {
+export interface DiazoPropertyMatrix {
     width : number;
     height : number;
-    cells : FiregraphPropertyCell[];
+    cells : DiazoPropertyCell[];
 }
 
-export interface FiregraphPropertyCell {
+export interface DiazoPropertyCell {
     path : string;
     label? : string;
     description? : string;
 }
 
-export interface FiregraphNodeSet {
+export interface DiazoNodeSet {
     id? : string;
     tags? : string[];
     label : string;
-    nodes : FiregraphNode[];
+    nodes : DiazoNode[];
 }
 
-export interface FiregraphPropertySet {
+export interface DiazoPropertySet {
     id : string;
     label : string;
     description? : string;
-    properties : FiregraphProperty[];
+    properties : DiazoProperty[];
 }
 
-export interface FiregraphNode {
+export interface DiazoNode {
     id? : string;
 
     /**
      * Specifies the category of node this is.
      * Examples of classifications could include "input", "output", "filter"
-     * but the meaning of this field is not defined within the Firegraph editor
+     * but the meaning of this field is not defined within the Diazo editor
      * except that if you wish to use a custom node view, this field determines
      * which custom node view that will be displayed. 
      */
@@ -500,14 +500,14 @@ export interface FiregraphNode {
     profile? : 'normal' | 'slim' | 'wide';
     
     /**
-     * This is used by the Firegraph editor to keep track of where the node is 
+     * This is used by the Diazo editor to keep track of where the node is 
      * being moved to. It should be ignored or set to zero otherwise.
      * @todo move to context layer
      */
     positionDeltaX? : number;
 
     /**
-     * This is used by the Firegraph editor to keep track of where the node is 
+     * This is used by the Diazo editor to keep track of where the node is 
      * being moved to. It should be ignored or set to zero otherwise.
      * @todo move to context layer
      */
@@ -519,41 +519,41 @@ export interface FiregraphNode {
      * properties will reference data within this structure. 
      * 
      * There are some somewhat "special" properties in this object:
-     * - `unit` typically specifies the subtype of the node (where {@link `FiregraphNode.type`
+     * - `unit` typically specifies the subtype of the node (where {@link `DiazoNode.type`
      *   indicates the primary categorization) 
      */
     data? : any;
 
     /**
      * The set of connectable input/output "slots" that are part of this node. 
-     * These are rendered in the Firegraph editor as labelled circular 
+     * These are rendered in the Diazo editor as labelled circular 
      * connection handles which can be connected to one or more other slots on 
      * other nodes.
      */
-    slots? : FiregraphSlot[];
+    slots? : DiazoSlot[];
 
     // Flywheel
 
     /**
      * When true, this type of node is considered to be "alpha" by the 
-     * {@link FiregraphEditorComponent | Firegraph editor}. The New Node menu 
+     * {@link DiazoEditorComponent | Diazo editor}. The New Node menu 
      * will show the Alpha designation to the user.
      */
     alpha? : boolean;
 
     /**
      * When true, this type of node is considered to be "beta" by the 
-     * {@link FiregraphEditorComponent | Firegraph editor}. The New Node menu will show the Beta designation to
+     * {@link DiazoEditorComponent | Diazo editor}. The New Node menu will show the Beta designation to
      * the user.
      */
     beta? : boolean;
 
     /**
      * Specifies the set of user-editable properties that exist for this node.
-     * The {@link FiregraphEditorComponent | Firegraph editor} will show these 
+     * The {@link DiazoEditorComponent | Diazo editor} will show these 
      * in the Properties sidebar.
      */
-    properties? : FiregraphPropertySet[];
+    properties? : DiazoPropertySet[];
 
     /**
      * Specifies a set of defaults for the other properties of this node. 
@@ -567,7 +567,7 @@ export interface FiregraphNode {
      * 
      * For example, you could specify a node like so:
      * ```typescript
-     * let node : FiregraphNode = {
+     * let node : DiazoNode = {
      *   label: 'JSON Value',
      *   data: { 
      *     type: 'input',
@@ -605,19 +605,19 @@ export interface FiregraphNode {
      * on the node. As that value changes, the `slots` are dynamically rewritten
      * to match.
      */
-    rules? : FiregraphNodeRules;
+    rules? : DiazoNodeRules;
 }
 
-export interface FiregraphNodeRules {
-    slots? : FiregraphSlotRule;
-    inputs? : FiregraphSlotRule;
-    outputs? : FiregraphSlotRule;
+export interface DiazoNodeRules {
+    slots? : DiazoSlotRule;
+    inputs? : DiazoSlotRule;
+    outputs? : DiazoSlotRule;
 }
 
-export interface FiregraphSlotRule {
+export interface DiazoSlotRule {
     placement? : 'append' | 'prepend';
     count : string;
-    template : FiregraphSlot;
+    template : DiazoSlot;
 }
 
 /**
@@ -633,16 +633,16 @@ export interface FiregraphSlotRule {
  * interface we can construct a large number of possible schemes for validating
  * a connection between two slots in the graph.
  * 
- * For instance, {@linkcode FiregraphTypeBase} provides an easy way to implement
+ * For instance, {@linkcode DiazoTypeBase} provides an easy way to implement
  * this interface, providing validation based on the inheritance heirarchy of 
  * the classes involved. For most applications of value types this is the 
  * obvious solution, and the low-level `isCompatible()` API is provided as an 
  * escape hatch to implement a wide variety of possible connection validation
- * strategies. We use this within the Firegraph editor to implement 
+ * strategies. We use this within the Diazo editor to implement 
  * {@linkcode WildcardType} for example.
  * 
  */
-export interface FiregraphValueType {
+export interface DiazoValueType {
 
     /**
      * This function should analyze a pair of slots, represented 
@@ -666,8 +666,8 @@ export interface FiregraphValueType {
      * @param input 
      */
     isCompatible(
-        output : FiregraphSlotContext,
-        input : FiregraphSlotContext
+        output : DiazoSlotContext,
+        input : DiazoSlotContext
     ) : boolean;
 
     /**
@@ -677,7 +677,7 @@ export interface FiregraphValueType {
      * in its `value` definition:
      * 
      * ```typescript
-     * let slot : FiregraphSlot = {
+     * let slot : DiazoSlot = {
      *   // ...
      *   value: { type: 'IDHERE' }
      * }
@@ -733,7 +733,7 @@ export interface FiregraphValueType {
      * This can be used to customize the name shown for this value type based
      * on the context of where it appears.
      */
-    getNameByContext?(slot : FiregraphSlotContext) : string;
+    getNameByContext?(slot : DiazoSlotContext) : string;
 
     /**
      * When defined, the editor will call this function to determine what color
@@ -741,28 +741,28 @@ export interface FiregraphValueType {
      * related to the request. This can be used to customize the color used for 
      * this value type based on the context of where it appears.
      */
-    getColorByContext?(slot : FiregraphSlotContext) : string;
+    getColorByContext?(slot : DiazoSlotContext) : string;
 
     /**
      * When defined, the editor will call this function to determine what shape
      * to use for the editor handles of slots which have values of this type.
      * @param slot 
      */
-    getSlotShapeByContext?(slot : FiregraphSlotContext) : "circle" | "square" | "arrow";
+    getSlotShapeByContext?(slot : DiazoSlotContext) : "circle" | "square" | "arrow";
 }
 
 /**
- * Provides an abstract base class for new Firegraph value types that provides
+ * Provides an abstract base class for new Diazo value types that provides
  * heirarchical compatibility by default.
  * 
- * Custom value types which inherit from `FiregraphTypeBase` will automatically
+ * Custom value types which inherit from `DiazoTypeBase` will automatically
  * grant implicit conversions which broaden the "value" of the edge and deny
  * conversions which narrow the "value of the edge.
  * 
  * Given:
  * 
  * ```typescript
- * export class TypeA extends FiregraphTypeBase {}
+ * export class TypeA extends DiazoTypeBase {}
  * export class TypeB extends TypeA {}
  * ```
  * 
@@ -772,12 +772,12 @@ export interface FiregraphValueType {
  * 
  * This may or may not be the behavior you want from your custom value types.
  * You can override the {@linkcode isCompatible} method to change this behavior,
- * or implement {@linkcode FiregraphValueType} directly instead. 
+ * or implement {@linkcode DiazoValueType} directly instead. 
  */
-export class FiregraphTypeBase implements Partial<FiregraphValueType> {
+export class DiazoTypeBase implements Partial<DiazoValueType> {
     isCompatible(
-        output : FiregraphSlotContext,
-        input : FiregraphSlotContext
+        output : DiazoSlotContext,
+        input : DiazoSlotContext
     ) {
         return (output.valueType === input.valueType
                 || output.valueType instanceof input.valueType.constructor ) 
@@ -785,14 +785,14 @@ export class FiregraphTypeBase implements Partial<FiregraphValueType> {
         ;
     }
 
-    public static value<T extends typeof FiregraphTypeBase>(this : T, params? : any): FiregraphValue {
-        let x : FiregraphValueType = new (<any>this)();
+    public static value<T extends typeof DiazoTypeBase>(this : T, params? : any): DiazoValue {
+        let x : DiazoValueType = new (<any>this)();
         return { type: x.id, params };
     }
 
     isExpressionCompatible(
-        output : FiregraphSlotContext,
-        input : FiregraphSlotContext
+        output : DiazoSlotContext,
+        input : DiazoSlotContext
     ) {
         return true;
     }
@@ -801,7 +801,7 @@ export class FiregraphTypeBase implements Partial<FiregraphValueType> {
 /**
  * Provides a special value type that works by inference. You create 
  * named wildcard values within your slots using {@link WildcardType.named()}
- * and the Firegraph editor will automatically infer what value the slot really
+ * and the Diazo editor will automatically infer what value the slot really
  * is by analyzing other existing edges in the graph. You can use this if the 
  * node can take any value in, but the output should follow what the input edge 
  * is. Note that this works in any direction. If you attach an edge to the 
@@ -810,7 +810,7 @@ export class FiregraphTypeBase implements Partial<FiregraphValueType> {
  * 
  * So for example:
  * ```typescript
- * <FiregraphNode>{
+ * <DiazoNode>{
  *      label: 'My Node',
  *      slots: [
  *          {
@@ -831,7 +831,7 @@ export class FiregraphTypeBase implements Partial<FiregraphValueType> {
  * slot will immediately reflect the value type of that edge.
  * 
  */
-export class WildcardType extends FiregraphTypeBase implements FiregraphValueType {
+export class WildcardType extends DiazoTypeBase implements DiazoValueType {
     id = 'wildcard';
     color = 'pink';
     description = 'Works for any value';
@@ -839,13 +839,13 @@ export class WildcardType extends FiregraphTypeBase implements FiregraphValueTyp
     splittable = true;
 
     isCompatible(
-        output : FiregraphSlotContext,
-        input : FiregraphSlotContext
+        output : DiazoSlotContext,
+        input : DiazoSlotContext
     ) {
         return this.isExpressionCompatible(output, input);
     }
 
-    getColorByContext(slot : FiregraphSlotContext) {
+    getColorByContext(slot : DiazoSlotContext) {
         let value = this.resolveSlotType(slot);
 
         if (value) {
@@ -861,7 +861,7 @@ export class WildcardType extends FiregraphTypeBase implements FiregraphValueTyp
         return `white`;
     }
 
-    getNameByContext(slot : FiregraphSlotContext) {
+    getNameByContext(slot : DiazoSlotContext) {
 
         let value = this.resolveSlotType(slot);
 
@@ -872,7 +872,7 @@ export class WildcardType extends FiregraphTypeBase implements FiregraphValueTyp
         return `Wildcard (Unbound)`;
     }
 
-    resolveSlotType(slot : FiregraphSlotContext, visitedSlots : FiregraphSlotContext[] = []): FiregraphValue {
+    resolveSlotType(slot : DiazoSlotContext, visitedSlots : DiazoSlotContext[] = []): DiazoValue {
 
         if (!slot.value)
             return null;
@@ -916,8 +916,8 @@ export class WildcardType extends FiregraphTypeBase implements FiregraphValueTyp
     }
 
     isExpressionCompatible(
-        output : FiregraphSlotContext,
-        input : FiregraphSlotContext
+        output : DiazoSlotContext,
+        input : DiazoSlotContext
     ) {
         let outputValue = this.resolveSlotType(output);
         let inputValue = this.resolveSlotType(input);
@@ -937,21 +937,21 @@ export class WildcardType extends FiregraphTypeBase implements FiregraphValueTyp
         return output.graph.valuesCompatible(outputValue, inputValue);
     }
 
-    public static named(templateName : string): FiregraphValue {
+    public static named(templateName : string): DiazoValue {
         return WildcardType.value({ templateName });
     }
 }
 
-export interface FiregraphValue {
+export interface DiazoValue {
     type : string;
     params : Record<string,any>;
 }
 
 /**
  * Represents a slot on a node.
- * @see {@linkcode FiregraphNode.slots}
+ * @see {@linkcode DiazoNode.slots}
  */
-export interface FiregraphSlot {
+export interface DiazoSlot {
     /**
      * The ID of this slot. This must be unique among all slots
      * on the same node.
@@ -992,7 +992,7 @@ export interface FiregraphSlot {
      * Values are also the mechanism by which the presentational elements of 
      * edges in the graph (ie color, width, labels) are customized. 
      * 
-     * Each `value` consists of a {@link FiregraphValueType | value type} 
+     * Each `value` consists of a {@link DiazoValueType | value type} 
      * and a set of _parameters_.
      * Most simple value types do not depend on the parameters included within
      * the actual `value` declared on a `slot`, but some do. The parameters 
@@ -1000,13 +1000,13 @@ export interface FiregraphSlot {
      * slot to another.
      * 
      * Value types are referenced via a registered ID. See 
-     * {@link FiregraphEditorComponent.valueTypes}
+     * {@link DiazoEditorComponent.valueTypes}
      * for information about providing these to the editor.
      * 
-     * For more about value types, see {@link FiregraphValueType}
+     * For more about value types, see {@link DiazoValueType}
      * 
      */
-    value? : FiregraphValue;
+    value? : DiazoValue;
 
     /**
      * True when this slot was created dynamically by the editor. You should not
@@ -1016,34 +1016,34 @@ export interface FiregraphSlot {
 }
 
 /**
- * Represents the structure of a graph built within Firegraph.
+ * Represents the structure of a graph built within Diazo.
  * Consists of a set of {@linkcode nodes} with distinct IDs, where each node
- * defines a set of {@linkcode FiregraphNode.slots | slots}, and a set of {@linkcode edges}.
+ * defines a set of {@linkcode DiazoNode.slots | slots}, and a set of {@linkcode edges}.
  */
-export interface Firegraph {
+export interface Diazo {
     /**
-     * Represents the set of nodes present in this Firegraph.
+     * Represents the set of nodes present in this Diazo.
      */
-    nodes : FiregraphNode[];
+    nodes : DiazoNode[];
 
     /**
-     * Represents the edges of a Firegraph, that is, those that connect 
-     * the {@linkcode FiregraphNode.slots} of {@linkcode nodes} together.
+     * Represents the edges of a Diazo, that is, those that connect 
+     * the {@linkcode DiazoNode.slots} of {@linkcode nodes} together.
      */
-    edges : FiregraphEdge[];
+    edges : DiazoEdge[];
 }
 
 /**
- * Manages the runtime state of the Firegraph editor including logic around
+ * Manages the runtime state of the Diazo editor including logic around
  * user interactions.
  */
 @Injectable()
-export class FiregraphContext {
+export class DiazoContext {
     constructor() {
         this.registerValueType(WildcardType);
     }
 
-    get graph() : Firegraph {
+    get graph() : Diazo {
         return this._graph;
     }
 
@@ -1052,14 +1052,14 @@ export class FiregraphContext {
         setTimeout(() => this.graphChanged.next(this._graph));
     }
 
-    undoStates : FiregraphUndoState[] = [];
-    redoStates : FiregraphUndoState[] = [];
+    undoStates : DiazoUndoState[] = [];
+    redoStates : DiazoUndoState[] = [];
     committing = false;
     readonly = false;
     locked = false;
 
     getEntryNodes() {
-        let nodes : FiregraphNodeContext[] = [];
+        let nodes : DiazoNodeContext[] = [];
 
         for (let node of this.nodes) {
             if (node.incomingEdges.length === 0) {
@@ -1070,15 +1070,15 @@ export class FiregraphContext {
         return nodes;
     }
 
-    onNodeAdded(node : FiregraphNode) {    
+    onNodeAdded(node : DiazoNode) {    
         this.applyNodeRules(node);
     }
 
-    onNodeUpdated(node : FiregraphNode) {
+    onNodeUpdated(node : DiazoNode) {
         this.applyNodeRules(node);
     }
     
-    applyNodeRules(node : FiregraphNode) {
+    applyNodeRules(node : DiazoNode) {
         let accessor = new Accessor();
 
         if (!node.rules)
@@ -1125,7 +1125,7 @@ export class FiregraphContext {
                 console.error(`Cannot apply outputs rule: Expression '${node.rules.outputs.count}' is not a number, value was ${rawCount}`);
 
             } else {
-                let outputs : FiregraphSlot[] = [];
+                let outputs : DiazoSlot[] = [];
 
                 for (let i = 0; i < max; ++i) {
                     let input = this.clone(node.rules.outputs.template);
@@ -1148,21 +1148,21 @@ export class FiregraphContext {
         }
     }
     
-    addNodeToSubgraph(subgraph : Firegraph, node : FiregraphNode) {
+    addNodeToSubgraph(subgraph : Diazo, node : DiazoNode) {
         if (subgraph.nodes.some(x => x.id === node.id))
             return;
 
         subgraph.nodes.push(this.clone(node));
     }
 
-    addEdgeToSubgraph(subgraph : Firegraph, edge : FiregraphEdge) {
+    addEdgeToSubgraph(subgraph : Diazo, edge : DiazoEdge) {
         if (subgraph.edges.some(x => this.edgesAreEqual(x, edge)))
             return;
 
         subgraph.edges.push(this.clone(edge));
     }
 
-    collectSubgraph(entryNode : FiregraphNodeContext, subgraph : Firegraph) {
+    collectSubgraph(entryNode : DiazoNodeContext, subgraph : Diazo) {
         if (subgraph.nodes.some(x => x.id === entryNode.id))
             return;
 
@@ -1174,7 +1174,7 @@ export class FiregraphContext {
         }
     }
 
-    commit(cause : string, callback : (graph : Firegraph, revert : (silently? : boolean) => void) => void) {
+    commit(cause : string, callback : (graph : Diazo, revert : (silently? : boolean) => void) => void) {
         if (this.committing)
             throw new Error(`Cannot commit a graph state: Already committing a graph state`);
         
@@ -1299,10 +1299,10 @@ export class FiregraphContext {
         return this._valueTypesChanged;
     }
 
-    private valueTypes = new Map<string,FiregraphValueType>();
+    private valueTypes = new Map<string,DiazoValueType>();
 
-    registerValueType<T extends { new() : FiregraphValueType }>(type : T) {
-        let typeInstance : FiregraphValueType = new type();
+    registerValueType<T extends { new() : DiazoValueType }>(type : T) {
+        let typeInstance : DiazoValueType = new type();
         this.valueTypes.set(typeInstance.id, typeInstance);
         this._valueTypesChanged.next();
     }
@@ -1315,9 +1315,9 @@ export class FiregraphContext {
         return this.valueTypes.get(id);
     }
 
-    notificationMessage = new Subject<FiregraphEditorNotification>();
+    notificationMessage = new Subject<DiazoEditorNotification>();
 
-    valuesCompatible(a : FiregraphValue, b : FiregraphValue) {
+    valuesCompatible(a : DiazoValue, b : DiazoValue) {
         if (a === b) {
             console.log(`Virtual slot compat check: PASS [trivial]`);
             return true;
@@ -1329,11 +1329,11 @@ export class FiregraphContext {
         let aType = this.getValueTypeById(a.type);
         let bType = this.getValueTypeById(b.type);
 
-        let virtualNode = new FiregraphNodeContext();
+        let virtualNode = new DiazoNodeContext();
         virtualNode.graph = this;
 
-        let virtualSlotA = new FiregraphSlotContext();
-        let virtualSlotB = new FiregraphSlotContext();
+        let virtualSlotA = new DiazoSlotContext();
+        let virtualSlotB = new DiazoSlotContext();
 
         virtualSlotA.node = virtualNode;
         virtualSlotB.node = virtualNode;
@@ -1357,11 +1357,11 @@ export class FiregraphContext {
         return false;
     }
 
-    private _graph : Firegraph = { nodes: [], edges: [] };
-    graphChanged = new BehaviorSubject<Firegraph>(null);
+    private _graph : Diazo = { nodes: [], edges: [] };
+    graphChanged = new BehaviorSubject<Diazo>(null);
 
-    nodes : FiregraphNodeContext[] = [];
-    edgeUnderCursor : FiregraphEdge;
+    nodes : DiazoNodeContext[] = [];
+    edgeUnderCursor : DiazoEdge;
     minZoom = 0.3;
     maxZoom = 2;
     gridSizeX = 15;
@@ -1370,17 +1370,17 @@ export class FiregraphContext {
     panY = 0;
     mouseInside = false;
 
-    draftNode : FiregraphNode;
+    draftNode : DiazoNode;
 
-    draftEdge : FiregraphEdge;
-    startDraftEdge : FiregraphEdge;
+    draftEdge : DiazoEdge;
+    startDraftEdge : DiazoEdge;
     draftEdgeSourceEvent : MouseEvent;
     zoom = 1;
 
     private _panChanged = new BehaviorSubject<Position>({ top: 0, left: 0 });
     private _zoomChanged = new BehaviorSubject<number>(1);
 
-    removeEdgesForNode(node : FiregraphNodeContext) {
+    removeEdgesForNode(node : DiazoNodeContext) {
         for (let edge of this.edges.slice()) {
             if (edge.fromNodeId === node.id || edge.toNodeId === node.id) {
                 this.removeEdge(edge);
@@ -1388,7 +1388,7 @@ export class FiregraphContext {
         }
     }
 
-    private removeNodeFromGraph(graph : Firegraph, node : FiregraphNodeContext) {
+    private removeNodeFromGraph(graph : Diazo, node : DiazoNodeContext) {
         let affectedEdges = graph.edges
             .filter(x => [x.fromNodeId, x.toNodeId].includes(node.id))
             .slice()
@@ -1410,14 +1410,14 @@ export class FiregraphContext {
         graph.nodes.splice(index, 1);
     }
 
-    removeNode(node : FiregraphNodeContext) {
+    removeNode(node : DiazoNodeContext) {
         this.unselectNode(node);
         this.commit('Remove node', graph => {
             this.removeNodeFromGraph(graph, node);
         });
     }
 
-    edgesAreEqual(a : FiregraphEdge, b : FiregraphEdge) {
+    edgesAreEqual(a : DiazoEdge, b : DiazoEdge) {
         if (a === b)
             return true;
 
@@ -1432,7 +1432,7 @@ export class FiregraphContext {
         );
     }
 
-    unselectNode(node : FiregraphNodeContext) {
+    unselectNode(node : DiazoNodeContext) {
         let index = this.selectedNodes.indexOf(node);
         if (index >= 0)
             this.selectedNodes.splice(index, 1);
@@ -1519,7 +1519,7 @@ export class FiregraphContext {
         this._panChanged.next({ left: x, top: y });
     }
 
-    get edges() : FiregraphEdge[] {
+    get edges() : DiazoEdge[] {
         if (!this.graph)
             return [];
         
@@ -1546,11 +1546,11 @@ export class FiregraphContext {
         this._zoomChanged.next(value);
     }
 
-    selectedNodes : FiregraphNodeContext[];
+    selectedNodes : DiazoNodeContext[];
 
-    _selectionChanged = new BehaviorSubject<FiregraphNodeContext[]>([]);
+    _selectionChanged = new BehaviorSubject<DiazoNodeContext[]>([]);
 
-    get selectionChanged() : Observable<FiregraphNodeContext[]> {
+    get selectionChanged() : Observable<DiazoNodeContext[]> {
         return this._selectionChanged;
     }
 
@@ -1568,7 +1568,7 @@ export class FiregraphContext {
         this.notifySelectionChanged();
     }
 
-    isNodeSelected(node : FiregraphNodeContext) {
+    isNodeSelected(node : DiazoNodeContext) {
 
         let isSelected = false;
 
@@ -1584,14 +1584,14 @@ export class FiregraphContext {
         return isSelected;
     }
 
-    addToSelection(node : FiregraphNodeContext) {
+    addToSelection(node : DiazoNodeContext) {
         if (!this.selectedNodes)
             this.selectedNodes = [];
         this.selectedNodes.push(node);
         this.notifySelectionChanged();
     }
 
-    removeFromSelection(node : FiregraphNodeContext) {
+    removeFromSelection(node : DiazoNodeContext) {
         if (!this.selectedNodes)
             return;
 
@@ -1603,7 +1603,7 @@ export class FiregraphContext {
         }
     }
 
-    selectNode(node : FiregraphNodeContext) {
+    selectNode(node : DiazoNodeContext) {
         this.selectedNodes = [ node ];
         this.notifySelectionChanged();
     }
@@ -1665,7 +1665,7 @@ export class FiregraphContext {
         this.updateNodesInSelectionBox();
     }
 
-    nodesInSelectionBox : FiregraphNodeContext[];
+    nodesInSelectionBox : DiazoNodeContext[];
 
     private pointInCornerBox(point : Position, corner1 : Position, corner2 : Position) {
         let startPosX = Math.min(corner1.left, corner2.left);
@@ -1748,7 +1748,7 @@ export class FiregraphContext {
         return node.getSlotById(slotId);
     }
 
-    getNodeByState(state : FiregraphNode) {
+    getNodeByState(state : DiazoNode) {
         return this.nodes.find(x => x.state === state);
     }
 
@@ -1756,12 +1756,12 @@ export class FiregraphContext {
         return this.nodes.find(x => x.id === id);
     }
 
-    registerNode(nodeContext : FiregraphNodeContext) {
+    registerNode(nodeContext : DiazoNodeContext) {
         this.nodes.push(nodeContext);
         nodeContext.onCreated();
     }
 
-    deregisterNode(nodeContext : FiregraphNodeContext) {
+    deregisterNode(nodeContext : DiazoNodeContext) {
         let index = this.nodes.findIndex(x => x === nodeContext);
         if (index >= 0)
             this.nodes.splice(index, 1);
@@ -1769,7 +1769,7 @@ export class FiregraphContext {
         nodeContext.onDestroyed();
     }
 
-    findIdenticalEdge(edge : FiregraphEdge) {
+    findIdenticalEdge(edge : DiazoEdge) {
         for (let otherEdge of this.edges) {
             let identical = 
                 otherEdge.fromNodeId === edge.fromNodeId
@@ -1785,18 +1785,18 @@ export class FiregraphContext {
         return null;
     }
 
-    private removeEdgeFromGraph(graph : Firegraph, edge : FiregraphEdge) {
+    private removeEdgeFromGraph(graph : Diazo, edge : DiazoEdge) {
         let index = graph.edges.findIndex(x => this.edgesAreEqual(x, edge));
         if (index >= 0)
             graph.edges.splice(index, 1);
     }
 
-    removeEdge(edge : FiregraphEdge) {
+    removeEdge(edge : DiazoEdge) {
         this.commit('Remove edge', graph => this.removeEdgeFromGraph(graph, edge));
         
     }
 
-    findEdgeToReplace(edge : FiregraphEdge): FiregraphEdge {
+    findEdgeToReplace(edge : DiazoEdge): DiazoEdge {
         let fromSlot = this.getSlotByIds(edge.fromNodeId, edge.fromSlotId);
         let toSlot = this.getSlotByIds(edge.toNodeId, edge.toSlotId);
         
@@ -1815,7 +1815,7 @@ export class FiregraphContext {
         return null; // no edge needs to be replaced
     }
 
-    isValid(edge : FiregraphEdge, checkValue = true) {
+    isValid(edge : DiazoEdge, checkValue = true) {
         let fromSlot = this.getSlotByIds(edge.fromNodeId, edge.fromSlotId);
         let toSlot = this.getSlotByIds(edge.toNodeId, edge.toSlotId);
 
@@ -1866,7 +1866,7 @@ export class FiregraphContext {
         return true;
     }
 
-    draftEdgeSnap(slot : FiregraphSlotContext) {
+    draftEdgeSnap(slot : DiazoSlotContext) {
 
         // if the edge is already complete, don't change that
 
@@ -1917,9 +1917,9 @@ export class FiregraphContext {
         this.edgeBeingReplaced = this.findEdgeToReplace(fullEdge);
     }
 
-    edgeBeingReplaced : FiregraphEdge;
+    edgeBeingReplaced : DiazoEdge;
 
-    draftEdgeUnsnap(slot : FiregraphSlotContext) {
+    draftEdgeUnsnap(slot : DiazoSlotContext) {
         console.log('UNSNAP');
         if (this.startDraftEdge) {
             this.draftEdge = this.startDraftEdge;
@@ -1928,7 +1928,7 @@ export class FiregraphContext {
         }
     }
 
-    bufferedEdge : FiregraphEdge = null;
+    bufferedEdge : DiazoEdge = null;
 
     cancelEdge() {
         this._edgeCancelled.next(this.draftEdge);
@@ -1936,12 +1936,12 @@ export class FiregraphContext {
         this.edgeBeingReplaced = null;
     }
 
-    private _edgeCancelled = new Subject<FiregraphEdge>();
+    private _edgeCancelled = new Subject<DiazoEdge>();
 
-    get edgeCancelled(): Observable<FiregraphEdge> {
+    get edgeCancelled(): Observable<DiazoEdge> {
         return this._edgeCancelled;
     }
-    startEdge(startNode : FiregraphNodeContext, startSlot : FiregraphSlotContext, event : MouseEvent) {
+    startEdge(startNode : DiazoNodeContext, startSlot : DiazoSlotContext, event : MouseEvent) {
         this.draftEdgeSourceEvent = event;
         this.draftEdge = {
             fromNodeId: null,
@@ -2004,7 +2004,7 @@ export class FiregraphContext {
 
     }
 
-    finishEdge(removedEdge? : FiregraphEdge) {
+    finishEdge(removedEdge? : DiazoEdge) {
         if (!this.draftEdge)
             return;
         
@@ -2022,10 +2022,10 @@ export class FiregraphContext {
         this.draftEdge = null;
     }
 
-    copiedGraph : Firegraph;
+    copiedGraph : Diazo;
 
     copy() {
-        let graph : Firegraph = {
+        let graph : Diazo = {
             nodes: [],
             edges: []
         };
@@ -2065,10 +2065,10 @@ export class FiregraphContext {
         this.copiedGraph = graph;
     }
 
-    createCopy(graph : Firegraph) {
+    createCopy(graph : Diazo) {
         
         let idMap = new Map<string,string>();
-        let newGraph : Firegraph = { nodes: [], edges: [] };
+        let newGraph : Diazo = { nodes: [], edges: [] };
 
         for (let node of graph.nodes) {
             let nodeId = uuid();

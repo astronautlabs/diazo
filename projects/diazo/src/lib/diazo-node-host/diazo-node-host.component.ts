@@ -2,11 +2,11 @@ import { Input, ComponentFactoryResolver, ViewContainerRef, Injector, Output, Co
 import { Subject } from 'rxjs';
 
 @Component({
-    selector: 'fg-node-host',
+    selector: 'dz-node-host',
     template: '',
     styles: ['']
 })
-export class FiregraphNodeHostComponent {
+export class DiazoNodeHostComponent {
     constructor(
         private injector : Injector,
         private viewContainer : ViewContainerRef,

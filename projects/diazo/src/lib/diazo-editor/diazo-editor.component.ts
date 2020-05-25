@@ -1,22 +1,22 @@
 import { Component, Input, Output, Provider, ViewChild, ElementRef } from "@angular/core";
-import { Firegraph, FiregraphContext, FiregraphNode, FiregraphPropertySet, FiregraphValueType, FiregraphNodeContext, FiregraphNodeSet, FiregraphSlot, FiregraphCustomPropertyType, FiregraphPropertyOption, FiregraphPropertyOptionGroup, FiregraphProperty, Position } from '../firegraph-context';
+import { Diazo, DiazoContext, DiazoNode, DiazoPropertySet, DiazoValueType, DiazoNodeContext, DiazoNodeSet, DiazoSlot, DiazoCustomPropertyType, DiazoPropertyOption, DiazoPropertyOptionGroup, DiazoProperty, Position } from '../diazo-context';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { Accessor, MULTIPLE_VALUES } from '../accessor';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
-import { FiregraphComponent } from '../firegraph/firegraph.component';
+import { DiazoComponent } from '../diazo/diazo.component';
 import * as uuid from 'uuid/v4';
 
 /**
- * Provides a full-featured Firegraph editor, including a searchable 
+ * Provides a full-featured Diazo editor, including a searchable 
  * New Node list and a powerful property sheet implementation.
  */
 @Component({
-    selector: 'fg-editor',
-    templateUrl: './firegraph-editor.component.html',
-    styleUrls: ['./firegraph-editor.component.scss']
+    selector: 'dz-editor',
+    templateUrl: './diazo-editor.component.html',
+    styleUrls: ['./diazo-editor.component.scss']
 })
-export class FiregraphEditorComponent {
+export class DiazoEditorComponent {
     /**
      * @hidden
      */
@@ -85,13 +85,13 @@ export class FiregraphEditorComponent {
     private _nodeSearch = '';
     private _showProperties : boolean = undefined;
     private _showPropertiesByDefault = true;
-    private _graph : Firegraph = {
+    private _graph : Diazo = {
         nodes: [],
         edges: []
     };
-    private _availableNodes : FiregraphNodeSet[] = [];
+    private _availableNodes : DiazoNodeSet[] = [];
     private accessor = new Accessor();
-    private labelCache = new WeakMap<FiregraphNode, string>();
+    private labelCache = new WeakMap<DiazoNode, string>();
 
     nodeMenuPosition: Position;
     newNodePosition: Position;
@@ -100,39 +100,39 @@ export class FiregraphEditorComponent {
      * A proxy object which is capable of getting or setting property 
      * values across the nodes that are currently selected in the editor.
      * The keys of this object are interpreted as either JSONPath (when the 
-     * key starts with '$') or Firegraph's custom object path format (otherwise).
+     * key starts with '$') or Diazo's custom object path format (otherwise).
      */
     propertyManipulator : any;
     
     /**
      * Stores the current graph context object. This represents the state 
-     * logic for the graph being edited within the Firegraph editor
+     * logic for the graph being edited within the Diazo editor
      */
-    graphContext : FiregraphContext;
+    graphContext : DiazoContext;
 
     /**
      * Get the currently selected node context (the first one
      * if multiple nodes are currently selected)
      */
-    selectedNodeContext : FiregraphNodeContext;
+    selectedNodeContext : DiazoNodeContext;
 
     /**
      * Get the currently selected node-contexts
      */
-    selectedNodeContexts : FiregraphNodeContext[] = [];
+    selectedNodeContexts : DiazoNodeContext[] = [];
 
     /**
      * Provides the PropertySets which are currently visible 
      * subject to the search query entered by the user.
      */
-    selectedPropertySets : FiregraphPropertySet[] = [];
+    selectedPropertySets : DiazoPropertySet[] = [];
 
     /**
      * Provides the NodeSets which are currently visible 
      * in the New Node menu, subject to the search query 
      * entered by the user.
      */
-    matchingNodeSets : FiregraphNodeSet[];
+    matchingNodeSets : DiazoNodeSet[];
 
     /**
      * Provides the Nodes which are currently visible 
@@ -140,7 +140,7 @@ export class FiregraphEditorComponent {
      * entered by the user. This is a flattening of the nodes
      * found in `matchingNodeSets`.
      */
-    matchingNodes : FiregraphNode[];
+    matchingNodes : DiazoNode[];
 
     /**
      * When true, the Node Menu is in keyboard mode, and certain
@@ -227,23 +227,23 @@ export class FiregraphEditorComponent {
     };
 
     /**
-     * Fired when the FiregraphContext has been acquired from the underlying
-     * Firegraph component. FiregraphContext represents the operating state 
-     * (model) of the Firegraph editor.
+     * Fired when the DiazoContext has been acquired from the underlying
+     * Diazo component. DiazoContext represents the operating state 
+     * (model) of the Diazo editor.
      */
     @Output()
-    contextChanged = new Subject<FiregraphContext>();
+    contextChanged = new Subject<DiazoContext>();
 
     /**
      * Fired when the graph has been changed by the user. More technically
-     * this is fired when a change transaction is "committed" to the Firegraph
-     * Context. These change transactions underpin Firegraph's support for Undo/Redo.
+     * this is fired when a change transaction is "committed" to the Diazo
+     * Context. These change transactions underpin Diazo's support for Undo/Redo.
      */
     @Output() 
-    graphChanged = new Subject<Firegraph>();
+    graphChanged = new Subject<Diazo>();
 
     /**
-     * If true, the Firegraph editor will be placed in Read Only mode. The user 
+     * If true, the Diazo editor will be placed in Read Only mode. The user 
      * can still move nodes around, but new nodes cannot be created, existing nodes
      * cannot be removed, and edges cannot be changed.
      */
@@ -251,7 +251,7 @@ export class FiregraphEditorComponent {
     readonly = false;
 
     /**
-     * If true, the Firegraph editor will allow no changes to the graph whatsoever.
+     * If true, the Diazo editor will allow no changes to the graph whatsoever.
      * When this is true, `readonly` is also considered to be true. The difference
      * between `locked` and `readonly` is mainly that the nodes cannot be moved around
      * by the user.
@@ -268,11 +268,11 @@ export class FiregraphEditorComponent {
     providers : Provider[] = [];
 
     /**
-     * Provides access to the underlying <fg-container> component which 
-     * implements the Firegraph renderer.
+     * Provides access to the underlying <dz-container> component which 
+     * implements the Diazo renderer.
      */
     @ViewChild('container')
-    container : FiregraphComponent;
+    container : DiazoComponent;
 
     /**
      * Specify an array of PropertySets which will be shown for all nodes that
@@ -280,7 +280,7 @@ export class FiregraphEditorComponent {
      * on the node itself.
      */
     @Input()
-    universalPropertySets : FiregraphPropertySet[] = [];
+    universalPropertySets : DiazoPropertySet[] = [];
 
     /**
      * When true, the edges of the graph will be rendered with a flow animation.
@@ -310,18 +310,18 @@ export class FiregraphEditorComponent {
      * "select" property. The "optionSources" system provides a good way to 
      * do this. To use it, define a property such as {type: "select", optionSource: "mySource"}
      * and specify "optionSources" as { mySource: { option1: "Option 1", option2: "Option 2"}}.
-     * The Firegraph editor will automatically populate these options into the select
+     * The Diazo editor will automatically populate these options into the select
      * box in the Properties panel.
      */
     @Input()
-    optionSources : Record<string, Record<string, FiregraphPropertyOptionGroup[]>>;
+    optionSources : Record<string, Record<string, DiazoPropertyOptionGroup[]>>;
     
     /**
      * Specify a set of custom components that will be used to render specific types of 
      * nodes. The key of this map should match the "$.type" property of a node you wish
      * to use a custom component with. The value is the Angular component class.
      * 
-     * The custom component can inject the `FiregraphNodeContext` instance in order 
+     * The custom component can inject the `DiazoNodeContext` instance in order 
      * to interact with the node state.
      */
     @Input()
@@ -335,7 +335,7 @@ export class FiregraphEditorComponent {
      * (for example).
      */
     @Input()
-    customPropertyTypes : FiregraphCustomPropertyType[] = [];
+    customPropertyTypes : DiazoCustomPropertyType[] = [];
 
     /**
      * Specify a set of "value types" which are used to declare the types of 
@@ -346,15 +346,15 @@ export class FiregraphEditorComponent {
      * connected to a slot with another "value".
      * 
      * Value types also define the color and appearance of the edge when rendered
-     * within Firegraph.
+     * within Diazo.
      */
     @Input()
-    valueTypes : { new() : FiregraphValueType; }[] = [];
+    valueTypes : { new() : DiazoValueType; }[] = [];
 
     /**
-     * Specify the Firegraph object that this editor should work with.
+     * Specify the Diazo object that this editor should work with.
      * The object is passed by reference here, and the object will be 
-     * modified by the Firegraph editor *in place*. Note that you can 
+     * modified by the Diazo editor *in place*. Note that you can 
      * also receive immutable snapshots of the graph via the 
      * `graphChanged` event.
      */
@@ -371,7 +371,7 @@ export class FiregraphEditorComponent {
 
     /**
      * Bind to this event to receive Save events from the user
-     * (Firegraph Editor does not do anything special with a Save 
+     * (Diazo Editor does not do anything special with a Save 
      * request by default, that is up to the consumer). This fires
      * when the user presses Ctrl+S / Cmd+S.
      */
@@ -415,7 +415,7 @@ export class FiregraphEditorComponent {
     }
 
     /**
-     * Get the currently selected FiregraphNode (the first one if there are multiple
+     * Get the currently selected DiazoNode (the first one if there are multiple
      * nodes selected)
      */
     get selectedNode() {
@@ -423,7 +423,7 @@ export class FiregraphEditorComponent {
     }
 
     /**
-     * Get the currently selected FiregraphNodes.
+     * Get the currently selected DiazoNodes.
      */
     get selectedNodes() {
         return this.selectedNodeContexts.map(x => x.state).filter(x => x);
@@ -474,7 +474,7 @@ export class FiregraphEditorComponent {
         this.graphContext.draftNode = Object.assign(
             {}, 
             template,
-            <Partial<FiregraphNode>>{ 
+            <Partial<DiazoNode>>{ 
                 id: uuid(),
                 x: (this.newNodePosition || {}).left || 0,
                 y: (this.newNodePosition || {}).top || 0
@@ -534,7 +534,7 @@ export class FiregraphEditorComponent {
     /**
      * @hidden
      */
-    onGraphChanged(graph : Firegraph) {
+    onGraphChanged(graph : Diazo) {
         this.graphChanged.next(graph);
     }
     
@@ -543,7 +543,7 @@ export class FiregraphEditorComponent {
      * Used to support dynamic options sources for "select" properties.
      * @hidden
      */
-    getOptionsFromSource(sourceDescriptor : string): FiregraphPropertyOptionGroup[] {
+    getOptionsFromSource(sourceDescriptor : string): DiazoPropertyOptionGroup[] {
         let set = sourceDescriptor;
         let key = 'default';
 
@@ -564,14 +564,14 @@ export class FiregraphEditorComponent {
      * If false, the editor will hide the menu entirely.
      * @hidden
      */
-    propertyNeedsMenu(prop : FiregraphProperty) {
+    propertyNeedsMenu(prop : DiazoProperty) {
         return prop.allowAnnotation !== false || prop.slottable;
     }
 
     /**
      * Annotate all nodes in the given graph with the properties specified 
      * within the `availableNodes` setting. It is typical for consumers of 
-     * Firegraph to strip the `properties` part of all nodes in a graph for 
+     * Diazo to strip the `properties` part of all nodes in a graph for 
      * space efficiency, because for some domains the amount of properties 
      * on a node can be substantial. Furthermore, the properties specified 
      * within `availableNodes` may have changed since the graph object was 
@@ -581,7 +581,7 @@ export class FiregraphEditorComponent {
      * those defined by your application.
      * @hidden
      */
-    inflateGraph(graph : Firegraph) {
+    inflateGraph(graph : Diazo) {
         for (let node of graph.nodes) {
             if (node.data && node.data.unit === 'reroute')
                 continue;
@@ -608,12 +608,12 @@ export class FiregraphEditorComponent {
      * we update the `properties` section of all nodes in the graph.
      * @hidden
      */
-    findTemplateNode(node : FiregraphNode) {
+    findTemplateNode(node : DiazoNode) {
         if (!node.data || !node.data.unit)
             return null;
         
         for (let set of this.availableNodes) {
-            let templateNode : FiregraphNode;
+            let templateNode : DiazoNode;
 
             templateNode = set.nodes.find(x => x.data.variant && x.data.variant === node.data.variant);
             if (!templateNode)
@@ -630,7 +630,7 @@ export class FiregraphEditorComponent {
      * Determine the label to use for the given node.
      * @hidden
      */
-    labelForNode(node : FiregraphNode) {
+    labelForNode(node : DiazoNode) {
         if (this.labelCache.has(node))
             return this.labelCache.get(node);
         
@@ -646,7 +646,7 @@ export class FiregraphEditorComponent {
      * in support of its keyboard selection mode.
      * @hidden
      */
-    getIndexOfMatchingNode(node : FiregraphNode) {
+    getIndexOfMatchingNode(node : DiazoNode) {
         return this.matchingNodes.indexOf(node);
     }
 
@@ -745,10 +745,10 @@ export class FiregraphEditorComponent {
     }
 
     /**
-     * Bound to <fg-container>'s `contextChanged` event
+     * Bound to <dz-container>'s `contextChanged` event
      * @hidden
      */
-    acquireGraphContext(context : FiregraphContext) {
+    acquireGraphContext(context : DiazoContext) {
         setTimeout(() => {
             this.graphContext = context;
             this.contextChanged.next(context);
@@ -792,7 +792,7 @@ export class FiregraphEditorComponent {
      * Property Slot.
      * @hidden
      */
-    isPropSlotted(prop : FiregraphProperty) {
+    isPropSlotted(prop : DiazoProperty) {
         return this.selectedNodes.some(node => node.slots.some(x => x.id === `property:${prop.path}`))
     }
     
@@ -801,7 +801,7 @@ export class FiregraphEditorComponent {
      * nodes that are currently selected.
      * @hidden
      */
-    removePropertySlot(property : FiregraphProperty) {
+    removePropertySlot(property : DiazoProperty) {
         let nodeIds = this.selectedNodes.map(x => x.id);
 
         this.graphContext.commit('Remove property slot', (graph, revert) => {
@@ -825,7 +825,7 @@ export class FiregraphEditorComponent {
      * nodes.
      * @hidden
      */
-    createPropertySlot(property : FiregraphProperty) {
+    createPropertySlot(property : DiazoProperty) {
         let nodeIds = this.selectedNodes.map(x => x.id);
 
         this.graphContext.commit('Create property slot', (graph, revert) => {

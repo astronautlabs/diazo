@@ -17,7 +17,7 @@
 </mat-menu>
 
 <div class="graph-view">
-    <fg-container 
+    <dz-container 
         #container
         [readonly]="readonly" 
         [locked]="locked"
@@ -56,7 +56,7 @@
                         </mat-expansion-panel-header>
         
                         <div class="node-container">
-                            <fg-node-source-button 
+                            <dz-node-source-button 
                                 *ngFor="let node of set.nodes"
                                 [class.highlighted]="nodeMenuKeyboardMode && getIndexOfMatchingNode(node) === selectedMatchingNodeIndex"
                                 [position]="newNodePosition"
@@ -64,13 +64,13 @@
                                 (mouseenter)="selectedMatchingNodeIndex = getIndexOfMatchingNode(node)"
                                 (inserted)="hideNodeMenu()"
                                 [attr.data-matched-node-index]="getIndexOfMatchingNode(node)"
-                                [template]="node">{{labelForNode(node)}}</fg-node-source-button>
+                                [template]="node">{{labelForNode(node)}}</dz-node-source-button>
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>
             </div>
         </div>
-    </fg-container>
+    </dz-container>
     <aside class="properties" [class.visible]="showProperties">
 
         <div class="toolbar">
@@ -298,13 +298,13 @@
                                                 </mat-checkbox>
                                             </ng-container>
                                             <ng-container *ngIf="isCustomPropertyType(prop.type)">
-                                                <fg-custom-property-editor 
+                                                <dz-custom-property-editor 
                                                     [graphContext]="graphContext"
                                                     [providers]="providers"
                                                     [selectedNodes]="selectedNodes" 
                                                     [property]="prop" 
                                                     [componentType]="getCustomPropertyType(prop.type).component">
-                                                    </fg-custom-property-editor>
+                                                    </dz-custom-property-editor>
                                             </ng-container>
                                         </ng-container>
                                         

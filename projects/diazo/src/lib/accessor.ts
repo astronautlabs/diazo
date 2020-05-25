@@ -5,7 +5,7 @@ import { template } from './template';
  * This symbol is returned by Accessor when the set of objects
  * being queried disagree about the value of a the queried property 
  * path. This is used by the 
- * {@link FiregraphEditorComponent | Firegraph editor}'s Properties sidebar
+ * {@link DiazoEditorComponent | Diazo editor}'s Properties sidebar
  * to know when to show "Multiple values" within a given property view.
  */
 export const MULTIPLE_VALUES = Symbol('Multiple values');
@@ -13,7 +13,7 @@ export const MULTIPLE_VALUES = Symbol('Multiple values');
 /**
  * Provides a generic mechanism for dynamically getting/setting deep properties 
  * within one or more provided objects. This is the core of the Properties system
- * in Firegraph.
+ * in Diazo.
  */
 export class Accessor {
     

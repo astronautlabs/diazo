@@ -9,7 +9,7 @@
 
 # dependencies
 /node_modules/
-/projects/firegraph/node_modules/
+/projects/diazo/node_modules/
 
 # profiling files
 chrome-profiler-events*.json

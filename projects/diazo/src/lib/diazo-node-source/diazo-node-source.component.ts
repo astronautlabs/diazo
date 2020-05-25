@@ -1,11 +1,11 @@
 import { Component, HostListener, Input, Output } from "@angular/core";
-import { FiregraphContext, FiregraphNode } from '../firegraph-context';
+import { DiazoContext, DiazoNode } from '../diazo-context';
 import * as uuid from 'uuid/v4';
-import { Position } from '../firegraph-context';
+import { Position } from '../diazo-context';
 import { Subject } from 'rxjs';
 
 @Component({
-    selector: 'fg-node-source-button',
+    selector: 'dz-node-source-button',
     template: `
         <div class="icon-container">
             <mat-icon>{{template?.icon || 'home'}}</mat-icon>
@@ -24,15 +24,15 @@ import { Subject } from 'rxjs';
             </span>
         </div>
     `,
-    styleUrls: ['./firegraph-node-source.component.scss']
+    styleUrls: ['./diazo-node-source.component.scss']
 })
-export class FiregraphNodeSourceComponent {
+export class DiazoNodeSourceComponent {
 
     @Input()
-    context : FiregraphContext;
+    context : DiazoContext;
 
     @Input()
-    template : FiregraphNode;
+    template : DiazoNode;
 
     @Input()
     position : Position;
@@ -57,7 +57,7 @@ export class FiregraphNodeSourceComponent {
         this.context.draftNode = Object.assign(
             {}, 
             this.template,
-            <Partial<FiregraphNode>>{ 
+            <Partial<DiazoNode>>{ 
                 id: uuid(),
                 x: (this.position || {}).left || 0,
                 y: (this.position || {}).top || 0

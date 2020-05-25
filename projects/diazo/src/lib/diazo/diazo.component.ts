@@ -1,5 +1,5 @@
 import { Component, HostListener, ViewChild, ElementRef, Input, HostBinding, Output } from "@angular/core";
-import { FiregraphContext, FiregraphEdge, Position, FiregraphNode, WildcardType, Firegraph } from '../firegraph-context';
+import { DiazoContext, DiazoEdge, Position, DiazoNode, WildcardType, Diazo } from '../diazo-context';
 import { BehaviorSubject, Subject } from 'rxjs';
 import * as uuid from 'uuid/v4';
 import { MatMenuTrigger } from '@angular/material/menu';
@@ -7,14 +7,14 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-    selector: 'fg-container',
-    templateUrl: './firegraph.component.html',
-    styleUrls: ['./firegraph.component.scss'],
-    providers: [ FiregraphContext ]
+selector: 'dz-container',
+    templateUrl: './diazo.component.html',
+    styleUrls: ['./diazo.component.scss'],
+    providers: [ DiazoContext ]
 })
-export class FiregraphComponent {
+export class DiazoComponent {
     constructor(
-        private context : FiregraphContext,
+        private context : DiazoContext,
         private elementRef : ElementRef<HTMLElement>,
         private matSnackBar : MatSnackBar
     ) {
@@ -40,7 +40,7 @@ export class FiregraphComponent {
     }
     
     @Output()
-    graphChanged = new BehaviorSubject<Firegraph>({ nodes: [], edges: [] });
+    graphChanged = new BehaviorSubject<Diazo>({ nodes: [], edges: [] });
     
     @Output()
     nodeMenuPositionChanged = new BehaviorSubject<Position>({ top: 0, left: 0 });
@@ -48,7 +48,7 @@ export class FiregraphComponent {
     @ViewChild('plate')
     plateRef : ElementRef<HTMLElement>;
     
-    nodeIdentity(index : number, node : FiregraphNode) {
+    nodeIdentity(index : number, node : DiazoNode) {
         return node.id;
     }
 
@@ -75,7 +75,7 @@ export class FiregraphComponent {
     }
     
     @Input()
-    get edges() : FiregraphEdge[] {
+    get edges() : DiazoEdge[] {
         return this.context.edges;
     }
 
@@ -594,7 +594,7 @@ export class FiregraphComponent {
             this.context.commit('Add reroute node', graph => {
                 
                 // create reroute node
-                let node : FiregraphNode = {
+                let node : DiazoNode = {
                     id: uuid(),
                     data: {
                         type: 'passthrough',
@@ -610,7 +610,7 @@ export class FiregraphComponent {
     
                 graph.nodes.push(node);
 
-                let preEdge : FiregraphEdge = {
+                let preEdge : DiazoEdge = {
                     fromNodeId: splitEdge.fromNodeId,
                     fromSlotId: splitEdge.fromSlotId,
                     toNodeId: node.id,
@@ -618,7 +618,7 @@ export class FiregraphComponent {
                     valid: splitEdge.valid
                 };
     
-                let postEdge : FiregraphEdge = {
+                let postEdge : DiazoEdge = {
                     fromNodeId: node.id,
                     fromSlotId: 'passthrough',
                     toNodeId: splitEdge.toNodeId,

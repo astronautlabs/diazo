@@ -1,8 +1,8 @@
 import { Component, Input, ComponentFactoryResolver, ReflectiveInjector, Injector, ViewContainerRef, ComponentRef, Provider } from '@angular/core';
-import { FiregraphPropertyContext, FiregraphProperty, FiregraphNode, FiregraphContext } from '../firegraph-context';
+import { DiazoPropertyContext, DiazoProperty, DiazoNode, DiazoContext } from '../diazo-context';
 
 @Component({
-    selector: 'fg-custom-property-editor',
+    selector: 'dz-custom-property-editor',
     template: ``,
     styles: [``]
 })
@@ -27,10 +27,10 @@ export class CustomPropertyEditorHostComponent {
         setTimeout(() => this.initialize());
     }
 
-    private _propertyContext = new FiregraphPropertyContext();
+    private _propertyContext = new DiazoPropertyContext();
 
     @Input()
-    get graphContext() : FiregraphContext {
+    get graphContext() : DiazoContext {
         return this._propertyContext.graphContext;
     }
 
@@ -39,7 +39,7 @@ export class CustomPropertyEditorHostComponent {
     }
 
     @Input()
-    get property(): FiregraphProperty {
+    get property(): DiazoProperty {
         return this._propertyContext.property;
     }
 
@@ -48,7 +48,7 @@ export class CustomPropertyEditorHostComponent {
     }
 
     @Input()
-    get selectedNodes(): FiregraphNode[] {
+    get selectedNodes(): DiazoNode[] {
         return this._propertyContext.selectedNodes;
     }
 
@@ -70,7 +70,7 @@ export class CustomPropertyEditorHostComponent {
         let fac = this.factoryResolver.resolveComponentFactory(this.componentType);
         let injector = ReflectiveInjector.resolveAndCreate(
             (this.providers || []).concat([
-                { provide: FiregraphPropertyContext, useValue: this._propertyContext }
+                { provide: DiazoPropertyContext, useValue: this._propertyContext }
             ]), 
             this.injector
         );
