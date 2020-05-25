@@ -25,7 +25,7 @@ Diazo also depends on `ngx-monaco-editor` (an Angular package for using
 Microsoft's Monaco code editor component):
 
 ```
-npm i ngx-monaco-editor @astronautlabs/diazo
+npm i ngx-monaco-editor diazo
 ```
 
 Now add DiazoModule to your Angular module's list of imports:
@@ -49,6 +49,6 @@ export class AppModule {
 - `npm run docs` to generate documentation
 - `cd dist ; npm link` to make your local built copy of the library available
   for applications you are testing it with
-- use `npm link @astronautlabs/diazo` within your test app's folder to link 
+- use `npm link diazo` within your test app's folder to link 
   your local copy of diazo into the environment.
 - `cd dist ; npm publish` to publish the library
