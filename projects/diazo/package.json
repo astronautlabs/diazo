@@ -11,6 +11,11 @@
     "@angular/material": "^9.2.4",
     "ngx-monaco-editor": "^9.0.0"
   },
+  "repository": {
+    "url": "https://github.com/astronautlabs/diazo.git",
+    "type": "git"
+  },
+  "homepage": "https://github.com/astronautlabs/diazo",
   "dependencies": {
     "@astronautlabs/jsonpath": "^1.0.6",
     "subsink": "^1.0.1",
