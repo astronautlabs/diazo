@@ -74,6 +74,126 @@
 					an experience, and the library itself is completely domain-agnostic.
 					You can use Firegraph in your apps to introduce visual node-graph functionality
 				in any domain where it makes sense to apply it, and we encourage you to do so!</p>
+				<a href="#concepts" id="concepts" style="color: inherit; text-decoration: none;">
+					<h2>Concepts</h2>
+				</a>
+				<p>Firegraph operates on a simple directed-acyclical-graph (DAG) data structure
+					which is transparently available to you as the consumer of the library. The
+					DAG is specified as a set of nodes with distinct IDs which each specify a set of
+					input and output slots. The DAG also tracks a set of edges which
+				link one slot on a particular node to another slot on a different node. </p>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<pre><code class="language-html">    <span class="hljs-tag">&lt;<span class="hljs-name">fg-editor</span>
+        [<span class="hljs-attr">graph</span>]=<span class="hljs-string">"myGraph"</span>
+        [<span class="hljs-attr">availableNodes</span>]=<span class="hljs-string">"availableNodes"</span>
+        &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">fg-editor</span>&gt;</span></code></pre>
+				<p>There are many more bindable properties and events that <code>&lt;fg-editor&gt;</code> makes
+				available, but the above are what&#39;s needed to provide a basic experience.</p>
+				<a href="#graphquotmygraphquot" id="graphquotmygraphquot" style="color: inherit; text-decoration: none;">
+					<h3><code>[graph]=&quot;myGraph&quot;</code></h3>
+				</a>
+				<p>The most important input to Firegraph is the graph object itself. The graph
+					object specifies the nodes and edges that make up the graph you can see in
+				the editor.</p>
+				<p>One might satisfy this binding by declaring <code>myGraph</code> as seen below.</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Firegraph } <span class="hljs-keyword">from</span> <span class="hljs-string">'@astronautlabs/firegraph'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
+    myGraph : Firegraph = { nodes: [], edges: [] };
+}</code></pre>
+				<a href="#availablenodesquotavailablenodesquot" id="availablenodesquotavailablenodesquot" style="color: inherit; text-decoration: none;">
+					<h3><code>[availableNodes]=&quot;availableNodes&quot;</code></h3>
+				</a>
+				<p>In order for a user to create new nodes, you will need to define a set of
+					template nodes that will populate into the New Node menu (accessible by
+				right clicking). <code>availableNodes</code> is an array of NodeSets.</p>
+				<p>Each NodeSet defines a labelled group of template nodes. Let&#39;s add a
+				node set with a few simple template nodes:</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Firegraph } <span class="hljs-keyword">from</span> <span class="hljs-string">'@astronautlabs/firegraph'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
+    myGraph : Firegraph = { nodes: [], edges: [] };
+    availableNodes : FiregraphNodeSet[] = [
+        {
+            id: <span class="hljs-string">'general'</span>,
+            label: <span class="hljs-string">'General'</span>,
+            nodes: [
+                {
+                    data: {
+                        unit: <span class="hljs-string">'my-input'</span>
+                    },
+                    label: <span class="hljs-string">'My Input'</span>,
+                    slots: [
+                        { id: <span class="hljs-string">'output'</span>, <span class="hljs-keyword">type</span>: <span class="hljs-string">'output'</span>, label: <span class="hljs-string">'Output'</span> }
+                    ]
+                },
+                {
+                    data: {
+                        unit: <span class="hljs-string">'my-output'</span>
+                    },
+                    label: <span class="hljs-string">'My Output'</span>,
+                    slots: [
+                        { id: <span class="hljs-string">'input'</span>, <span class="hljs-keyword">type</span>: <span class="hljs-string">'input'</span>, label: <span class="hljs-string">'Input'</span> }
+                    ]
+                }
+            ]
+        }
+    ];
+}</code></pre>
+				<a href="#defining-properties" id="defining-properties" style="color: inherit; text-decoration: none;">
+					<h2>Defining Properties</h2>
+				</a>
+				<p>Template nodes can specify a set of <em>properties</em> which will be shown on the Properties
+				sidebar. Similar to the available node set, properties are grouped into labelled sets.</p>
+				<pre><code class="language-js"><span class="hljs-keyword">let</span> node : FiregraphNode = {
+    <span class="hljs-attr">data</span>: {
+        <span class="hljs-attr">unit</span>: <span class="hljs-string">'my-output'</span>,
+        <span class="hljs-attr">someProperty</span>: <span class="hljs-string">'abc'</span>
+    },
+    <span class="hljs-attr">label</span>: <span class="hljs-string">'My Output'</span>,
+    <span class="hljs-attr">slots</span>: [
+        { <span class="hljs-attr">id</span>: <span class="hljs-string">'input'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'input'</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'Input'</span> }
+    ],
+    <span class="hljs-attr">properties</span>: [
+        {
+            <span class="hljs-attr">id</span>: <span class="hljs-string">'output-options'</span>,
+            <span class="hljs-attr">label</span>: <span class="hljs-string">'Output Options'</span>,
+            <span class="hljs-attr">properties</span>: [
+                {
+                    <span class="hljs-attr">type</span>: <span class="hljs-string">'text'</span>,
+                    <span class="hljs-attr">path</span>: <span class="hljs-string">'$.data.someProperty'</span>,
+                    <span class="hljs-attr">label</span>: <span class="hljs-string">'Some Property'</span>
+                }
+            ]
+        }
+    ]
+}</code></pre>
+				<a href="#property-types" id="property-types" style="color: inherit; text-decoration: none;">
+					<h2>Property Types</h2>
+				</a>
+				<p>There are a number of property editor types built in, and you can register
+				custom property editors as well.</p>
+				<p>Builtin types:</p>
+				<ul>
+					<li><strong>text</strong> - Single-line text editor</li>
+					<li><strong>textarea</strong> - Multi-line text editor</li>
+					<li><strong>number</strong> - Number editor</li>
+					<li><strong>boolean</strong> - Checkbox</li>
+					<li><strong>position</strong> - Special property which exposes two fields connected to <code>$.x</code> and <code>$.y</code>.
+					<code>path</code> is ignored.</li>
+					<li><strong>bitmask</strong> - Edit the bits of a number with checkboxes by defining an array of labels.
+						Labels are associated with bit indices by their position in the labels array, and thus
+					all labels must be contiguous. Place labels in <code>bitmask.labels</code></li>
+					<li><strong>json</strong> - Edit JSON using Monaco</li>
+					<li><strong>markdown</strong> - Edit Markdown using Monaco</li>
+					<li><strong>typescript</strong> - Edit TypeScript using Monaco</li>
+					<li><strong>matrix</strong> - Edit many properties in a grid with short labels. Can be used to
+					implement fixed-size matrices.</li>
+					<li><strong>select</strong> - Choose the value from a set of predefined options</li>
+					<li><strong>flags</strong> - Edit an array of string flags using a multiple select box.</li>
+				</ul>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
