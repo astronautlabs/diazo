@@ -947,10 +947,37 @@ export interface FiregraphValue {
     params : Record<string,any>;
 }
 
+/**
+ * Represents a slot on a node.
+ * @see {@linkcode FiregraphNode.slots}
+ */
 export interface FiregraphSlot {
+    /**
+     * The ID of this slot. This must be unique among all slots
+     * on the same node.
+     */
     id : string;
+
+    /**
+     * The label for this slot. It is shown on the node (unless {@linkcode profile}
+     * `== slim`) as well as in tooltips.
+     */
     label : string;
+
+    /**
+     * The type of slot this is. 
+     * - `input` - Accepts incoming connections from other nodes
+     * - `output` - Accepts outgoing connections to other nodes
+     * - `passthrough` - Slot accepts both input and output. This is used
+     *   to implement `reroute` nodes within the editor.
+     */
     type : 'input' | 'output' | 'passthrough';
+
+    /**
+     * If true, this slot will not be shown on the node within the editor.
+     * This is controlled in the "Slots" section of the Properties sidebar,
+     * and can be included in a template node to have a slot hidden by default.
+     */
     hidden? : boolean;
 
     /**
@@ -980,6 +1007,11 @@ export interface FiregraphSlot {
      * 
      */
     value? : FiregraphValue;
+
+    /**
+     * True when this slot was created dynamically by the editor. You should not
+     * specify custom slots with this property.
+     */
     dynamic? : boolean;
 }
 
@@ -1001,6 +1033,10 @@ export interface Firegraph {
     edges : FiregraphEdge[];
 }
 
+/**
+ * Manages the runtime state of the Firegraph editor including logic around
+ * user interactions.
+ */
 @Injectable()
 export class FiregraphContext {
     constructor() {
