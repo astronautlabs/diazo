@@ -64,6 +64,33 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Value types define the appearance and behavior of node slots within a graph.
+							Types are cooperatively convertible. This means that when a user is creating
+						an edge between two slots with different value types:</p>
+						<ul>
+							<li>If either the source or destination value type allows an
+								implicit conversion<ul>
+									<li>Then, the conversion is allowed and the connection
+									is created.</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<p>All edges are validated using this simple type system. From this simple
+						interface we can construct a large number of possible schemes for validating
+					a connection between two slots in the graph.</p>
+					<p>For instance, <a href="../classes/firegraphtypebase.html"><code>FiregraphTypeBase</code></a> provides an easy way to implement
+						this interface, providing validation based on the inheritance heirarchy of
+						the classes involved. For most applications of value types this is the
+						obvious solution, and the low-level <code>isCompatible()</code> API is provided as an
+						escape hatch to implement a wide variety of possible connection validation
+						strategies. We use this within the Firegraph editor to implement
+					<a href="../classes/wildcardtype.html"><code>WildcardType</code></a> for example.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -115,9 +142,15 @@
 					<div class="tsd-signature tsd-kind-icon">color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L631">lib/firegraph-context.ts:631</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L692">lib/firegraph-context.ts:692</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The HTML/CSS color which should be used to render edges
+							which have a value of this type.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="description" class="tsd-anchor"></a>
@@ -125,9 +158,14 @@
 					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L633">lib/firegraph-context.ts:633</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L703">lib/firegraph-context.ts:703</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A short description for this value type</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="id" class="tsd-anchor"></a>
@@ -135,9 +173,21 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L630">lib/firegraph-context.ts:630</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L686">lib/firegraph-context.ts:686</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Specifies the registered ID for this value type.
+								This must be distinct across the editor where this
+								value type is loaded. A slot will reference this ID
+							in its <code>value</code> definition:</p>
+						</div>
+						<pre><code class="language-typescript"><span class="hljs-keyword">let</span> slot : FiregraphSlot = {
+  <span class="hljs-comment">// ...</span>
+  value: { <span class="hljs-keyword">type</span>: <span class="hljs-string">'IDHERE'</span> }
+}</code></pre>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="linewidth" class="tsd-anchor"></a>
@@ -145,9 +195,14 @@
 					<div class="tsd-signature tsd-kind-icon">line<wbr>Width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L635">lib/firegraph-context.ts:635</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L714">lib/firegraph-context.ts:714</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The line width for edges that have a value of this type</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="mergeable" class="tsd-anchor"></a>
@@ -155,9 +210,16 @@
 					<div class="tsd-signature tsd-kind-icon">mergeable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L637">lib/firegraph-context.ts:637</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L728">lib/firegraph-context.ts:728</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>When true, the editor will consider edges where the destination slot is
+								already connected to be valid. Otherwise such edges will be considered
+							invalid.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="name" class="tsd-anchor"></a>
@@ -165,9 +227,15 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L632">lib/firegraph-context.ts:632</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L698">lib/firegraph-context.ts:698</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of this value, this will be used in tooltips and
+							other hints in the UI.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="slotshape" class="tsd-anchor"></a>
@@ -175,9 +243,15 @@
 					<div class="tsd-signature tsd-kind-icon">slot<wbr>Shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"circle"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"square"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"arrow"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L634">lib/firegraph-context.ts:634</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L709">lib/firegraph-context.ts:709</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The shape that should be used for the slot handle on the node within
+							the editor.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="splittable" class="tsd-anchor"></a>
@@ -185,9 +259,16 @@
 					<div class="tsd-signature tsd-kind-icon">splittable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L636">lib/firegraph-context.ts:636</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L721">lib/firegraph-context.ts:721</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>When true, the editor will consider edges where the source slot is
+								already connected to be valid. Otherwise such edges will be considered
+							invalid.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -202,9 +283,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L641">lib/firegraph-context.ts:641</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L744">lib/firegraph-context.ts:744</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>When defined, the editor will call this function to determine what color
+										to use for edges of this value type within the editor, passing in the slot
+										related to the request. This can be used to customize the color used for
+									this value type based on the context of where it appears.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -225,9 +314,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L640">lib/firegraph-context.ts:640</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L736">lib/firegraph-context.ts:736</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>When defined, the editor will call this function to determine what name
+										to show within the editor, passing in the slot related to the request.
+										This can be used to customize the name shown for this value type based
+									on the context of where it appears.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -248,13 +345,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L642">lib/firegraph-context.ts:642</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L751">lib/firegraph-context.ts:751</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>When defined, the editor will call this function to determine what shape
+									to use for the editor handles of slots which have values of this type.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>slot: <a href="../classes/firegraphslotcontext.html" class="tsd-signature-type">FiregraphSlotContext</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">"circle"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"square"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"arrow"</span></h4>
@@ -271,9 +376,29 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L625">lib/firegraph-context.ts:625</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L668">lib/firegraph-context.ts:668</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This function should analyze a pair of slots, represented
+										as editor context objects, and determine if a connection is
+										allowed between them. The graph state at this point does not
+										reflect the new connection between the two, only edges existing
+									before the new edge was added will be present.</p>
+								</div>
+								<p>It is guaranteed that at least one of the <code>output</code> and/or <code>input</code>
+									slots have specified a value of this type. This method is only
+								called for interactions which involve this value type.</p>
+								<p>Implementations could:</p>
+								<ul>
+									<li>Consider what existing edges already exist between the slots</li>
+									<li>Consider the <code>value</code> of the input and the output slots</li>
+									<li>Consider the state of the graph as a whole</li>
+									<li>Consider the state of the containing application</li>
+									<li>Anything else inferrable given the context of your domain</li>
+								</ul>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -281,6 +406,8 @@
 								</li>
 								<li>
 									<h5>input: <a href="../classes/firegraphslotcontext.html" class="tsd-signature-type">FiregraphSlotContext</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>

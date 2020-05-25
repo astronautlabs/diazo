@@ -64,6 +64,38 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Provides a special value type that works by inference. You create
+							named wildcard values within your slots using {@link WildcardType.named()}
+							and the Firegraph editor will automatically infer what value the slot really
+							is by analyzing other existing edges in the graph. You can use this if the
+							node can take any value in, but the output should follow what the input edge
+							is. Note that this works in any direction. If you attach an edge to the
+							wildcard output on your node, the corresponding input(s) will immediately
+						reflect that inference.</p>
+					</div>
+					<p>So for example:</p>
+					<pre><code class="language-typescript">&lt;FiregraphNode&gt;{
+     label: <span class="hljs-string">'My Node'</span>,
+     slots: [
+         {
+             id: <span class="hljs-string">'input1'</span>,
+             <span class="hljs-keyword">type</span>: <span class="hljs-string">'input'</span>,
+             value: WildcardType.named(<span class="hljs-string">'T'</span>)
+         },
+         {
+             id: <span class="hljs-string">'output1'</span>,
+             <span class="hljs-keyword">type</span>: <span class="hljs-string">'output'</span>,
+             value: WildcardType.named(<span class="hljs-string">'T'</span>)
+         },
+     ]
+}</code></pre>
+					<p>If you connect an edge to either the <code>input1</code> or <code>output1</code> slots, the other
+					slot will immediately reflect the value type of that edge.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -122,7 +154,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/firegraphvaluetype.html">FiregraphValueType</a>.<a href="../interfaces/firegraphvaluetype.html#color">color</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L671">lib/firegraph-context.ts:671</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L836">lib/firegraph-context.ts:836</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -133,7 +165,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/firegraphvaluetype.html">FiregraphValueType</a>.<a href="../interfaces/firegraphvaluetype.html#description">description</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L672">lib/firegraph-context.ts:672</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L837">lib/firegraph-context.ts:837</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -144,7 +176,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/firegraphvaluetype.html">FiregraphValueType</a>.<a href="../interfaces/firegraphvaluetype.html#id">id</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L670">lib/firegraph-context.ts:670</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L835">lib/firegraph-context.ts:835</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -155,7 +187,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/firegraphvaluetype.html">FiregraphValueType</a>.<a href="../interfaces/firegraphvaluetype.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L673">lib/firegraph-context.ts:673</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L838">lib/firegraph-context.ts:838</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -166,7 +198,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/firegraphvaluetype.html">FiregraphValueType</a>.<a href="../interfaces/firegraphvaluetype.html#splittable">splittable</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L674">lib/firegraph-context.ts:674</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L839">lib/firegraph-context.ts:839</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -184,7 +216,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/firegraphvaluetype.html">FiregraphValueType</a>.<a href="../interfaces/firegraphvaluetype.html#getcolorbycontext">getColorByContext</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L683">lib/firegraph-context.ts:683</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L848">lib/firegraph-context.ts:848</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -208,7 +240,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/firegraphvaluetype.html">FiregraphValueType</a>.<a href="../interfaces/firegraphvaluetype.html#getnamebycontext">getNameByContext</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L699">lib/firegraph-context.ts:699</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L864">lib/firegraph-context.ts:864</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -233,7 +265,7 @@
 								<p>Implementation of <a href="../interfaces/firegraphvaluetype.html">FiregraphValueType</a>.<a href="../interfaces/firegraphvaluetype.html#iscompatible">isCompatible</a></p>
 								<p>Overrides <a href="firegraphtypebase.html">FiregraphTypeBase</a>.<a href="firegraphtypebase.html#iscompatible">isCompatible</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L676">lib/firegraph-context.ts:676</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L841">lib/firegraph-context.ts:841</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -260,7 +292,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="firegraphtypebase.html">FiregraphTypeBase</a>.<a href="firegraphtypebase.html#isexpressioncompatible">isExpressionCompatible</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L753">lib/firegraph-context.ts:753</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L918">lib/firegraph-context.ts:918</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -286,7 +318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L710">lib/firegraph-context.ts:710</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L875">lib/firegraph-context.ts:875</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -312,7 +344,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L775">lib/firegraph-context.ts:775</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L940">lib/firegraph-context.ts:940</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -336,7 +368,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="firegraphtypebase.html">FiregraphTypeBase</a>.<a href="firegraphtypebase.html#value">value</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L656">lib/firegraph-context.ts:656</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L788">lib/firegraph-context.ts:788</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>

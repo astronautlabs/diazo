@@ -64,6 +64,28 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Provides an abstract base class for new Firegraph value types that provides
+						heirarchical compatibility by default.</p>
+					</div>
+					<p>Custom value types which inherit from <code>FiregraphTypeBase</code> will automatically
+						grant implicit conversions which broaden the &quot;value&quot; of the edge and deny
+					conversions which narrow the &quot;value of the edge.</p>
+					<p>Given:</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TypeA <span class="hljs-keyword">extends</span> FiregraphTypeBase {}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TypeB <span class="hljs-keyword">extends</span> TypeA {}</code></pre>
+					<ul>
+						<li>A connection from an output slot of <code>TypeB</code> <strong>can be assigned</strong> to an input slot of
+						<code>TypeA</code></li>
+						<li>A connection from an output slot of <code>TypeA</code> <strong>cannot be assigned</strong> to an input slot of <code>TypeB</code></li>
+					</ul>
+					<p>This may or may not be the behavior you want from your custom value types.
+						You can override the <a href="firegraphtypebase.html#iscompatible"><code>isCompatible</code></a> method to change this behavior,
+					or implement <a href="../interfaces/firegraphvaluetype.html"><code>FiregraphValueType</code></a> directly instead.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -110,7 +132,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L646">lib/firegraph-context.ts:646</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L778">lib/firegraph-context.ts:778</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -136,7 +158,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L661">lib/firegraph-context.ts:661</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L793">lib/firegraph-context.ts:793</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -162,7 +184,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c1539f8/projects/firegraph/src/lib/firegraph-context.ts#L656">lib/firegraph-context.ts:656</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/ae171ff/projects/firegraph/src/lib/firegraph-context.ts#L788">lib/firegraph-context.ts:788</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
