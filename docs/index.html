@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@astronautlabs/firegraph</title>
-	<meta name="description" content="Documentation for @astronautlabs/firegraph">
+	<title>diazo</title>
+	<meta name="description" content="Documentation for diazo">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">@astronautlabs/firegraph</a>
+					<a href="index.html" class="title">diazo</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1>@astronautlabs/firegraph</h1>
+			<h1>diazo</h1>
 		</div>
 	</div>
 </header>
@@ -62,22 +62,22 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#astronautlabsfiregraph" id="astronautlabsfiregraph" style="color: inherit; text-decoration: none;">
-					<h1>@astronautlabs/firegraph</h1>
+				<a href="#diazo" id="diazo" style="color: inherit; text-decoration: none;">
+					<h1>diazo</h1>
 				</a>
 				<p>An MIT-licensed slot-driven directed-acyclical-graph (DAG) editor for Angular. This
 					component was built for use in Astronaut Labs&#39; Livefire product suite because
 					there was no good existing open-source editor. We wanted to fix that, so we
 				hope you find lots of great ways to use this editor in your projects!</p>
-				<p>Firegraph is inspired by Blueprint, the visual programming language of
-					Unreal Engine. Firegraph itself is just the editor that would power such
+				<p>Diazo is inspired by Blueprint, the visual programming language of
+					Unreal Engine. Diazo itself is just the editor that would power such
 					an experience, and the library itself is completely domain-agnostic.
-					You can use Firegraph in your apps to introduce visual node-graph functionality
+					You can use Diazo in your apps to introduce visual node-graph functionality
 				in any domain where it makes sense to apply it, and we encourage you to do so!</p>
 				<a href="#concepts" id="concepts" style="color: inherit; text-decoration: none;">
 					<h2>Concepts</h2>
 				</a>
-				<p>Firegraph operates on a simple directed-acyclical-graph (DAG) data structure
+				<p>Diazo operates on a simple directed-acyclical-graph (DAG) data structure
 					which is transparently available to you as the consumer of the library. The
 					DAG is specified as a set of nodes with distinct IDs which each specify a set of
 					input and output slots. The DAG also tracks a set of edges which
@@ -85,23 +85,23 @@
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<pre><code class="language-html">    <span class="hljs-tag">&lt;<span class="hljs-name">fg-editor</span>
+				<pre><code class="language-html">    <span class="hljs-tag">&lt;<span class="hljs-name">dz-editor</span>
         [<span class="hljs-attr">graph</span>]=<span class="hljs-string">"myGraph"</span>
         [<span class="hljs-attr">availableNodes</span>]=<span class="hljs-string">"availableNodes"</span>
-        &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">fg-editor</span>&gt;</span></code></pre>
-				<p>There are many more bindable properties and events that <code>&lt;fg-editor&gt;</code> makes
+        &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">dz-editor</span>&gt;</span></code></pre>
+				<p>There are many more bindable properties and events that <code>&lt;dz-editor&gt;</code> makes
 				available, but the above are what&#39;s needed to provide a basic experience.</p>
 				<a href="#graphquotmygraphquot" id="graphquotmygraphquot" style="color: inherit; text-decoration: none;">
 					<h3><code>[graph]=&quot;myGraph&quot;</code></h3>
 				</a>
-				<p>The most important input to Firegraph is the graph object itself. The graph
+				<p>The most important input to Diazo is the graph object itself. The graph
 					object specifies the nodes and edges that make up the graph you can see in
 				the editor.</p>
 				<p>One might satisfy this binding by declaring <code>myGraph</code> as seen below.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Firegraph } <span class="hljs-keyword">from</span> <span class="hljs-string">'@astronautlabs/firegraph'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Diazo } <span class="hljs-keyword">from</span> <span class="hljs-string">'@astronautlabs/diazo'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    myGraph : Firegraph = { nodes: [], edges: [] };
+    myGraph : Diazo = { nodes: [], edges: [] };
 }</code></pre>
 				<a href="#availablenodesquotavailablenodesquot" id="availablenodesquotavailablenodesquot" style="color: inherit; text-decoration: none;">
 					<h3><code>[availableNodes]=&quot;availableNodes&quot;</code></h3>
@@ -111,11 +111,11 @@
 				right clicking). <code>availableNodes</code> is an array of NodeSets.</p>
 				<p>Each NodeSet defines a labelled group of template nodes. Let&#39;s add a
 				node set with a few simple template nodes:</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Firegraph } <span class="hljs-keyword">from</span> <span class="hljs-string">'@astronautlabs/firegraph'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Diazo } <span class="hljs-keyword">from</span> <span class="hljs-string">'@astronautlabs/diazo'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    myGraph : Firegraph = { nodes: [], edges: [] };
-    availableNodes : FiregraphNodeSet[] = [
+    myGraph : Diazo = { nodes: [], edges: [] };
+    availableNodes : DiazoNodeSet[] = [
         {
             id: <span class="hljs-string">'general'</span>,
             label: <span class="hljs-string">'General'</span>,
@@ -147,7 +147,7 @@
 				</a>
 				<p>Template nodes can specify a set of <em>properties</em> which will be shown on the Properties
 				sidebar. Similar to the available node set, properties are grouped into labelled sets.</p>
-				<pre><code class="language-js"><span class="hljs-keyword">let</span> node : FiregraphNode = {
+				<pre><code class="language-js"><span class="hljs-keyword">let</span> node : DiazoNode = {
     <span class="hljs-attr">data</span>: {
         <span class="hljs-attr">unit</span>: <span class="hljs-string">'my-output'</span>,
         <span class="hljs-attr">someProperty</span>: <span class="hljs-string">'abc'</span>
@@ -213,43 +213,43 @@
 						<a href="classes/custompropertyeditorhostcomponent.html" class="tsd-kind-icon">Custom<wbr>Property<wbr>Editor<wbr>Host<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphcomponent.html" class="tsd-kind-icon">Firegraph<wbr>Component</a>
+						<a href="classes/diazocomponent.html" class="tsd-kind-icon">Diazo<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphcontext.html" class="tsd-kind-icon">Firegraph<wbr>Context</a>
+						<a href="classes/diazocontext.html" class="tsd-kind-icon">Diazo<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphdynamicnodecomponent.html" class="tsd-kind-icon">Firegraph<wbr>Dynamic<wbr>Node<wbr>Component</a>
+						<a href="classes/diazodynamicnodecomponent.html" class="tsd-kind-icon">Diazo<wbr>Dynamic<wbr>Node<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegrapheditorcomponent.html" class="tsd-kind-icon">Firegraph<wbr>Editor<wbr>Component</a>
+						<a href="classes/diazoeditorcomponent.html" class="tsd-kind-icon">Diazo<wbr>Editor<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphmodule.html" class="tsd-kind-icon">Firegraph<wbr>Module</a>
+						<a href="classes/diazomodule.html" class="tsd-kind-icon">Diazo<wbr>Module</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphnodecomponent.html" class="tsd-kind-icon">Firegraph<wbr>Node<wbr>Component</a>
+						<a href="classes/diazonodecomponent.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphnodecontext.html" class="tsd-kind-icon">Firegraph<wbr>Node<wbr>Context</a>
+						<a href="classes/diazonodecontext.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphnodehostcomponent.html" class="tsd-kind-icon">Firegraph<wbr>Node<wbr>Host<wbr>Component</a>
+						<a href="classes/diazonodehostcomponent.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Host<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphnodesourcecomponent.html" class="tsd-kind-icon">Firegraph<wbr>Node<wbr>Source<wbr>Component</a>
+						<a href="classes/diazonodesourcecomponent.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Source<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphpropertycontext.html" class="tsd-kind-icon">Firegraph<wbr>Property<wbr>Context</a>
+						<a href="classes/diazopropertycontext.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphslotcomponent.html" class="tsd-kind-icon">Firegraph<wbr>Slot<wbr>Component</a>
+						<a href="classes/diazoslotcomponent.html" class="tsd-kind-icon">Diazo<wbr>Slot<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphslotcontext.html" class="tsd-kind-icon">Firegraph<wbr>Slot<wbr>Context</a>
+						<a href="classes/diazoslotcontext.html" class="tsd-kind-icon">Diazo<wbr>Slot<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/firegraphtypebase.html" class="tsd-kind-icon">Firegraph<wbr>Type<wbr>Base</a>
+						<a href="classes/diazotypebase.html" class="tsd-kind-icon">Diazo<wbr>Type<wbr>Base</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/omnisearchpipe.html" class="tsd-kind-icon">Omnisearch<wbr>Pipe</a>
@@ -261,64 +261,64 @@
 						<a href="classes/wildcardtype.html" class="tsd-kind-icon">Wildcard<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraph.html" class="tsd-kind-icon">Firegraph</a>
+						<a href="interfaces/diazo.html" class="tsd-kind-icon">Diazo</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphcustompropertytype.html" class="tsd-kind-icon">Firegraph<wbr>Custom<wbr>Property<wbr>Type</a>
+						<a href="interfaces/diazocustompropertytype.html" class="tsd-kind-icon">Diazo<wbr>Custom<wbr>Property<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphedge.html" class="tsd-kind-icon">Firegraph<wbr>Edge</a>
+						<a href="interfaces/diazoedge.html" class="tsd-kind-icon">Diazo<wbr>Edge</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegrapheditornotification.html" class="tsd-kind-icon">Firegraph<wbr>Editor<wbr>Notification</a>
+						<a href="interfaces/diazoeditornotification.html" class="tsd-kind-icon">Diazo<wbr>Editor<wbr>Notification</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphnode.html" class="tsd-kind-icon">Firegraph<wbr>Node</a>
+						<a href="interfaces/diazonode.html" class="tsd-kind-icon">Diazo<wbr>Node</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphnoderules.html" class="tsd-kind-icon">Firegraph<wbr>Node<wbr>Rules</a>
+						<a href="interfaces/diazonoderules.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Rules</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphnodeset.html" class="tsd-kind-icon">Firegraph<wbr>Node<wbr>Set</a>
+						<a href="interfaces/diazonodeset.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Set</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphproperty.html" class="tsd-kind-icon">Firegraph<wbr>Property</a>
+						<a href="interfaces/diazoproperty.html" class="tsd-kind-icon">Diazo<wbr>Property</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphpropertybitmask.html" class="tsd-kind-icon">Firegraph<wbr>Property<wbr>Bitmask</a>
+						<a href="interfaces/diazopropertybitmask.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Bitmask</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphpropertycell.html" class="tsd-kind-icon">Firegraph<wbr>Property<wbr>Cell</a>
+						<a href="interfaces/diazopropertycell.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Cell</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphpropertyinlinematrix.html" class="tsd-kind-icon">Firegraph<wbr>Property<wbr>Inline<wbr>Matrix</a>
+						<a href="interfaces/diazopropertyinlinematrix.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Inline<wbr>Matrix</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphpropertymatrix.html" class="tsd-kind-icon">Firegraph<wbr>Property<wbr>Matrix</a>
+						<a href="interfaces/diazopropertymatrix.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Matrix</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphpropertyoption.html" class="tsd-kind-icon">Firegraph<wbr>Property<wbr>Option</a>
+						<a href="interfaces/diazopropertyoption.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Option</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphpropertyoptiongroup.html" class="tsd-kind-icon">Firegraph<wbr>Property<wbr>Option<wbr>Group</a>
+						<a href="interfaces/diazopropertyoptiongroup.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Option<wbr>Group</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphpropertyset.html" class="tsd-kind-icon">Firegraph<wbr>Property<wbr>Set</a>
+						<a href="interfaces/diazopropertyset.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Set</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphslot.html" class="tsd-kind-icon">Firegraph<wbr>Slot</a>
+						<a href="interfaces/diazoslot.html" class="tsd-kind-icon">Diazo<wbr>Slot</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphslotrule.html" class="tsd-kind-icon">Firegraph<wbr>Slot<wbr>Rule</a>
+						<a href="interfaces/diazoslotrule.html" class="tsd-kind-icon">Diazo<wbr>Slot<wbr>Rule</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphundostate.html" class="tsd-kind-icon">Firegraph<wbr>Undo<wbr>State</a>
+						<a href="interfaces/diazoundostate.html" class="tsd-kind-icon">Diazo<wbr>Undo<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphvalue.html" class="tsd-kind-icon">Firegraph<wbr>Value</a>
+						<a href="interfaces/diazovalue.html" class="tsd-kind-icon">Diazo<wbr>Value</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/firegraphvaluetype.html" class="tsd-kind-icon">Firegraph<wbr>Value<wbr>Type</a>
+						<a href="interfaces/diazovaluetype.html" class="tsd-kind-icon">Diazo<wbr>Value<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/position.html" class="tsd-kind-icon">Position</a>

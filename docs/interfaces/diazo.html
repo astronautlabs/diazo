@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Size | diazo</title>
+	<title>Diazo | diazo</title>
 	<meta name="description" content="Documentation for diazo">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="size.html">Size</a>
+					<a href="diazo.html">Diazo</a>
 				</li>
 			</ul>
-			<h1>Interface Size</h1>
+			<h1>Interface Diazo</h1>
 		</div>
 	</div>
 </header>
@@ -67,8 +67,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents the extends of a rectangle within the <a href="../classes/diazocontext.html">context</a> layer
-						layer.</p>
+						<p>Represents the structure of a graph built within Diazo.
+							Consists of a set of <a href="diazo.html#nodes"><code>nodes</code></a> with distinct IDs, where each node
+						defines a set of <a href="diazonode.html#slots"><code>slots</code></a>, and a set of <a href="diazo.html#edges"><code>edges</code></a>.</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +77,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Size</span>
+						<span class="target">Diazo</span>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +88,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="size.html#height" class="tsd-kind-icon">height</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="size.html#width" class="tsd-kind-icon">width</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazo.html#edges" class="tsd-kind-icon">edges</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazo.html#nodes" class="tsd-kind-icon">nodes</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,24 +98,35 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="height" class="tsd-anchor"></a>
-					<h3>height</h3>
-					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="edges" class="tsd-anchor"></a>
+					<h3>edges</h3>
+					<div class="tsd-signature tsd-kind-icon">edges<span class="tsd-signature-symbol">:</span> <a href="diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L81">lib/diazo-context.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L1033">lib/diazo-context.ts:1033</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Represents the edges of a Diazo, that is, those that connect
+							the <a href="diazonode.html#slots"><code>DiazoNode.slots</code></a> of <a href="diazo.html#nodes"><code>nodes</code></a> together.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="width" class="tsd-anchor"></a>
-					<h3>width</h3>
-					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="nodes" class="tsd-anchor"></a>
+					<h3>nodes</h3>
+					<div class="tsd-signature tsd-kind-icon">nodes<span class="tsd-signature-symbol">:</span> <a href="diazonode.html" class="tsd-signature-type">DiazoNode</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L80">lib/diazo-context.ts:80</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L1027">lib/diazo-context.ts:1027</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Represents the set of nodes present in this Diazo.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -131,13 +143,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="size.html" class="tsd-kind-icon">Size</a>
+						<a href="diazo.html" class="tsd-kind-icon">Diazo</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="size.html#height" class="tsd-kind-icon">height</a>
+								<a href="diazo.html#edges" class="tsd-kind-icon">edges</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="size.html#width" class="tsd-kind-icon">width</a>
+								<a href="diazo.html#nodes" class="tsd-kind-icon">nodes</a>
 							</li>
 						</ul>
 					</li>

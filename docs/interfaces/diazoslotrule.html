@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Size | diazo</title>
+	<title>DiazoSlotRule | diazo</title>
 	<meta name="description" content="Documentation for diazo">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,29 +54,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="size.html">Size</a>
+					<a href="diazoslotrule.html">DiazoSlotRule</a>
 				</li>
 			</ul>
-			<h1>Interface Size</h1>
+			<h1>Interface DiazoSlotRule</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents the extends of a rectangle within the <a href="../classes/diazocontext.html">context</a> layer
-						layer.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Size</span>
+						<span class="target">DiazoSlotRule</span>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +79,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="size.html#height" class="tsd-kind-icon">height</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="size.html#width" class="tsd-kind-icon">width</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazoslotrule.html#count" class="tsd-kind-icon">count</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazoslotrule.html#placement" class="tsd-kind-icon">placement</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazoslotrule.html#template" class="tsd-kind-icon">template</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,22 +90,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="height" class="tsd-anchor"></a>
-					<h3>height</h3>
-					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="count" class="tsd-anchor"></a>
+					<h3>count</h3>
+					<div class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L81">lib/diazo-context.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L619">lib/diazo-context.ts:619</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="width" class="tsd-anchor"></a>
-					<h3>width</h3>
-					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="placement" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> placement</h3>
+					<div class="tsd-signature tsd-kind-icon">placement<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"append"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"prepend"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L80">lib/diazo-context.ts:80</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L618">lib/diazo-context.ts:618</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="template" class="tsd-anchor"></a>
+					<h3>template</h3>
+					<div class="tsd-signature tsd-kind-icon">template<span class="tsd-signature-symbol">:</span> <a href="diazoslot.html" class="tsd-signature-type">DiazoSlot</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L620">lib/diazo-context.ts:620</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -131,13 +134,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="size.html" class="tsd-kind-icon">Size</a>
+						<a href="diazoslotrule.html" class="tsd-kind-icon">Diazo<wbr>Slot<wbr>Rule</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="size.html#height" class="tsd-kind-icon">height</a>
+								<a href="diazoslotrule.html#count" class="tsd-kind-icon">count</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="size.html#width" class="tsd-kind-icon">width</a>
+								<a href="diazoslotrule.html#placement" class="tsd-kind-icon">placement</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazoslotrule.html#template" class="tsd-kind-icon">template</a>
 							</li>
 						</ul>
 					</li>

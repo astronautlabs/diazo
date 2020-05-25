@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Size | diazo</title>
+	<title>DiazoEditorNotification | diazo</title>
 	<meta name="description" content="Documentation for diazo">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="size.html">Size</a>
+					<a href="diazoeditornotification.html">DiazoEditorNotification</a>
 				</li>
 			</ul>
-			<h1>Interface Size</h1>
+			<h1>Interface DiazoEditorNotification</h1>
 		</div>
 	</div>
 </header>
@@ -67,8 +67,11 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents the extends of a rectangle within the <a href="../classes/diazocontext.html">context</a> layer
-						layer.</p>
+						<p>Used to represent a text notification that should be shown in the UI.
+							This is used by the <a href="../classes/diazocontext.html">context</a> layer to signal the
+							<a href="../classes/diazoeditorcomponent.html">Diazo editor</a> to show a message
+							via the snack bar (floating notifications shown along the bottom of
+						the viewport).</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +79,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Size</span>
+						<span class="target">DiazoEditorNotification</span>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +90,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="size.html#height" class="tsd-kind-icon">height</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="size.html#width" class="tsd-kind-icon">width</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazoeditornotification.html#message" class="tsd-kind-icon">message</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,22 +99,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="height" class="tsd-anchor"></a>
-					<h3>height</h3>
-					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L81">lib/diazo-context.ts:81</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="width" class="tsd-anchor"></a>
-					<h3>width</h3>
-					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L80">lib/diazo-context.ts:80</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/da749c8/projects/diazo/src/lib/diazo-context.ts#L30">lib/diazo-context.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -131,13 +123,10 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="size.html" class="tsd-kind-icon">Size</a>
+						<a href="diazoeditornotification.html" class="tsd-kind-icon">Diazo<wbr>Editor<wbr>Notification</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="size.html#height" class="tsd-kind-icon">height</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="size.html#width" class="tsd-kind-icon">width</a>
+								<a href="diazoeditornotification.html#message" class="tsd-kind-icon">message</a>
 							</li>
 						</ul>
 					</li>
