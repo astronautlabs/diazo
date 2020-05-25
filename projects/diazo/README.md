@@ -1,4 +1,5 @@
-# diazo
+# ![diazo](/logo.svg)
+
 [Documentation](https://astronautlabs.github.io/diazo/) | [Example](https://astronautlabs.github.io/diazo-example/)
 
 An MIT-licensed slot-driven directed-acyclical-graph (DAG) editor for Angular. This 
