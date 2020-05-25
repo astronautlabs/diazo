@@ -153,7 +153,7 @@ export class DiazoNodeComponent {
     isElementInSlot(element : HTMLElement): boolean {
         let el = element;
         while (el) {
-            if (el.tagName.toLowerCase() === 'fg-slot')
+            if (el.tagName.toLowerCase() === 'dz-slot')
                 return true;
             el = el.parentElement;
         }

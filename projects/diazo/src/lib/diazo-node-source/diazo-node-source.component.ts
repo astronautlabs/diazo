@@ -43,12 +43,12 @@ export class DiazoNodeSourceComponent {
     @HostListener('mousedown', ['$event']) 
     onMouseDown(event : MouseEvent) {
         if (!this.context) {
-            console.warn(`fg-node-source-button: No context connected, cannot instantiate node`);
+            console.warn(`dz-node-source-button: No context connected, cannot instantiate node`);
             return;
         }
         
         if (!this.template) {
-            console.warn(`fg-node-source-button: No template specified, cannot instantiate node`);
+            console.warn(`dz-node-source-button: No template specified, cannot instantiate node`);
             return;
         }
         

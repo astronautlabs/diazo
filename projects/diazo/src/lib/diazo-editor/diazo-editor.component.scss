@@ -48,7 +48,7 @@ mat-form-field {
         }
     }
 
-    fg-container {
+    dz-container {
         flex-grow: 1;
     }
 }
@@ -225,7 +225,7 @@ mat-checkbox + .hint {
     flex-direction: row;
 }
 
-fg-node-source-button.highlighted {
+dz-node-source-button.highlighted {
     background: rgb(0, 255, 200);
     border-radius: 4px;
 }
@@ -260,7 +260,7 @@ fg-node-source-button.highlighted {
         color: white;
     }
     
-    fg-node-source-button.highlighted {
+    dz-node-source-button.highlighted {
         background: rgb(0, 77, 60);
     }
 }
