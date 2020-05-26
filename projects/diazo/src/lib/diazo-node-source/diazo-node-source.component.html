@@ -1,0 +1,16 @@
+<div class="icon-container">
+    <mat-icon>{{template?.icon || 'home'}}</mat-icon>
+</div>
+<div class="label">
+    <div>
+        <ng-content></ng-content>
+    </div>
+    <span class="preview" *ngIf="template?.alpha || template?.beta">
+        <ng-container *ngIf="template?.alpha">
+            Alpha
+        </ng-container>
+        <ng-container *ngIf="template?.beta">
+            Beta
+        </ng-container>
+    </span>
+</div>

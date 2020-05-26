@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewContainerRef, Input, HostListener, HostBinding, ViewChild } from "@angular/core";
-import { DiazoContext, DiazoNode, Position } from '../diazo-context';
-import { DiazoNodeContext } from '../diazo-context';
+import { DiazoContext, DiazoNodeContext } from '../context';
+import { Position } from '../common';
 import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({

@@ -1,11 +1,13 @@
 import { Component, Input, Output, Provider, ViewChild, ElementRef } from "@angular/core";
-import { Diazo, DiazoContext, DiazoNode, DiazoPropertySet, DiazoValueType, DiazoNodeContext, DiazoNodeSet, DiazoSlot, DiazoCustomPropertyType, DiazoPropertyOption, DiazoPropertyOptionGroup, DiazoProperty, Position } from '../diazo-context';
+import { DiazoContext, DiazoNodeContext, DiazoValueType } from '../context';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { Accessor, MULTIPLE_VALUES } from '../accessor';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { DiazoComponent } from '../diazo/diazo.component';
 import * as uuid from 'uuid/v4';
+import { DiazoGraph, DiazoNodeSet, DiazoNode, DiazoPropertySet, DiazoPropertyOptionGroup, DiazoCustomPropertyType, DiazoProperty } from '../model';
+import { Position } from '../common';
 
 /**
  * Provides a full-featured Diazo editor, including a searchable 
@@ -85,7 +87,7 @@ export class DiazoEditorComponent {
     private _nodeSearch = '';
     private _showProperties : boolean = undefined;
     private _showPropertiesByDefault = true;
-    private _graph : Diazo = {
+    private _graph : DiazoGraph = {
         nodes: [],
         edges: []
     };
@@ -240,7 +242,7 @@ export class DiazoEditorComponent {
      * Context. These change transactions underpin Diazo's support for Undo/Redo.
      */
     @Output() 
-    graphChanged = new Subject<Diazo>();
+    graphChanged = new Subject<DiazoGraph>();
 
     /**
      * If true, the Diazo editor will be placed in Read Only mode. The user 
@@ -534,7 +536,7 @@ export class DiazoEditorComponent {
     /**
      * @hidden
      */
-    onGraphChanged(graph : Diazo) {
+    onGraphChanged(graph : DiazoGraph) {
         this.graphChanged.next(graph);
     }
     
@@ -581,7 +583,7 @@ export class DiazoEditorComponent {
      * those defined by your application.
      * @hidden
      */
-    inflateGraph(graph : Diazo) {
+    inflateGraph(graph : DiazoGraph) {
         for (let node of graph.nodes) {
             if (node.data && node.data.unit === 'reroute')
                 continue;

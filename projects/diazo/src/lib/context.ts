@@ -3,32 +3,8 @@ import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { SubSink } from 'subsink';
 import * as uuid from 'uuid';
 import { Accessor } from './accessor';
-
-/**
- * Represents a position within a view.
- */
-export interface Position {
-    top : number;
-    left : number;
-}
-
-/**
- * @hidden
- */
-export interface Constructor<T> {
-    new() : T;
-}
-
-/**
- * Used to represent a text notification that should be shown in the UI.
- * This is used by the {@link DiazoContext | context} layer to signal the
- * {@link DiazoEditorComponent | Diazo editor} to show a message 
- * via the snack bar (floating notifications shown along the bottom of 
- * the viewport). 
- */
-export interface DiazoEditorNotification {
-    message : string;
-}
+import { Position, Size } from './common';
+import { DiazoGraph, DiazoSlot, DiazoValue, DiazoNode, DiazoProperty, DiazoEdge } from './model';
 
 /**
  * Represents a single slot on a single node within a Diazo. 
@@ -73,20 +49,22 @@ export class DiazoSlotContext {
 }
 
 /**
- * Represents the extends of a rectangle within the {@link DiazoContext | context} layer 
- * layer.
+ * Used to represent a text notification that should be shown in the UI.
+ * This is used by the {@link DiazoContext | context} layer to signal the
+ * {@link DiazoEditorComponent | Diazo editor} to show a message 
+ * via the snack bar (floating notifications shown along the bottom of 
+ * the viewport). 
  */
-export interface Size {
-    width : number;
-    height : number;
+export interface DiazoEditorNotification {
+    message : string;
 }
 
 /**
  * Represents a saved Undo/Redo state within the {@link DiazoContext | context} layer.
  */
 export interface DiazoUndoState {
-    graphBefore : Diazo;
-    graphAfter : Diazo;
+    graphBefore : DiazoGraph;
+    graphAfter : DiazoGraph;
     cause : string;
 }
 
@@ -144,17 +122,6 @@ export class DiazoPropertyContext {
     get manipulator() {
         return this._manipulator;
     }
-}
-
-/**
- * Represents a registered custom property type view. This is used 
- * to convey the list of custom property type views from the consumer of the 
- * library to the {@link DiazoEditorComponent | Diazo editor}.
- */
-export interface DiazoCustomPropertyType {
-    namespace : string;
-    id : string;
-    component : any;
 }
 
 /**
@@ -348,279 +315,6 @@ export class DiazoNodeContext {
 }
 
 /**
- * Defines the structure of an edge within the {@linkcode Diazo.edges | edges} property of a {@linkcode Diazo}
- * object.
- */
-export interface DiazoEdge {
-    fromNodeId : string;
-    fromSlotId : string;
-    toNodeId : string;
-    toSlotId : string;
-    active? : boolean;
-    valid? : boolean;
-}
-
-export interface DiazoPropertyOption {
-    value : string;
-    label : string;
-}
-
-export interface DiazoPropertyOptionGroup {
-    label : string;
-    options : DiazoPropertyOption[];
-}
-
-export interface DiazoProperty {
-    label? : string;
-    path? : string;
-    description? : string;
-    readonly? : boolean;
-    slottable? : boolean;
-    slotValue? : DiazoValue;
-    allowAnnotation? : boolean;
-    
-    type : 'number' | 'text' | 'bitmask' | 'json'
-            | 'textarea' | 'select' | 'flags' | 'position' 
-            | 'boolean' | 'matrix' | 'inline-matrix' | string;
-    typeOptions? : any;
-    inlineMatrix? : DiazoPropertyInlineMatrix;
-    matrix? : DiazoPropertyMatrix;
-    bitmask? : DiazoPropertyBitmask;
-    options? : DiazoPropertyOption[];
-    optionSource? : string;
-}
-
-export interface DiazoPropertyInlineMatrix {
-    width : number;
-    height : number;
-}
-
-export interface DiazoPropertyBitmask {
-    labels? : string[];
-}
-
-export interface DiazoPropertyMatrix {
-    width : number;
-    height : number;
-    cells : DiazoPropertyCell[];
-}
-
-export interface DiazoPropertyCell {
-    path : string;
-    label? : string;
-    description? : string;
-}
-
-export interface DiazoNodeSet {
-    id? : string;
-    tags? : string[];
-    label : string;
-    nodes : DiazoNode[];
-}
-
-export interface DiazoPropertySet {
-    id : string;
-    label : string;
-    description? : string;
-    properties : DiazoProperty[];
-}
-
-export interface DiazoNode {
-    id? : string;
-
-    /**
-     * Specifies the category of node this is.
-     * Examples of classifications could include "input", "output", "filter"
-     * but the meaning of this field is not defined within the Diazo editor
-     * except that if you wish to use a custom node view, this field determines
-     * which custom node view that will be displayed. 
-     */
-    type? : string;
-
-    /**
-     * Specify the label to show on this node (if the style settings are such that
-     * labels are to be shown) as well as in the New Node menu if this is a template
-     * node.
-     */
-    label? : string;
-
-    /**
-     * Dictate that this node is readonly, and cannot be edited. This disallows
-     * editing via the Properties sidebar, and disallows adding new edges. The 
-     * user can still move the node around. If you wish to prevent that, set 
-     * `locked` instead.
-     */
-    readonly? : boolean;
-
-    /**
-     * Like `locked`, but the user also cannot move the node.
-     */
-    locked? : boolean;
-
-    /**
-     * Specify an icon to be shown in the New Node menu. Currently this 
-     * must be an icon included in the Material Icons font.
-     */
-    icon? : string;
-    
-    /**
-     * Specify the X position of the node within the graph canvas.
-     */
-    x? : number;
-
-    /**
-     * Specify the Y position of the node within the graph canvas.
-     */
-    y? : number;
-
-    /**
-     * Specify the style of this node. 
-     * - `normal` -- Shown with a "titlebar" where the label lives, with the 
-     *   node view (if any) and the slot handles in the "main" portion of the node.
-     * - `compact` -- Shown as a uniform rounded rectangle with a slightly larger
-     *   label (compared to `normal`).
-     * - `inline` -- Shown like `compact`, but the label is shown inline with the
-     *   input/output slots with the three columns aligned at the top.
-     * - `reroute` -- Shown without any UI. Assumes a single slot is present on 
-     *   the node. This is used specifically for special reroute nodes created 
-     *   within the editor.
-     */
-    style? : 'normal' | 'compact' | 'inline' | 'reroute';
-
-    /**
-     * Control the width behavior of the node when shown in the editor.
-     * - `normal` -- Provide a sensible minimum width, expand as necessary to 
-     *   fit content. Shows labels on slots.
-     * - `slim` -- Provide a smaller sensible minimum width, but still expands
-     *   as necessary to fit content. Hides labels on slots.
-     * - `wide` -- Assume the node is best presented with a larger minimum width.
-     *   Does not expand as necessary so that inner content can nicely wrap into
-     *   the available space. Shows labels on slots.
-     */
-    profile? : 'normal' | 'slim' | 'wide';
-    
-    /**
-     * This is used by the Diazo editor to keep track of where the node is 
-     * being moved to. It should be ignored or set to zero otherwise.
-     * @todo move to context layer
-     */
-    positionDeltaX? : number;
-
-    /**
-     * This is used by the Diazo editor to keep track of where the node is 
-     * being moved to. It should be ignored or set to zero otherwise.
-     * @todo move to context layer
-     */
-    positionDeltaY? : number;
-
-    /**
-     * This property should be an object whose keys represent the custom 
-     * metadata you are interested in for this node. Usually user-editable
-     * properties will reference data within this structure. 
-     * 
-     * There are some somewhat "special" properties in this object:
-     * - `unit` typically specifies the subtype of the node (where {@link `DiazoNode.type`
-     *   indicates the primary categorization) 
-     */
-    data? : any;
-
-    /**
-     * The set of connectable input/output "slots" that are part of this node. 
-     * These are rendered in the Diazo editor as labelled circular 
-     * connection handles which can be connected to one or more other slots on 
-     * other nodes.
-     */
-    slots? : DiazoSlot[];
-
-    // Flywheel
-
-    /**
-     * When true, this type of node is considered to be "alpha" by the 
-     * {@link DiazoEditorComponent | Diazo editor}. The New Node menu 
-     * will show the Alpha designation to the user.
-     */
-    alpha? : boolean;
-
-    /**
-     * When true, this type of node is considered to be "beta" by the 
-     * {@link DiazoEditorComponent | Diazo editor}. The New Node menu will show the Beta designation to
-     * the user.
-     */
-    beta? : boolean;
-
-    /**
-     * Specifies the set of user-editable properties that exist for this node.
-     * The {@link DiazoEditorComponent | Diazo editor} will show these 
-     * in the Properties sidebar.
-     */
-    properties? : DiazoPropertySet[];
-
-    /**
-     * Specifies a set of defaults for the other properties of this node. 
-     * Each key of this map is an object path. When the value within the node 
-     * of the given path evaluates to the string `"∅"`, the default value will be 
-     * used instead. 
-     * 
-     * String values here are special. You can use a handlebar-like template syntax
-     * to dynamically generate the value that should be used based on the values 
-     * of other properties within the node. 
-     * 
-     * For example, you could specify a node like so:
-     * ```typescript
-     * let node : DiazoNode = {
-     *   label: 'JSON Value',
-     *   data: { 
-     *     type: 'input',
-     *     value: '∅'
-     *   },
-     *   defaults: {
-     *     label: `{{data.value|JSON Value}}`
-     *   },
-     *   properties: [
-     *     {
-     *       id: 'json-value',
-     *       label: 'JSON Value',
-     *       properties: [
-     *         {
-     *           label: "Value",
-     *           type: "json",
-     *           path: "data.value"
-     *         }
-     *       ]
-     *     }
-     *   ]
-     * };
-     * ```
-     * 
-     * Here the label shown within the editor will be "JSON Value" when `data.value`
-     * is falsey. Otherwise the label shown will be the value found in `data.value` 
-     * within the node.
-     */
-    defaults? : Record<string, any>;
-
-    /**
-     * Here you can specify one or more rules to dynamically control the 
-     * `slots` defined on this node. You can use a value from a property elsewhere
-     * in the node to define how many copies of a templated node should be 
-     * on the node. As that value changes, the `slots` are dynamically rewritten
-     * to match.
-     */
-    rules? : DiazoNodeRules;
-}
-
-export interface DiazoNodeRules {
-    slots? : DiazoSlotRule;
-    inputs? : DiazoSlotRule;
-    outputs? : DiazoSlotRule;
-}
-
-export interface DiazoSlotRule {
-    placement? : 'append' | 'prepend';
-    count : string;
-    template : DiazoSlot;
-}
-
-/**
  * Value types define the appearance and behavior of node slots within a graph.
  * Types are cooperatively convertible. This means that when a user is creating
  * an edge between two slots with different value types:
@@ -752,298 +446,15 @@ export interface DiazoValueType {
 }
 
 /**
- * Provides an abstract base class for new Diazo value types that provides
- * heirarchical compatibility by default.
- * 
- * Custom value types which inherit from `DiazoTypeBase` will automatically
- * grant implicit conversions which broaden the "value" of the edge and deny
- * conversions which narrow the "value of the edge.
- * 
- * Given:
- * 
- * ```typescript
- * export class TypeA extends DiazoTypeBase {}
- * export class TypeB extends TypeA {}
- * ```
- * 
- * - A connection from an output slot of `TypeB` **can be assigned** to an input slot of 
- * `TypeA`
- * - A connection from an output slot of `TypeA` **cannot be assigned** to an input slot of `TypeB`
- * 
- * This may or may not be the behavior you want from your custom value types.
- * You can override the {@linkcode isCompatible} method to change this behavior,
- * or implement {@linkcode DiazoValueType} directly instead. 
- */
-export class DiazoTypeBase implements Partial<DiazoValueType> {
-    isCompatible(
-        output : DiazoSlotContext,
-        input : DiazoSlotContext
-    ) {
-        return (output.valueType === input.valueType
-                || output.valueType instanceof input.valueType.constructor ) 
-            && this.isExpressionCompatible(output, input)
-        ;
-    }
-
-    public static value<T extends typeof DiazoTypeBase>(this : T, params? : any): DiazoValue {
-        let x : DiazoValueType = new (<any>this)();
-        return { type: x.id, params };
-    }
-
-    isExpressionCompatible(
-        output : DiazoSlotContext,
-        input : DiazoSlotContext
-    ) {
-        return true;
-    }
-}
-
-/**
- * Provides a special value type that works by inference. You create 
- * named wildcard values within your slots using {@link WildcardType.named()}
- * and the Diazo editor will automatically infer what value the slot really
- * is by analyzing other existing edges in the graph. You can use this if the 
- * node can take any value in, but the output should follow what the input edge 
- * is. Note that this works in any direction. If you attach an edge to the 
- * wildcard output on your node, the corresponding input(s) will immediately 
- * reflect that inference.
- * 
- * So for example:
- * ```typescript
- * <DiazoNode>{
- *      label: 'My Node',
- *      slots: [
- *          {
- *              id: 'input1',
- *              type: 'input',
- *              value: WildcardType.named('T')
- *          },
- *          {
- *              id: 'output1',
- *              type: 'output',
- *              value: WildcardType.named('T')
- *          },
- *      ]
- * }
- * ```
- * 
- * If you connect an edge to either the `input1` or `output1` slots, the other
- * slot will immediately reflect the value type of that edge.
- * 
- */
-export class WildcardType extends DiazoTypeBase implements DiazoValueType {
-    id = 'wildcard';
-    color = 'pink';
-    description = 'Works for any value';
-    name = 'Wildcard';
-    splittable = true;
-
-    isCompatible(
-        output : DiazoSlotContext,
-        input : DiazoSlotContext
-    ) {
-        return this.isExpressionCompatible(output, input);
-    }
-
-    getColorByContext(slot : DiazoSlotContext) {
-        let value = this.resolveSlotType(slot);
-
-        if (value) {
-            let type = slot.graph.getValueTypeById(value.type);
-            if (type) {
-                if (type.getColorByContext)
-                    return type.getColorByContext(slot);
-                if (type.color)
-                    return type.color;
-            }
-        }
-
-        return `white`;
-    }
-
-    getNameByContext(slot : DiazoSlotContext) {
-
-        let value = this.resolveSlotType(slot);
-
-        if (value) {
-            return `Wildcard (Bound: ${value.type})`;
-        }
-
-        return `Wildcard (Unbound)`;
-    }
-
-    resolveSlotType(slot : DiazoSlotContext, visitedSlots : DiazoSlotContext[] = []): DiazoValue {
-
-        if (!slot.value)
-            return null;
-
-        if (slot.value.type === 'wildcard') {
-            let wildcardType = slot.value.params.templateName;
-
-            // Find incoming edges on this slot and see if any of them can be resolved
-
-            for (let edge of slot.edges) {
-                let otherSlot = slot.getOtherSlotOfEdge(edge);
-                if (visitedSlots.includes(otherSlot))
-                    continue;
-
-                let otherValue = this.resolveSlotType(otherSlot, visitedSlots.concat([ slot ]));
-
-                if (otherValue)
-                    return otherValue;
-            }
-
-            // If we couldn't resolve this type via incoming edges to _this_ slot, attempt 
-            // to resolve the type by looking at other slots on this node with the same wildcard
-            // templateName
-
-            let unvisitedSlots = slot.node.slots
-                .filter(x => !visitedSlots.includes(x) && x.value.type === 'wildcard' && x.value.params.templateName === wildcardType)
-            ;
-
-            for (let otherSlot of unvisitedSlots) {
-                let otherValue = this.resolveSlotType(otherSlot, visitedSlots.concat([ slot ]));
-                if (otherValue)
-                    return otherValue;
-            }
-
-            // wildcard unbound
-
-            return null;
-        }
-
-        return slot.value;
-    }
-
-    isExpressionCompatible(
-        output : DiazoSlotContext,
-        input : DiazoSlotContext
-    ) {
-        let outputValue = this.resolveSlotType(output);
-        let inputValue = this.resolveSlotType(input);
-
-        if (output.value && output.value.type === 'wildcard' && !outputValue) {
-            return true;
-        }
-
-        if (input.value && input.value.type === 'wildcard' && !inputValue) {
-            return true;
-        }
-
-        // console.log(`Checking compat:`);
-        // console.dir(outputValue);
-        // console.dir(inputValue);
-
-        return output.graph.valuesCompatible(outputValue, inputValue);
-    }
-
-    public static named(templateName : string): DiazoValue {
-        return WildcardType.value({ templateName });
-    }
-}
-
-export interface DiazoValue {
-    type : string;
-    params : Record<string,any>;
-}
-
-/**
- * Represents a slot on a node.
- * @see {@linkcode DiazoNode.slots}
- */
-export interface DiazoSlot {
-    /**
-     * The ID of this slot. This must be unique among all slots
-     * on the same node.
-     */
-    id : string;
-
-    /**
-     * The label for this slot. It is shown on the node (unless {@linkcode profile}
-     * `== slim`) as well as in tooltips.
-     */
-    label : string;
-
-    /**
-     * The type of slot this is. 
-     * - `input` - Accepts incoming connections from other nodes
-     * - `output` - Accepts outgoing connections to other nodes
-     * - `passthrough` - Slot accepts both input and output. This is used
-     *   to implement `reroute` nodes within the editor.
-     */
-    type : 'input' | 'output' | 'passthrough';
-
-    /**
-     * If true, this slot will not be shown on the node within the editor.
-     * This is controlled in the "Slots" section of the Properties sidebar,
-     * and can be included in a template node to have a slot hidden by default.
-     */
-    hidden? : boolean;
-
-    /**
-     * The value associated with this slot.
-     * 
-     * Conceptually, the value of a slot defines the type of content that 
-     * is "transported" by edges that connect to it. Practically, this 
-     * lets the editor ensure that the user cannot connect incompatible 
-     * slots to each other.
-     * 
-     * 
-     * Values are also the mechanism by which the presentational elements of 
-     * edges in the graph (ie color, width, labels) are customized. 
-     * 
-     * Each `value` consists of a {@link DiazoValueType | value type} 
-     * and a set of _parameters_.
-     * Most simple value types do not depend on the parameters included within
-     * the actual `value` declared on a `slot`, but some do. The parameters 
-     * of a value may impact whether the editor allows a connection from one
-     * slot to another.
-     * 
-     * Value types are referenced via a registered ID. See 
-     * {@link DiazoEditorComponent.valueTypes}
-     * for information about providing these to the editor.
-     * 
-     * For more about value types, see {@link DiazoValueType}
-     * 
-     */
-    value? : DiazoValue;
-
-    /**
-     * True when this slot was created dynamically by the editor. You should not
-     * specify custom slots with this property.
-     */
-    dynamic? : boolean;
-}
-
-/**
- * Represents the structure of a graph built within Diazo.
- * Consists of a set of {@linkcode nodes} with distinct IDs, where each node
- * defines a set of {@linkcode DiazoNode.slots | slots}, and a set of {@linkcode edges}.
- */
-export interface Diazo {
-    /**
-     * Represents the set of nodes present in this Diazo.
-     */
-    nodes : DiazoNode[];
-
-    /**
-     * Represents the edges of a Diazo, that is, those that connect 
-     * the {@linkcode DiazoNode.slots} of {@linkcode nodes} together.
-     */
-    edges : DiazoEdge[];
-}
-
-/**
  * Manages the runtime state of the Diazo editor including logic around
  * user interactions.
  */
 @Injectable()
 export class DiazoContext {
     constructor() {
-        this.registerValueType(WildcardType);
     }
 
-    get graph() : Diazo {
+    get graph() : DiazoGraph {
         return this._graph;
     }
 
@@ -1148,21 +559,21 @@ export class DiazoContext {
         }
     }
     
-    addNodeToSubgraph(subgraph : Diazo, node : DiazoNode) {
+    addNodeToSubgraph(subgraph : DiazoGraph, node : DiazoNode) {
         if (subgraph.nodes.some(x => x.id === node.id))
             return;
 
         subgraph.nodes.push(this.clone(node));
     }
 
-    addEdgeToSubgraph(subgraph : Diazo, edge : DiazoEdge) {
+    addEdgeToSubgraph(subgraph : DiazoGraph, edge : DiazoEdge) {
         if (subgraph.edges.some(x => this.edgesAreEqual(x, edge)))
             return;
 
         subgraph.edges.push(this.clone(edge));
     }
 
-    collectSubgraph(entryNode : DiazoNodeContext, subgraph : Diazo) {
+    collectSubgraph(entryNode : DiazoNodeContext, subgraph : DiazoGraph) {
         if (subgraph.nodes.some(x => x.id === entryNode.id))
             return;
 
@@ -1174,7 +585,7 @@ export class DiazoContext {
         }
     }
 
-    commit(cause : string, callback : (graph : Diazo, revert : (silently? : boolean) => void) => void) {
+    commit(cause : string, callback : (graph : DiazoGraph, revert : (silently? : boolean) => void) => void) {
         if (this.committing)
             throw new Error(`Cannot commit a graph state: Already committing a graph state`);
         
@@ -1357,8 +768,8 @@ export class DiazoContext {
         return false;
     }
 
-    private _graph : Diazo = { nodes: [], edges: [] };
-    graphChanged = new BehaviorSubject<Diazo>(null);
+    private _graph : DiazoGraph = { nodes: [], edges: [] };
+    graphChanged = new BehaviorSubject<DiazoGraph>(null);
 
     nodes : DiazoNodeContext[] = [];
     edgeUnderCursor : DiazoEdge;
@@ -1388,7 +799,7 @@ export class DiazoContext {
         }
     }
 
-    private removeNodeFromGraph(graph : Diazo, node : DiazoNodeContext) {
+    private removeNodeFromGraph(graph : DiazoGraph, node : DiazoNodeContext) {
         let affectedEdges = graph.edges
             .filter(x => [x.fromNodeId, x.toNodeId].includes(node.id))
             .slice()
@@ -1785,7 +1196,7 @@ export class DiazoContext {
         return null;
     }
 
-    private removeEdgeFromGraph(graph : Diazo, edge : DiazoEdge) {
+    private removeEdgeFromGraph(graph : DiazoGraph, edge : DiazoEdge) {
         let index = graph.edges.findIndex(x => this.edgesAreEqual(x, edge));
         if (index >= 0)
             graph.edges.splice(index, 1);
@@ -2022,10 +1433,10 @@ export class DiazoContext {
         this.draftEdge = null;
     }
 
-    copiedGraph : Diazo;
+    copiedGraph : DiazoGraph;
 
     copy() {
-        let graph : Diazo = {
+        let graph : DiazoGraph = {
             nodes: [],
             edges: []
         };
@@ -2065,10 +1476,10 @@ export class DiazoContext {
         this.copiedGraph = graph;
     }
 
-    createCopy(graph : Diazo) {
+    createCopy(graph : DiazoGraph) {
         
         let idMap = new Map<string,string>();
-        let newGraph : Diazo = { nodes: [], edges: [] };
+        let newGraph : DiazoGraph = { nodes: [], edges: [] };
 
         for (let node of graph.nodes) {
             let nodeId = uuid();

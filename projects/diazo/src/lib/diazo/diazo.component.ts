@@ -1,9 +1,12 @@
 import { Component, HostListener, ViewChild, ElementRef, Input, HostBinding, Output } from "@angular/core";
-import { DiazoContext, DiazoEdge, Position, DiazoNode, WildcardType, Diazo } from '../diazo-context';
+import { DiazoContext } from '../context';
 import { BehaviorSubject, Subject } from 'rxjs';
 import * as uuid from 'uuid/v4';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { CdkDrag } from '@angular/cdk/drag-drop';
+import { Position, pointOnLine } from '../common';
+import { DiazoGraph, DiazoNode, DiazoEdge } from '../model';
+import { WildcardType } from '../value-types';
 
 /**
  * 
@@ -19,26 +22,64 @@ export class DiazoComponent {
         private context : DiazoContext,
         private elementRef : ElementRef<HTMLElement>
     ) {
-        this.contextChanged.next(context);
-        context.panChanged.subscribe(pos => this.updatePan());
-        context.zoomChanged.subscribe(zoom => this.updateZoom())
-
-
-        context.graphChanged.subscribe(graph => this.graphChanged.next(graph));
-
+        context.registerValueType(WildcardType);
+    }
+    
+    ngOnInit() {
+        this.contextChanged.next(this.context);
+        this.context.panChanged.subscribe(pos => this.updatePan());
+        this.context.zoomChanged.subscribe(zoom => this.updateZoom());
+        this.context.graphChanged.subscribe(graph => this.graphChanged.next(graph));
         this.elementRef.nativeElement.setAttribute('tabindex', '-1');
-
-
-        context.edgeCancelled.subscribe(edge => {
+        this.context.edgeCancelled.subscribe(edge => {
             if (!edge.fromNodeId || !edge.toNodeId)
                 this.showNodeMenu();
             
             this.context.bufferedEdge = edge;
-        })
+        });
     }
+
+    ngAfterViewInit() {
+        this.startRendering();
+    }
+
+    ngOnDestroy() {
+
+    }
+
+    private canvasContext : CanvasRenderingContext2D;
+    private canvas : HTMLCanvasElement;
+    private lastFrameTime : number;
+    private otherEdgeOpacity = 1;
+    private pulseCycle = 0;
+    private panTouch : Touch = null;
+    private zoomTouch : Touch = null;
+    private startPan : Position = null;
+    private startZoom : number;
+    private startPanZoom : number;
+    private touchActive = false;
+    private onTouchStartListener;
+    private onTouchMoveListener;
+    private onTouchEndListener;
+
+    private eligibleForContextMenu = false;
+
+    menuPosition : any = { y: 0, x: 0 };
+
+    @ViewChild('graphMenuTrigger', { read: MatMenuTrigger })
+    graphMenuTrigger : MatMenuTrigger;
+
+    @ViewChild('menuContents')
+    menuContents : ElementRef<HTMLElement>;
     
+    @ViewChild('nodeMenu', { read: CdkDrag })
+    nodeMenu : CdkDrag;
+
+    @ViewChild('nodeMenu')
+    nodeMenuEl : ElementRef<HTMLElement>;
+
     @Output()
-    graphChanged = new BehaviorSubject<Diazo>({ nodes: [], edges: [] });
+    graphChanged = new BehaviorSubject<DiazoGraph>({ nodes: [], edges: [] });
     
     @Output()
     nodeMenuPositionChanged = new BehaviorSubject<Position>({ top: 0, left: 0 });
@@ -46,10 +87,6 @@ export class DiazoComponent {
     @ViewChild('plate')
     plateRef : ElementRef<HTMLElement>;
     
-    nodeIdentity(index : number, node : DiazoNode) {
-        return node.id;
-    }
-
     @Input()
     get nodeTypeMap() {
         return this.context.nodeTypeMap;
@@ -71,22 +108,9 @@ export class DiazoComponent {
     set graph(value) {
         this.context.graph = value;
     }
-    
-    @Input()
-    get edges() : DiazoEdge[] {
-        return this.context.edges;
-    }
 
     @ViewChild('canvas')
     canvasRef : ElementRef<HTMLCanvasElement>;
-
-    set edges(value) {
-        this.context.edges = value;
-    }
-
-    ngOnInit() {
-
-    }
 
     @Output()
     contextChanged = new BehaviorSubject(null);
@@ -120,14 +144,14 @@ export class DiazoComponent {
 
     mousePosition : Position = { top: 0, left: 0 };
 
-    updateZoom() {
+    private updateZoom() {
         if (!this.plateRef)
             return;
         
         this.plateRef.nativeElement.style.transform = `scale(${this.context.zoom})`;
     }
 
-    updatePan() {
+    private updatePan() {
         if (!this.plateRef)
             return;
         
@@ -136,7 +160,7 @@ export class DiazoComponent {
         el.style.top = `${this.context.panY}px`;
     }
 
-    screenToLocal(position : Position): Position {
+    private screenToLocal(position : Position): Position {
         let canvas = this.canvasRef.nativeElement;
         let pos = canvas.getBoundingClientRect();
 
@@ -153,49 +177,18 @@ export class DiazoComponent {
 
         let node = this.context.getNodeById(nodeId);
 
-        if (!node) {
+        if (!node)
             return;
-        }
 
         let slot = node.getSlotById(slotId);
         
-        if (!slot) {
+        if (!slot)
             return;
-        }
 
         return this.screenToLocal(
-            slot
-                .getClientPosition()
+            slot.getClientPosition()
         );
     }
-
-    public pointOnLine (p : Position, a : Position, b : Position)
-    {
-        if (!p || !a || !b)
-            return false;
-
-        let tColinear = 1000;
-        let t = 0;
-
-        // ensure points are collinear
-        var zero = (b.left - a.left) * (p.top - a.top) - (p.left - a.left) * (b.top - a.top);
-        if (zero > tColinear || zero < -tColinear) 
-            return false;
-    
-        // check if x-coordinates are not equal
-        if (a.left - b.left > t || b.left - a.left > t)
-            // ensure x is between a.x & b.x (use tolerance)
-            return a.left > b.left
-                ? p.left + t > b.left && p.left - t < a.left
-                : p.left + t > a.left && p.left - t < b.left;
-    
-        // ensure y is between a.y & b.y (use tolerance)
-        return a.top > b.top
-            ? p.top + t > b.top && p.top - t < a.top
-            : p.top + t > a.top && p.top - t < b.top;
-    }
-    
-    otherEdgeOpacity = 1;
 
     get draftNode() {
         return this.context.draftNode;
@@ -224,171 +217,162 @@ export class DiazoComponent {
     @Output()
     saveRequested = new Subject<void>();
 
-    pulseCycle = 0;
-
     @Input()
     active : boolean = undefined;
 
-    ngAfterViewInit() {
-        let canvas = this.canvasRef.nativeElement; 
-        let context = canvas.getContext('2d');
-        let lastFrameTime = Date.now();
+    private startRendering() {    
+        this.canvas = this.canvasRef.nativeElement; 
+        this.canvasContext = this.canvas.getContext('2d');
+        this.lastFrameTime = Date.now();
         
-        let drawFrame = () => {
-
-            
-            let now = Date.now();
-            let deltaTime = (now - lastFrameTime) / 1000.0;
-            lastFrameTime = now;
-            
-            this.pulseCycle += deltaTime * 55;
-            this.pulseCycle = this.pulseCycle % 1000;
-
-            canvas.width = canvas.clientWidth;
-            canvas.height = canvas.clientHeight;
-
-            context.clearRect(0, 0, canvas.width, canvas.height);
-
-            let edgeUnderCursor = this.context.edgeUnderCursor;
-            let otherEdgeOpacityTarget = 1;
-
-            if (edgeUnderCursor) {
-                otherEdgeOpacityTarget = 0.1;
-            }
-
-            this.otherEdgeOpacity += (otherEdgeOpacityTarget - this.otherEdgeOpacity) * 2 * deltaTime;
-
-            this.context.edgeUnderCursor = null;
-
-            for (let edge of this.context.edges) {
-                let startPos = this.getPositionOfSlot(edge.fromNodeId, edge.fromSlotId);
-                let endPos = this.getPositionOfSlot(edge.toNodeId, edge.toSlotId);
-                let lineWidth = 2;
-
-                if (!startPos || !endPos)
-                    continue;
-
-                context.strokeStyle = `white`;
-                context.lineCap = 'round';
-                context.globalAlpha = this.otherEdgeOpacity;
-
-                // set the edge color based on the value type
-                let sourceSlot = this.context.getSlotByIds(edge.fromNodeId, edge.fromSlotId);
-
-                let color = 'white';
-
-                if (sourceSlot && sourceSlot.valueType) {
-                    color = sourceSlot.valueType.color;
-                    
-
-                    if (sourceSlot.valueType.lineWidth)
-                        lineWidth = sourceSlot.valueType.lineWidth;
-
-                    if (sourceSlot.valueType.getColorByContext) {
-                        color = sourceSlot.valueType.getColorByContext(sourceSlot);
-                    }
-                }
-
-                if (!edge.valid)
-                    color = 'red';
-                
-                context.lineWidth = lineWidth;
-                context.strokeStyle = color;
-
-                if (this.context.edgeUnderCursor === null) {
-                    if (this.pointOnLine(this.mousePosition, startPos, endPos)) {
-                        context.globalAlpha = 1;
-                        context.lineWidth = 4;
-                        this.context.edgeUnderCursor = edge;
-                    }
-                }
-
-                if (this.context.edgesAreEqual(this.context.edgeBeingReplaced, edge)) {
-                    context.lineWidth = 3;
-                    context.setLineDash([10,5]);
-                    context.strokeStyle = 'maroon';
-                }
-
-                this.drawEdge(context, startPos, endPos);
-
-                if (edge.active || this.active === true) {
-                    context.setLineDash([2, 30]);
-                    context.lineDashOffset = -this.pulseCycle;
-                    context.lineWidth = 12;
-
-                    this.drawEdge(context, startPos, endPos);
-                }
-
-                context.globalAlpha = 1;
-            }
-
-            if (this.context.draftEdge) {
-                let edge = this.context.draftEdge;
-                let startPos = this.mousePosition;
-                let endPos = this.mousePosition;
-
-                if (edge.fromSlotId)
-                    startPos = this.getPositionOfSlot(edge.fromNodeId, edge.fromSlotId);
-
-                if (edge.toSlotId)
-                    endPos = this.getPositionOfSlot(edge.toNodeId, edge.toSlotId);
-
-                context.setLineDash([10,5])
-                context.strokeStyle = "white";
-                
-                let sourceSlot = this.context.getSlotByIds(edge.fromNodeId, edge.fromSlotId);
-
-                
-                let color = 'white';
-                let width = 3;
-
-                if (sourceSlot && sourceSlot.valueType) {
-                    color = sourceSlot.valueType.color;
-
-                    if (sourceSlot.valueType.lineWidth)
-                        width = sourceSlot.valueType.lineWidth;
-
-                    if (sourceSlot.valueType.getColorByContext) {
-                        color = sourceSlot.valueType.getColorByContext(sourceSlot);
-                    }
-                }
-
-                if (!edge.valid)
-                    color = 'red';
-                
-                context.strokeStyle = color;
-
-                context.globalAlpha = 0.5;
-                context.lineCap = 'round';
-                context.lineWidth = width;
-        
-                this.drawEdge(context, startPos, endPos);
-                context.globalAlpha = 1;
-            }
-
-            if (this.context.selectionBoxStart) {
-                let selectBox = this.context.selectionBoxStart;
-
-                context.setLineDash([10,10]);
-                context.strokeStyle = "#ff7100";
-                context.lineWidth = 5;
-                context.strokeRect(
-                    selectBox.left, 
-                    selectBox.top, 
-                    this.mousePosition.left - selectBox.left,
-                    this.mousePosition.top - selectBox.top
-                );
-            }
-
-            // ------------------------------
-
-            requestAnimationFrame(drawFrame);
-        };
+        let drawFrame = () => (this.drawFrame(), requestAnimationFrame(drawFrame));
 
         drawFrame();
     }
 
-    drawEdge(context : CanvasRenderingContext2D, startPos : Position, endPos : Position) {
+    private drawFrame() {
+        let canvas = this.canvas;
+        let context = this.canvasContext;
+        let now = Date.now();
+        let deltaTime = (now - this.lastFrameTime) / 1000.0;
+        this.lastFrameTime = now;
+        
+        this.pulseCycle += deltaTime * 55;
+        this.pulseCycle = this.pulseCycle % 1000;
+
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+
+        context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        let edgeUnderCursor = this.context.edgeUnderCursor;
+        let otherEdgeOpacityTarget = edgeUnderCursor ? 0.1 : 1;
+        this.otherEdgeOpacity += (otherEdgeOpacityTarget - this.otherEdgeOpacity) * 2 * deltaTime;
+
+        this.context.edgeUnderCursor = null;
+
+        for (let edge of this.context.edges) {
+            let startPos = this.getPositionOfSlot(edge.fromNodeId, edge.fromSlotId);
+            let endPos = this.getPositionOfSlot(edge.toNodeId, edge.toSlotId);
+            let lineWidth = 2;
+
+            if (!startPos || !endPos)
+                continue;
+
+            context.strokeStyle = `white`;
+            context.lineCap = 'round';
+            context.globalAlpha = this.otherEdgeOpacity;
+
+            // set the edge color based on the value type
+            let sourceSlot = this.context.getSlotByIds(edge.fromNodeId, edge.fromSlotId);
+
+            let color = 'white';
+
+            if (sourceSlot && sourceSlot.valueType) {
+                color = sourceSlot.valueType.color;
+                
+
+                if (sourceSlot.valueType.lineWidth)
+                    lineWidth = sourceSlot.valueType.lineWidth;
+
+                if (sourceSlot.valueType.getColorByContext) {
+                    color = sourceSlot.valueType.getColorByContext(sourceSlot);
+                }
+            }
+
+            if (!edge.valid)
+                color = 'red';
+            
+            context.lineWidth = lineWidth;
+            context.strokeStyle = color;
+
+            if (this.context.edgeUnderCursor === null) {
+                if (pointOnLine(this.mousePosition, startPos, endPos)) {
+                    context.globalAlpha = 1;
+                    context.lineWidth = 4;
+                    this.context.edgeUnderCursor = edge;
+                }
+            }
+
+            if (this.context.edgesAreEqual(this.context.edgeBeingReplaced, edge)) {
+                context.lineWidth = 3;
+                context.setLineDash([10,5]);
+                context.strokeStyle = 'maroon';
+            }
+
+            this.drawEdge(context, startPos, endPos);
+
+            if (edge.active || this.active === true) {
+                context.setLineDash([2, 30]);
+                context.lineDashOffset = -this.pulseCycle;
+                context.lineWidth = 12;
+
+                this.drawEdge(context, startPos, endPos);
+            }
+
+            context.globalAlpha = 1;
+        }
+
+        if (this.context.draftEdge) {
+            let edge = this.context.draftEdge;
+            let startPos = this.mousePosition;
+            let endPos = this.mousePosition;
+
+            if (edge.fromSlotId)
+                startPos = this.getPositionOfSlot(edge.fromNodeId, edge.fromSlotId);
+
+            if (edge.toSlotId)
+                endPos = this.getPositionOfSlot(edge.toNodeId, edge.toSlotId);
+
+            context.setLineDash([10,5])
+            context.strokeStyle = "white";
+            
+            let sourceSlot = this.context.getSlotByIds(edge.fromNodeId, edge.fromSlotId);
+
+            
+            let color = 'white';
+            let width = 3;
+
+            if (sourceSlot && sourceSlot.valueType) {
+                color = sourceSlot.valueType.color;
+
+                if (sourceSlot.valueType.lineWidth)
+                    width = sourceSlot.valueType.lineWidth;
+
+                if (sourceSlot.valueType.getColorByContext) {
+                    color = sourceSlot.valueType.getColorByContext(sourceSlot);
+                }
+            }
+
+            if (!edge.valid)
+                color = 'red';
+            
+            context.strokeStyle = color;
+
+            context.globalAlpha = 0.5;
+            context.lineCap = 'round';
+            context.lineWidth = width;
+    
+            this.drawEdge(context, startPos, endPos);
+            context.globalAlpha = 1;
+        }
+
+        if (this.context.selectionBoxStart) {
+            let selectBox = this.context.selectionBoxStart;
+
+            context.setLineDash([10,10]);
+            context.strokeStyle = "#ff7100";
+            context.lineWidth = 5;
+            context.strokeRect(
+                selectBox.left, 
+                selectBox.top, 
+                this.mousePosition.left - selectBox.left,
+                this.mousePosition.top - selectBox.top
+            );
+        }
+    }
+
+    private drawEdge(context : CanvasRenderingContext2D, startPos : Position, endPos : Position) {
         
         if (!startPos || !endPos)
             return;
@@ -407,10 +391,6 @@ export class DiazoComponent {
             endPos.top
         );
         context.stroke();
-    }
-
-    ngOnDestroy() {
-
     }
 
     @HostListener('keydown', ['$event'])
@@ -496,26 +476,10 @@ export class DiazoComponent {
         this.context.setZoom(zoom);
     }
 
-    @ViewChild('graphMenuTrigger', { read: MatMenuTrigger })
-    graphMenuTrigger : MatMenuTrigger;
-
-    @ViewChild('menuContents')
-    menuContents : ElementRef<HTMLElement>;
-    
-    menuPosition : any = { y: 0, x: 0 };
-
-    eligibleForContextMenu = false;
-
     onContextMenu() {
         this.showNodeMenu();
         return false;
     }
-
-    @ViewChild('nodeMenu', { read: CdkDrag })
-    nodeMenu : CdkDrag;
-
-    @ViewChild('nodeMenu')
-    nodeMenuEl : ElementRef<HTMLElement>;
 
     updateNodeMenuHeight() {
         
@@ -641,17 +605,6 @@ export class DiazoComponent {
             }
         }
     }
-
-    private panTouch : Touch = null;
-    private zoomTouch : Touch = null;
-    private startPan : Position = null;
-    private startZoom : number;
-    private startPanZoom : number;
-    private touchActive = false;
-
-    private onTouchStartListener;
-    private onTouchMoveListener;
-    private onTouchEndListener;
 
     onTouchStart(event : TouchEvent) {
         if (!this.touchActive) {
@@ -792,8 +745,6 @@ export class DiazoComponent {
     }
 
     onMouseDown(startEvent : MouseEvent) {
-
-        
         if (startEvent.button === 0) {
             // start selection
             this.context.startSelectionAt(this.mousePosition, startEvent.ctrlKey);
@@ -806,7 +757,6 @@ export class DiazoComponent {
                 document.removeEventListener('mouseup', release);
                 document.removeEventListener('mousemove', move);
                 this.context.commitSelectionBox();
-                // TODO apply selection
             };
             
             
@@ -824,7 +774,6 @@ export class DiazoComponent {
             };
 
             let move = (event : MouseEvent) => {
-
                 if (Math.abs(event.clientX - startEvent.clientX) > 5 
                     || Math.abs(event.clientY - startEvent.clientY) > 5) {
                         this.eligibleForContextMenu = false;
@@ -839,9 +788,10 @@ export class DiazoComponent {
 
             document.addEventListener('mouseup', release);
             document.addEventListener('mousemove', move);
-
-            // startEvent.stopPropagation();
-            // startEvent.preventDefault();
-        }
+        }   
+    }
+    
+    nodeIdentity(index : number, node : DiazoNode) {
+        return node.id;
     }
 }

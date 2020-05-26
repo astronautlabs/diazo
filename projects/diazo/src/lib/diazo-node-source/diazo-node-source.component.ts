@@ -1,29 +1,13 @@
 import { Component, HostListener, Input, Output } from "@angular/core";
-import { DiazoContext, DiazoNode } from '../diazo-context';
+import { DiazoContext } from '../context';
 import * as uuid from 'uuid/v4';
-import { Position } from '../diazo-context';
 import { Subject } from 'rxjs';
+import { DiazoNode } from '../model';
+import { Position } from '../common';
 
 @Component({
     selector: 'dz-node-source-button',
-    template: `
-        <div class="icon-container">
-            <mat-icon>{{template?.icon || 'home'}}</mat-icon>
-        </div>
-        <div class="label">
-            <div>
-                <ng-content></ng-content>
-            </div>
-            <span class="preview" *ngIf="template?.alpha || template?.beta">
-                <ng-container *ngIf="template?.alpha">
-                    Alpha
-                </ng-container>
-                <ng-container *ngIf="template?.beta">
-                    Beta
-                </ng-container>
-            </span>
-        </div>
-    `,
+    templateUrl: './diazo-node-source.component.html',
     styleUrls: ['./diazo-node-source.component.scss']
 })
 export class DiazoNodeSourceComponent {

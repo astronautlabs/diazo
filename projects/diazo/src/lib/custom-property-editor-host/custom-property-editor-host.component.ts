@@ -1,5 +1,6 @@
 import { Component, Input, ComponentFactoryResolver, ReflectiveInjector, Injector, ViewContainerRef, ComponentRef, Provider } from '@angular/core';
-import { DiazoPropertyContext, DiazoProperty, DiazoNode, DiazoContext } from '../diazo-context';
+import { DiazoPropertyContext, DiazoContext } from '../context';
+import { DiazoProperty, DiazoNode } from '../model';
 
 @Component({
     selector: 'dz-custom-property-editor',
