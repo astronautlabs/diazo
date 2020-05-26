@@ -9,7 +9,6 @@ import { DiazoEditorComponent } from './diazo-editor/diazo-editor.component';
 import { DiazoNodeSourceComponent } from './diazo-node-source/diazo-node-source.component';
 import { TrustHtmlPipe } from './trust-html.pipe';
 import { CustomPropertyEditorHostComponent } from './custom-property-editor-host/custom-property-editor-host.component';
-import { OmnisearchPipe } from './omnisearch.pipe';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,8 +28,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
+/**
+ * @hidden
+ */
 const DECLARATIONS = [
-    OmnisearchPipe,
     DiazoComponent,
     DiazoDynamicNodeComponent,
     DiazoNodeComponent,

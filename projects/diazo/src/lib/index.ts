@@ -9,6 +9,5 @@ export * from './diazo-slot/diazo-slot.component';
 export * from './diazo-editor/diazo-editor.component';
 export * from './custom-property-editor-host/custom-property-editor-host.component';
 export * from './accessor';
-export * from './omnisearch.pipe';
 export * from './trust-html.pipe';
 export * from './diazo.module';
