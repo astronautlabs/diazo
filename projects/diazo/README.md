@@ -30,8 +30,8 @@ link one slot on a particular node to another slot on a different node.
         ></dz-editor>
 ```
 
-There are many more bindable properties and events that `<dz-editor>` makes 
-available, but the above are what's needed to provide a basic experience.
+There are many more bindable properties and events that {@linkcode EditorComponent | &lt;dz-editor&gt;} makes 
+available, but the above is good enough to get started.
 
 ### `[graph]="myGraph"`
 
@@ -144,3 +144,9 @@ Builtin types:
  - **select** - Choose the value from a set of predefined options
  - **flags** - Edit an array of string flags using a multiple select box.
 
+## Learn More
+
+- {@linkcode EditorComponent | &lt;dz-editor&gt;} - Read about the editor component
+- {@linkcode DiazoGraph} - Read about the model layer
+- {@linkcode DiazoContext} - Read about the context layer, which tracks
+  editor state
