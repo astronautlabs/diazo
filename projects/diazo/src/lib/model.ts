@@ -1,4 +1,6 @@
-
+/**
+ * @category Model
+ */
 export interface DiazoValue {
     type : string;
     params : Record<string,any>;
@@ -7,6 +9,7 @@ export interface DiazoValue {
 /**
  * Represents a slot on a node.
  * @see {@linkcode DiazoNode.slots}
+ * @category Model
  */
 export interface DiazoSlot {
     /**
@@ -76,6 +79,8 @@ export interface DiazoSlot {
  * Represents the structure of a graph built within Diazo.
  * Consists of a set of {@linkcode nodes} with distinct IDs, where each node
  * defines a set of {@linkcode DiazoNode.slots | slots}, and a set of {@linkcode edges}.
+ * 
+ * @category Model
  */
 export interface DiazoGraph {
     /**
@@ -93,6 +98,8 @@ export interface DiazoGraph {
 /**
  * Defines the structure of an edge within the {@linkcode Diazo.edges | edges} property of a {@linkcode Diazo}
  * object.
+ * 
+ * @category Model
  */
 export interface DiazoEdge {
     fromNodeId : string;
@@ -103,6 +110,9 @@ export interface DiazoEdge {
     valid? : boolean;
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoNode {
     id? : string;
 
@@ -286,6 +296,9 @@ export interface DiazoNode {
     rules? : DiazoNodeRules;
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoNodeSet {
     id? : string;
     tags? : string[];
@@ -293,6 +306,9 @@ export interface DiazoNodeSet {
     nodes : DiazoNode[];
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoPropertySet {
     id : string;
     label : string;
@@ -300,18 +316,27 @@ export interface DiazoPropertySet {
     properties : DiazoProperty[];
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoNodeRules {
     slots? : DiazoSlotRule;
     inputs? : DiazoSlotRule;
     outputs? : DiazoSlotRule;
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoSlotRule {
     placement? : 'append' | 'prepend';
     count : string;
     template : DiazoSlot;
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoProperty {
     label? : string;
     path? : string;
@@ -332,31 +357,49 @@ export interface DiazoProperty {
     optionSource? : string;
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoPropertyOption {
     value : string;
     label : string;
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoPropertyOptionGroup {
     label : string;
     options : DiazoPropertyOption[];
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoPropertyInlineMatrix {
     width : number;
     height : number;
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoPropertyBitmask {
     labels? : string[];
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoPropertyMatrix {
     width : number;
     height : number;
     cells : DiazoPropertyCell[];
 }
 
+/**
+ * @category Model
+ */
 export interface DiazoPropertyCell {
     path : string;
     label? : string;
@@ -367,6 +410,8 @@ export interface DiazoPropertyCell {
  * Represents a registered custom property type view. This is used 
  * to convey the list of custom property type views from the consumer of the 
  * library to the {@link DiazoEditorComponent | Diazo editor}.
+ * 
+ * @category Model
  */
 export interface DiazoCustomPropertyType {
     namespace : string;

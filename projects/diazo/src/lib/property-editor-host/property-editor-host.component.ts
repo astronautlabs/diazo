@@ -2,6 +2,9 @@ import { Component, Input, ComponentFactoryResolver, ReflectiveInjector, Injecto
 import { DiazoPropertyContext, DiazoContext } from '../context';
 import { DiazoProperty, DiazoNode } from '../model';
 
+/**
+ * @category Component
+ */
 @Component({
     selector: 'dz-property-editor-host',
     template: ``,

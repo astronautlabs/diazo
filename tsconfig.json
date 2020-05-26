@@ -33,6 +33,10 @@
       "excludeExternals": true,
       "excludePrivate": true,
       "externalPattern": "**/node_modules/**",
-      "exclude": "**/node_modules/**"
+      "exclude": "**/node_modules/**",
+      "categoryOrder": [
+        "Entrypoint",
+        "*"
+      ]
   }
 }

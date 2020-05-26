@@ -14,6 +14,7 @@ export const MULTIPLE_VALUES = Symbol('Multiple values');
  * Provides a generic mechanism for dynamically getting/setting deep properties 
  * within one or more provided objects. This is the core of the Properties system
  * in Diazo.
+ * @category Common
  */
 export class Accessor {
     

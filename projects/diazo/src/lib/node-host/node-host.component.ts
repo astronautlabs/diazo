@@ -1,6 +1,9 @@
 import { Input, ComponentFactoryResolver, ViewContainerRef, Injector, Output, Component } from '@angular/core';
 import { Subject } from 'rxjs';
 
+/**
+ * @category Component
+ */
 @Component({
     selector: 'dz-node-host',
     template: '',

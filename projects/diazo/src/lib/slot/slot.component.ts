@@ -2,6 +2,9 @@ import { Component, Input, HostBinding, ElementRef, ViewChild, HostListener } fr
 import { DiazoNodeContext, DiazoSlotContext, DiazoContext } from '../context';
 import { SubSink } from 'subsink';
 
+/**
+ * @category Component
+ */
 @Component({
     selector: 'dz-slot',
     templateUrl: './slot.component.html',

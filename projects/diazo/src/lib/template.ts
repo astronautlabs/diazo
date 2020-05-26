@@ -10,6 +10,8 @@ import { JSONPath } from '@astronautlabs/jsonpath';
  * - `{{path.to.property | default}}` -- same as the above,
  *   but if `path.to.property` is falsey, uses the text "default"
  *   instead.
+ * 
+ * @category Common
  */
 export function template(context : any, content : string) {
     return content.replace(/\{\{([^\}]+)(\|([^\}]+))\}\}/g, (_, path, _2, def) => {

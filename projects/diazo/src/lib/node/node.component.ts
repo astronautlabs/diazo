@@ -3,6 +3,9 @@ import { DiazoContext, DiazoNodeContext } from '../context';
 import { Position } from '../common';
 import { MatMenuTrigger } from '@angular/material/menu';
 
+/**
+ * @category Component
+ */
 @Component({
     selector: 'dz-node',
     templateUrl: './node.component.html',

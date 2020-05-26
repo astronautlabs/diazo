@@ -12,6 +12,24 @@ import { Position } from '../common';
 /**
  * Provides a full-featured Diazo editor, including a searchable 
  * New Node list and a powerful property sheet implementation.
+ * 
+ * ```html
+ * <dz-editor [graph]="myGraph" [availableNodes]="myDefinedNodes"></dz-editor>
+ * ```
+ * 
+ * Here,
+ * - `[graph]` is the graph that should be rendered. Any changes made by the user will 
+ *   be applied to the bound object.
+ * - `[availableNodes]` is an array of {@linkcode DiazoNode} objects made available
+ *   to the user in the New Node menu
+ * 
+ * See More
+ * - {@linkcode DiazoGraph} - Represents a graph, composed of its nodes and edges
+ * - {@linkcode DiazoValueType} - Edges are "values", and their types are represented by "value types"
+ * - {@linkcode DiazoContext} - Most useful instrumentation of the Diazo editor is done 
+ *   via the Context layer
+ * 
+ * @category Entrypoint
  */
 @Component({
     selector: 'dz-editor',

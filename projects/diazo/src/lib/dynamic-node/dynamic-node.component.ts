@@ -4,6 +4,7 @@ import { DiazoNode } from '../model';
 
 /**
  * Provides a <dz-node> which supports custom 
+ * @category Component
  */
 @Component({
     selector: 'dz-dynamic-node',

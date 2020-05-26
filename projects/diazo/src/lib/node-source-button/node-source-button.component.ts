@@ -5,6 +5,9 @@ import { Subject } from 'rxjs';
 import { DiazoNode } from '../model';
 import { Position } from '../common';
 
+/**
+ * @category Component
+ */
 @Component({
     selector: 'dz-node-source-button',
     templateUrl: './node-source-button.component.html',

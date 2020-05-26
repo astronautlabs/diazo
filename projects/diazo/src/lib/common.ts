@@ -1,6 +1,7 @@
 
 /**
  * Represents a position within a view.
+ * @category Common
  */
 export interface Position {
     top : number;
@@ -10,6 +11,7 @@ export interface Position {
 /**
  * Represents the extends of a rectangle within the {@link DiazoContext | context} layer 
  * layer.
+ * @category Common
  */
 export interface Size {
     width : number;
@@ -23,6 +25,9 @@ export interface Constructor<T> {
     new() : T;
 }
 
+/**
+ * @category Common
+ */
 export function pointOnLine (p : Position, a : Position, b : Position) {
     if (!p || !a || !b)
         return false;

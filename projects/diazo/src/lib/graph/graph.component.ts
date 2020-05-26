@@ -9,7 +9,7 @@ import { DiazoGraph, DiazoNode, DiazoEdge } from '../model';
 import { WildcardType } from '../value-types';
 
 /**
- * 
+ * @category Component
  */
 @Component({
 selector: 'dz-container',

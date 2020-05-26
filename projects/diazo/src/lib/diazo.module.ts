@@ -43,6 +43,9 @@ const DECLARATIONS = [
     TrustHtmlPipe
 ];
 
+/**
+ * @category Module
+ */
 @NgModule({
     declarations: DECLARATIONS,
     exports: DECLARATIONS,

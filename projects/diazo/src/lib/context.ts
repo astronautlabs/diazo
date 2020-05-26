@@ -10,6 +10,7 @@ import { DiazoGraph, DiazoSlot, DiazoValue, DiazoNode, DiazoProperty, DiazoEdge 
  * Represents a single slot on a single node within a Diazo. 
  * This handles ephemeral state and accessing logic around the representation
  * of a slot within the Diazo user interface.
+ * @category Editor
  */
 export class DiazoSlotContext {
     id : string;
@@ -54,6 +55,7 @@ export class DiazoSlotContext {
  * {@link DiazoEditorComponent | Diazo editor} to show a message 
  * via the snack bar (floating notifications shown along the bottom of 
  * the viewport). 
+ * @category Editor
  */
 export interface DiazoEditorNotification {
     message : string;
@@ -61,6 +63,7 @@ export interface DiazoEditorNotification {
 
 /**
  * Represents a saved Undo/Redo state within the {@link DiazoContext | context} layer.
+ * @category Editor
  */
 export interface DiazoUndoState {
     graphBefore : DiazoGraph;
@@ -68,6 +71,9 @@ export interface DiazoUndoState {
     cause : string;
 }
 
+/**
+ * @category Editor
+ */
 export class DiazoPropertyContext {
     constructor() {
         this._accessor = new Accessor();
@@ -128,6 +134,7 @@ export class DiazoPropertyContext {
  * Represents the context for a specific node within a Diazo.
  * This provides ephemeral state, convenient access, and interaction logic
  * around the user interface representation of a Diazo node.
+ * @category Editor
  */
 @Injectable()
 export class DiazoNodeContext {
@@ -335,6 +342,7 @@ export class DiazoNodeContext {
  * strategies. We use this within the Diazo editor to implement 
  * {@linkcode WildcardType} for example.
  * 
+ * @category Editor
  */
 export interface DiazoValueType {
 
@@ -448,6 +456,8 @@ export interface DiazoValueType {
 /**
  * Manages the runtime state of the Diazo editor including logic around
  * user interactions.
+ * 
+ * @category Editor
  */
 @Injectable()
 export class DiazoContext {

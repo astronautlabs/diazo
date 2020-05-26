@@ -23,6 +23,8 @@ import { DiazoValue } from './model';
  * This may or may not be the behavior you want from your custom value types.
  * You can override the {@linkcode isCompatible} method to change this behavior,
  * or implement {@linkcode DiazoValueType} directly instead. 
+ * 
+ * @category Editor
  */
 export class DiazoTypeBase implements Partial<DiazoValueType> {
     isCompatible(
@@ -80,6 +82,7 @@ export class DiazoTypeBase implements Partial<DiazoValueType> {
  * If you connect an edge to either the `input1` or `output1` slots, the other
  * slot will immediately reflect the value type of that edge.
  * 
+ * @category Editor
  */
 export class WildcardType extends DiazoTypeBase implements DiazoValueType {
     id = 'wildcard';
