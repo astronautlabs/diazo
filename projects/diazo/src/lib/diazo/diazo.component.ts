@@ -4,8 +4,10 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import * as uuid from 'uuid/v4';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { CdkDrag } from '@angular/cdk/drag-drop';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
+/**
+ * 
+ */
 @Component({
 selector: 'dz-container',
     templateUrl: './diazo.component.html',
@@ -15,8 +17,7 @@ selector: 'dz-container',
 export class DiazoComponent {
     constructor(
         private context : DiazoContext,
-        private elementRef : ElementRef<HTMLElement>,
-        private matSnackBar : MatSnackBar
+        private elementRef : ElementRef<HTMLElement>
     ) {
         this.contextChanged.next(context);
         context.panChanged.subscribe(pos => this.updatePan());
@@ -29,9 +30,6 @@ export class DiazoComponent {
 
 
         context.edgeCancelled.subscribe(edge => {
-
-            console.info(`CANCELEDGE:`);
-            console.dir(edge);
             if (!edge.fromNodeId || !edge.toNodeId)
                 this.showNodeMenu();
             
@@ -105,7 +103,6 @@ export class DiazoComponent {
 
     @HostListener('mousemove', ['$event'])
     onMouseMove(event : MouseEvent) {
-        //this.mousePosition = this.screenToLocal({ top: event.clientX, left: event.clientY });
         this.mousePosition = this.screenToLocal({ top: event.clientY, left: event.clientX });
 
         if (this.context.draftNode) {
@@ -151,21 +148,18 @@ export class DiazoComponent {
 
     private getPositionOfSlot(nodeId : string, slotId : string): Position {
         if (!this.context) {
-            //console.warn(`Cannot get position of slot for node=${nodeId},slot=${slotId} -- No context available`);
             return;
         }
 
         let node = this.context.getNodeById(nodeId);
 
         if (!node) {
-            //console.warn(`Cannot get position of slot for node=${nodeId},slot=${slotId} -- No such node`);
             return;
         }
 
         let slot = node.getSlotById(slotId);
         
         if (!slot) {
-            //console.warn(`Cannot get position of slot for node=${nodeId},slot=${slotId} -- No such slot`);
             return;
         }
 
@@ -566,8 +560,6 @@ export class DiazoComponent {
 
             this.nodeMenuPositionChanged.next({ top: this.menuPosition.y, left: this.menuPosition.x });
 
-            //this.graphMenuTrigger.openMenu();
-
             setTimeout(() => {
                 this.updateNodeMenuHeight();
 
@@ -663,7 +655,6 @@ export class DiazoComponent {
 
     onTouchStart(event : TouchEvent) {
         if (!this.touchActive) {
-            //this.matSnackBar.open("TOUCHSTARTED", undefined, { duration: 1000 });
             this.touchActive = true;
             document.addEventListener('touchstart', this.onTouchStartListener = event => this.onNewTouch(event));
             document.addEventListener('touchmove', this.onTouchMoveListener = event => this.onTouchMove(event));
@@ -750,10 +741,6 @@ export class DiazoComponent {
                 panY += (zoomOrigin.top - oZoomOrigin.top) * newZoom;
 
                 this.context.setPan(panX, panY);
-
-                
-                //this.matSnackBar.open(`TRAVEL=${travel}, NEW=${this.startZoom + travel}`);
-
                 this.context.setZoom(newZoom);
             }
         }
@@ -786,7 +773,6 @@ export class DiazoComponent {
         }
 
         if (event.touches.length === 0) {
-            //this.matSnackBar.open("ENDED TOUCH", undefined, { duration: 1000 });
             this.touchActive = false;
             document.removeEventListener('touchstart', this.onTouchStartListener);
             document.removeEventListener('touchmove', this.onTouchMoveListener);
@@ -794,6 +780,17 @@ export class DiazoComponent {
         }
     }
     
+    componentForNode(node : DiazoNode) {
+        if (!node || !node.type || !this.context.nodeTypeMap)
+            return null;
+        
+        let klass = this.context.nodeTypeMap[node.type];
+        if (!klass)
+            throw new Error(`Cannot find node component for type '${node.type}'`);
+
+        return klass;
+    }
+
     onMouseDown(startEvent : MouseEvent) {
 
         

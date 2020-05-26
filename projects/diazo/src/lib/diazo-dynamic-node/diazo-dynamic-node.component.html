@@ -4,6 +4,7 @@
     </label>
     <main>
         <dz-node-host 
+            *ngIf="component"
             [component]="component" 
             (instanceChanged)="instance = $event"
             ></dz-node-host>

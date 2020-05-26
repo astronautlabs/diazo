@@ -1,43 +1,37 @@
 <mat-menu #graphMenu="matMenu">
-    <button mat-menu-item>hot damn</button>
+    <button mat-menu-item>item</button>
 </mat-menu>
 
-<button 
+<button #graphMenuTrigger mat-button 
     class="graph-menu-trigger"
-    #graphMenuTrigger
-    [style.visibility]="'hidden'" 
-    [style.width]="'1px'"
-    [style.height]="'1px'"
-    [style.pointer-events]="'none'"
-    [style.position]="'absolute'"
     [style.left]="mousePosition?.left+'px'"
     [style.top]="mousePosition?.top+'px'"
-    mat-button [matMenuTriggerFor]="graphMenu"
+    [matMenuTriggerFor]="graphMenu"
     >Menu</button>
 
 <div #plate class="plate">
     <ng-content></ng-content>
 
     <ng-container *ngFor="let node of (graph?.nodes || []); trackBy nodeIdentity">
-        <dz-dynamic-node [node]="node"></dz-dynamic-node>
+        <dz-dynamic-node 
+            [node]="node"
+            [component]="componentForNode(node)"
+            ></dz-dynamic-node>
     </ng-container>
 
     <ng-container *ngIf="draftNode">
-        <dz-dynamic-node [drafted]="true" [node]="draftNode"></dz-dynamic-node>
+        <dz-dynamic-node 
+            [node]="draftNode"
+            [drafted]="true" 
+            [component]="componentForNode(draftNode)"
+            ></dz-dynamic-node>
     </ng-container>
-
 </div>
 
-    <!--
-    [style.left]="menuPosition?.left+'px'"
-    [style.top]="menuPosition?.top+'px'"
-    -->
-<div 
+<div #nodeMenu
     class="node-menu" 
-    [class.visible]="nodeMenuVisible" 
-    [style.position]="'absolute'"
+    [class.visible]="nodeMenuVisible"
     [cdkDragFreeDragPosition]="menuPosition"
-    #nodeMenu
     cdkDrag
     (cdkDragMoved)="updateNodeMenuHeight()"
     >
@@ -54,7 +48,6 @@
     (mousedown)="onMouseDown($event)" 
     (touchstart)="onTouchStart($event)"
     (contextmenu)="onContextMenu()">
-    <!-- <pre>{{graph | json}}</pre> -->
 </div>
 
 <canvas #canvas class="overlay"></canvas>

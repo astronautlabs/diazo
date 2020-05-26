@@ -2,68 +2,34 @@ import { Component, Input, ComponentFactoryResolver, Injector } from '@angular/c
 import { DiazoNode, DiazoContext } from '../diazo-context';
 import { Accessor } from '../accessor';
 
+/**
+ * Provides a <dz-node> which supports custom 
+ */
 @Component({
     selector: 'dz-dynamic-node',
     templateUrl: './diazo-dynamic-node.component.html',
     styleUrls: ['./diazo-dynamic-node.component.scss']
 })
 export class DiazoDynamicNodeComponent {
-    constructor(
-        private componentResolver : ComponentFactoryResolver,
-        private injector : Injector,
-        private context : DiazoContext
-    ) {
-        let self = this;
+    constructor() {
+        let accessor = new Accessor();
         this.M = new Proxy({}, {
-            get(target, key, receiver) {
-                if (self.instance)
-                    return self.accessor.get([ self.instance ], '$.' + key.toString());
-                else
-                    return self.accessor.get([ self.node ], '$.' + key.toString());
-            },
-
-            set(target, key, value, receiver) {
-                if (self.instance)
-                    return self.accessor.set([ self.instance ], '$.' + key.toString(), value);
-                else
-                    return self.accessor.set([ self.node ], '$.' + key.toString(), value);
-            }
+            get: (target, key, receiver) => 
+                accessor.get([ this.instance || this.node ], '$.' + key.toString()),
+            set: (target, key, value, receiver) => 
+                accessor.set([ this.instance || this.node ], '$.' + key.toString(), value),
         });
     }
-
-    accessor = new Accessor();
-    _node : DiazoNode;
 
     @Input()
     drafted : boolean;
     
     @Input()
-    get node() : DiazoNode {
-        return this._node;
-    }
+    node : DiazoNode;
 
-    set node(value) {
-        this._node = value;
-    }
+    @Input()
+    component : any;
 
     M : any;
     instance : any;
-
-    get component() : any {
-        if (!this.node)
-            return null;
-        
-        if (!this.node.type)
-            return null;
-        
-        if (!this.context.nodeTypeMap)
-            return null;
-        
-        let klass = this.context.nodeTypeMap[this.node.type];
-
-        if (!klass)
-            throw new Error(`Cannot find node component for type '${this.node.type}'`);
-
-        return klass;
-    }
 }

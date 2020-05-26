@@ -1,6 +1,5 @@
 :host {
     display: block;
-    //min-height: 30em;
     background: #333;
     overflow: hidden;
     position: relative;
@@ -20,11 +19,6 @@
 .plate {
     position: relative;
     z-index: 1;
-    // transition: 
-    //     50ms transform ease-in-out, 
-    //     50ms left ease-in-out,
-    //     50ms top ease-in-out
-    // ;
     width: 0px;
 }
 
@@ -40,8 +34,16 @@
     height: 100%;
 }
 
+.graph-menu-trigger {
+    visibility: 'hidden'; 
+    width: 1px; 
+    height: 1px;
+    pointer-events: none;
+    position: absolute;
+}
+
 .node-menu {
-    position: fixed !important;
+    position: fixed;
     pointer-events: none;
     opacity: 0;
     background-color: white;
