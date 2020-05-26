@@ -4,11 +4,11 @@ import { SubSink } from 'subsink';
 
 @Component({
     selector: 'dz-slot',
-    templateUrl: './diazo-slot.component.html',
-    styleUrls: ['./diazo-slot.component.scss'],
+    templateUrl: './slot.component.html',
+    styleUrls: ['./slot.component.scss'],
     providers: [ DiazoSlotContext ]
 })
-export class DiazoSlotComponent {
+export class SlotComponent {
     constructor(
         private graphContext : DiazoContext,
         private nodeContext : DiazoNodeContext,

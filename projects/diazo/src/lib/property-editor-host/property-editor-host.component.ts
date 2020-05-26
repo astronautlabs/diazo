@@ -3,11 +3,11 @@ import { DiazoPropertyContext, DiazoContext } from '../context';
 import { DiazoProperty, DiazoNode } from '../model';
 
 @Component({
-    selector: 'dz-custom-property-editor',
+    selector: 'dz-property-editor-host',
     template: ``,
     styles: [``]
 })
-export class CustomPropertyEditorHostComponent {
+export class PropertyEditorHostComponent {
     constructor(
         private factoryResolver : ComponentFactoryResolver,
         private injector : Injector,

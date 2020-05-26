@@ -7,10 +7,10 @@ import { Position } from '../common';
 
 @Component({
     selector: 'dz-node-source-button',
-    templateUrl: './diazo-node-source.component.html',
-    styleUrls: ['./diazo-node-source.component.scss']
+    templateUrl: './node-source-button.component.html',
+    styleUrls: ['./node-source-button.component.scss']
 })
-export class DiazoNodeSourceComponent {
+export class NodeSourceButtonComponent {
 
     @Input()
     context : DiazoContext;

@@ -13,11 +13,11 @@ import { WildcardType } from '../value-types';
  */
 @Component({
 selector: 'dz-container',
-    templateUrl: './diazo.component.html',
-    styleUrls: ['./diazo.component.scss'],
+    templateUrl: './graph.component.html',
+    styleUrls: ['./graph.component.scss'],
     providers: [ DiazoContext ]
 })
-export class DiazoComponent {
+export class GraphComponent {
     constructor(
         private context : DiazoContext,
         private elementRef : ElementRef<HTMLElement>

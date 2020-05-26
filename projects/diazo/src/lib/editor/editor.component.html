@@ -298,13 +298,13 @@
                                                 </mat-checkbox>
                                             </ng-container>
                                             <ng-container *ngIf="isCustomPropertyType(prop.type)">
-                                                <dz-custom-property-editor 
+                                                <dz-property-editor-host
                                                     [graphContext]="graphContext"
                                                     [providers]="providers"
                                                     [selectedNodes]="selectedNodes" 
                                                     [property]="prop" 
                                                     [componentType]="getCustomPropertyType(prop.type).component">
-                                                    </dz-custom-property-editor>
+                                                    </dz-property-editor-host>
                                             </ng-container>
                                         </ng-container>
                                         

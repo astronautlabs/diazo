@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
     template: '',
     styles: ['']
 })
-export class DiazoNodeHostComponent {
+export class NodeHostComponent {
     constructor(
         private injector : Injector,
         private viewContainer : ViewContainerRef,

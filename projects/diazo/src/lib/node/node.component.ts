@@ -5,11 +5,11 @@ import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
     selector: 'dz-node',
-    templateUrl: './diazo-node.component.html',
-    styleUrls: ['./diazo-node.component.scss'],
+    templateUrl: './node.component.html',
+    styleUrls: ['./node.component.scss'],
     providers: [DiazoNodeContext]
 })
-export class DiazoNodeComponent {
+export class NodeComponent {
     constructor(
         private context : DiazoContext,
         private nodeContext : DiazoNodeContext,

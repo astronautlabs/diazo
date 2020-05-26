@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { Accessor, MULTIPLE_VALUES } from '../accessor';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
-import { DiazoComponent } from '../diazo/diazo.component';
+import { GraphComponent } from '../graph/graph.component';
 import * as uuid from 'uuid/v4';
 import { DiazoGraph, DiazoNodeSet, DiazoNode, DiazoPropertySet, DiazoPropertyOptionGroup, DiazoCustomPropertyType, DiazoProperty } from '../model';
 import { Position } from '../common';
@@ -15,10 +15,10 @@ import { Position } from '../common';
  */
 @Component({
     selector: 'dz-editor',
-    templateUrl: './diazo-editor.component.html',
-    styleUrls: ['./diazo-editor.component.scss']
+    templateUrl: './editor.component.html',
+    styleUrls: ['./editor.component.scss']
 })
-export class DiazoEditorComponent {
+export class EditorComponent {
     /**
      * @hidden
      */
@@ -274,7 +274,7 @@ export class DiazoEditorComponent {
      * implements the Diazo renderer.
      */
     @ViewChild('container')
-    container : DiazoComponent;
+    container : GraphComponent;
 
     /**
      * Specify an array of PropertySets which will be shown for all nodes that

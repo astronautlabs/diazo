@@ -1,14 +1,14 @@
 import { NgModule } from "@angular/core";
-import { DiazoComponent } from './diazo/diazo.component';
-import { DiazoDynamicNodeComponent } from './diazo-dynamic-node/diazo-dynamic-node.component';
-import { DiazoNodeHostComponent } from './diazo-node-host/diazo-node-host.component';
-import { DiazoSlotComponent } from './diazo-slot/diazo-slot.component';
-import { DiazoNodeComponent } from './diazo-node/diazo-node.component';
+import { GraphComponent } from './graph/graph.component';
+import { DynamicNodeComponent } from './dynamic-node/dynamic-node.component';
+import { NodeHostComponent } from './node-host/node-host.component';
+import { SlotComponent } from './slot/slot.component';
+import { NodeComponent } from './node/node.component';
 import { CommonModule } from '@angular/common';
-import { DiazoEditorComponent } from './diazo-editor/diazo-editor.component';
-import { DiazoNodeSourceComponent } from './diazo-node-source/diazo-node-source.component';
+import { EditorComponent } from './editor/editor.component';
+import { NodeSourceButtonComponent } from './node-source-button/node-source-button.component';
 import { TrustHtmlPipe } from './trust-html.pipe';
-import { CustomPropertyEditorHostComponent } from './custom-property-editor-host/custom-property-editor-host.component';
+import { PropertyEditorHostComponent } from './property-editor-host/property-editor-host.component';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,14 +32,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
  * @hidden
  */
 const DECLARATIONS = [
-    DiazoComponent,
-    DiazoDynamicNodeComponent,
-    DiazoNodeComponent,
-    DiazoNodeHostComponent,
-    DiazoSlotComponent,
-    DiazoEditorComponent,
-    DiazoNodeSourceComponent,
-    CustomPropertyEditorHostComponent,
+    GraphComponent,
+    DynamicNodeComponent,
+    NodeComponent,
+    NodeHostComponent,
+    SlotComponent,
+    EditorComponent,
+    NodeSourceButtonComponent,
+    PropertyEditorHostComponent,
     TrustHtmlPipe
 ];
 

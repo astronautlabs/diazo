@@ -7,10 +7,10 @@ import { DiazoNode } from '../model';
  */
 @Component({
     selector: 'dz-dynamic-node',
-    templateUrl: './diazo-dynamic-node.component.html',
-    styleUrls: ['./diazo-dynamic-node.component.scss']
+    templateUrl: './dynamic-node.component.html',
+    styleUrls: ['./dynamic-node.component.scss']
 })
-export class DiazoDynamicNodeComponent {
+export class DynamicNodeComponent {
     constructor() {
         let accessor = new Accessor();
         this.M = new Proxy({}, {
