@@ -70,6 +70,21 @@
 						<p>Provides a full-featured Diazo editor, including a searchable
 						New Node list and a powerful property sheet implementation.</p>
 					</div>
+					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">dz-editor</span> [<span class="hljs-attr">graph</span>]=<span class="hljs-string">"myGraph"</span> [<span class="hljs-attr">availableNodes</span>]=<span class="hljs-string">"myDefinedNodes"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">dz-editor</span>&gt;</span></code></pre>
+					<p>Here,</p>
+					<ul>
+						<li><code>[graph]</code> is the graph that should be rendered. Any changes made by the user will
+						be applied to the bound object.</li>
+						<li><code>[availableNodes]</code> is an array of <a href="../interfaces/diazonode.html"><code>DiazoNode</code></a> objects made available
+						to the user in the New Node menu</li>
+					</ul>
+					<p>See More</p>
+					<ul>
+						<li><a href="../interfaces/diazograph.html"><code>DiazoGraph</code></a> - Represents a graph, composed of its nodes and edges</li>
+						<li><a href="../interfaces/diazovaluetype.html"><code>DiazoValueType</code></a> - Edges are &quot;values&quot;, and their types are represented by &quot;value types&quot;</li>
+						<li><a href="diazocontext.html"><code>DiazoContext</code></a> - Most useful instrumentation of the Diazo editor is done
+						via the Context layer</li>
+					</ul>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -152,7 +167,7 @@
 					<div class="tsd-signature tsd-kind-icon">active<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L292">lib/editor/editor.component.ts:292</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L310">lib/editor/editor.component.ts:310</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -168,7 +183,7 @@
 					<div class="tsd-signature tsd-kind-icon">container<span class="tsd-signature-symbol">:</span> <a href="graphcomponent.html" class="tsd-signature-type">GraphComponent</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L277">lib/editor/editor.component.ts:277</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L295">lib/editor/editor.component.ts:295</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -184,7 +199,7 @@
 					<div class="tsd-signature tsd-kind-icon">context<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subject</span><span class="tsd-signature-symbol">&lt;</span><a href="diazocontext.html" class="tsd-signature-type">DiazoContext</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Subject&lt;DiazoContext&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L237">lib/editor/editor.component.ts:237</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L255">lib/editor/editor.component.ts:255</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -201,7 +216,7 @@
 					<div class="tsd-signature tsd-kind-icon">custom<wbr>Property<wbr>Types<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazocustompropertytype.html" class="tsd-signature-type">DiazoCustomPropertyType</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L340">lib/editor/editor.component.ts:340</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L358">lib/editor/editor.component.ts:358</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -220,7 +235,7 @@
 					<div class="tsd-signature tsd-kind-icon">graph<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subject</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Subject&lt;DiazoGraph&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L245">lib/editor/editor.component.ts:245</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L263">lib/editor/editor.component.ts:263</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -237,7 +252,7 @@
 					<div class="tsd-signature tsd-kind-icon">graph<wbr>Context<span class="tsd-signature-symbol">:</span> <a href="diazocontext.html" class="tsd-signature-type">DiazoContext</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L113">lib/editor/editor.component.ts:113</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L131">lib/editor/editor.component.ts:131</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -253,7 +268,7 @@
 					<div class="tsd-signature tsd-kind-icon">locked<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L262">lib/editor/editor.component.ts:262</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L280">lib/editor/editor.component.ts:280</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -271,7 +286,7 @@
 					<div class="tsd-signature tsd-kind-icon">matching<wbr>Node<wbr>Sets<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazonodeset.html" class="tsd-signature-type">DiazoNodeSet</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L137">lib/editor/editor.component.ts:137</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L155">lib/editor/editor.component.ts:155</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -288,7 +303,7 @@
 					<div class="tsd-signature tsd-kind-icon">matching<wbr>Nodes<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L145">lib/editor/editor.component.ts:145</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L163">lib/editor/editor.component.ts:163</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -306,7 +321,7 @@
 					<div class="tsd-signature tsd-kind-icon">new<wbr>Node<wbr>Position<span class="tsd-signature-symbol">:</span> <a href="../interfaces/position.html" class="tsd-signature-type">Position</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L99">lib/editor/editor.component.ts:99</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L117">lib/editor/editor.component.ts:117</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -316,7 +331,7 @@
 					<div class="tsd-signature tsd-kind-icon">node<wbr>Menu<wbr>Keyboard<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L153">lib/editor/editor.component.ts:153</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L171">lib/editor/editor.component.ts:171</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -334,7 +349,7 @@
 					<div class="tsd-signature tsd-kind-icon">node<wbr>Menu<wbr>Position<span class="tsd-signature-symbol">:</span> <a href="../interfaces/position.html" class="tsd-signature-type">Position</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L98">lib/editor/editor.component.ts:98</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L116">lib/editor/editor.component.ts:116</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -344,7 +359,7 @@
 					<div class="tsd-signature tsd-kind-icon">node<wbr>Type<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L330">lib/editor/editor.component.ts:330</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L348">lib/editor/editor.component.ts:348</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -363,7 +378,7 @@
 					<div class="tsd-signature tsd-kind-icon">option<wbr>Sources<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/diazopropertyoptiongroup.html" class="tsd-signature-type">DiazoPropertyOptionGroup</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L319">lib/editor/editor.component.ts:319</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L337">lib/editor/editor.component.ts:337</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -385,7 +400,7 @@
 					<div class="tsd-signature tsd-kind-icon">property<wbr>Manipulator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L107">lib/editor/editor.component.ts:107</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L125">lib/editor/editor.component.ts:125</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -403,7 +418,7 @@
 					<div class="tsd-signature tsd-kind-icon">providers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Provider</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L270">lib/editor/editor.component.ts:270</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L288">lib/editor/editor.component.ts:288</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -420,7 +435,7 @@
 					<div class="tsd-signature tsd-kind-icon">readonly<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L253">lib/editor/editor.component.ts:253</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L271">lib/editor/editor.component.ts:271</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -437,7 +452,7 @@
 					<div class="tsd-signature tsd-kind-icon">save<wbr>Requested<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subject</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Subject&lt;void&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L381">lib/editor/editor.component.ts:381</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L399">lib/editor/editor.component.ts:399</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -455,7 +470,7 @@
 					<div class="tsd-signature tsd-kind-icon">selected<wbr>Matching<wbr>Node<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L159">lib/editor/editor.component.ts:159</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L177">lib/editor/editor.component.ts:177</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -471,7 +486,7 @@
 					<div class="tsd-signature tsd-kind-icon">selected<wbr>Node<wbr>Context<span class="tsd-signature-symbol">:</span> <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L119">lib/editor/editor.component.ts:119</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L137">lib/editor/editor.component.ts:137</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -487,7 +502,7 @@
 					<div class="tsd-signature tsd-kind-icon">selected<wbr>Node<wbr>Contexts<span class="tsd-signature-symbol">:</span> <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L124">lib/editor/editor.component.ts:124</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L142">lib/editor/editor.component.ts:142</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -502,7 +517,7 @@
 					<div class="tsd-signature tsd-kind-icon">selected<wbr>Property<wbr>Sets<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazopropertyset.html" class="tsd-signature-type">DiazoPropertySet</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L130">lib/editor/editor.component.ts:130</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L148">lib/editor/editor.component.ts:148</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -518,7 +533,7 @@
 					<div class="tsd-signature tsd-kind-icon">universal<wbr>Property<wbr>Sets<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazopropertyset.html" class="tsd-signature-type">DiazoPropertySet</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L285">lib/editor/editor.component.ts:285</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L303">lib/editor/editor.component.ts:303</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -535,7 +550,7 @@
 					<div class="tsd-signature tsd-kind-icon">value<wbr>Types<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>constructor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L354">lib/editor/editor.component.ts:354</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L372">lib/editor/editor.component.ts:372</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -565,7 +580,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L299">lib/editor/editor.component.ts:299</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L317">lib/editor/editor.component.ts:317</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -579,7 +594,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L302">lib/editor/editor.component.ts:302</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L320">lib/editor/editor.component.ts:320</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -609,7 +624,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L364">lib/editor/editor.component.ts:364</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L382">lib/editor/editor.component.ts:382</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -626,7 +641,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L368">lib/editor/editor.component.ts:368</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L386">lib/editor/editor.component.ts:386</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -659,7 +674,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L178">lib/editor/editor.component.ts:178</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L196">lib/editor/editor.component.ts:196</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -673,7 +688,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L182">lib/editor/editor.component.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L200">lib/editor/editor.component.ts:200</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -703,7 +718,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L165">lib/editor/editor.component.ts:165</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L183">lib/editor/editor.component.ts:183</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -717,7 +732,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L169">lib/editor/editor.component.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L187">lib/editor/editor.component.ts:187</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -746,7 +761,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L423">lib/editor/editor.component.ts:423</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L441">lib/editor/editor.component.ts:441</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -769,7 +784,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L430">lib/editor/editor.component.ts:430</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L448">lib/editor/editor.component.ts:448</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -791,7 +806,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L388">lib/editor/editor.component.ts:388</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L406">lib/editor/editor.component.ts:406</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -816,7 +831,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L194">lib/editor/editor.component.ts:194</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L212">lib/editor/editor.component.ts:212</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -833,7 +848,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L200">lib/editor/editor.component.ts:200</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L218">lib/editor/editor.component.ts:218</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -868,7 +883,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L454">lib/editor/editor.component.ts:454</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L472">lib/editor/editor.component.ts:472</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -890,7 +905,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L462">lib/editor/editor.component.ts:462</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L480">lib/editor/editor.component.ts:480</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -911,7 +926,7 @@
 					<div class="tsd-signature tsd-kind-icon">json<wbr>Monaco<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L207">lib/editor/editor.component.ts:207</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L225">lib/editor/editor.component.ts:225</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -925,7 +940,7 @@
 						<div class="tsd-signature tsd-kind-icon">automatic<wbr>Layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L210">lib/editor/editor.component.ts:210</a></li>
+								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L228">lib/editor/editor.component.ts:228</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -935,7 +950,7 @@
 						<div class="tsd-signature tsd-kind-icon">language<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;json&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L209">lib/editor/editor.component.ts:209</a></li>
+								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L227">lib/editor/editor.component.ts:227</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -945,7 +960,7 @@
 						<div class="tsd-signature tsd-kind-icon">theme<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;vs-dark&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L208">lib/editor/editor.component.ts:208</a></li>
+								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L226">lib/editor/editor.component.ts:226</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -956,7 +971,7 @@
 					<div class="tsd-signature tsd-kind-icon">markdown<wbr>Monaco<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L216">lib/editor/editor.component.ts:216</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L234">lib/editor/editor.component.ts:234</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -970,7 +985,7 @@
 						<div class="tsd-signature tsd-kind-icon">automatic<wbr>Layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L219">lib/editor/editor.component.ts:219</a></li>
+								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L237">lib/editor/editor.component.ts:237</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -980,7 +995,7 @@
 						<div class="tsd-signature tsd-kind-icon">language<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;markdown&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L218">lib/editor/editor.component.ts:218</a></li>
+								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L236">lib/editor/editor.component.ts:236</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -990,7 +1005,7 @@
 						<div class="tsd-signature tsd-kind-icon">theme<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;vs-dark&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L217">lib/editor/editor.component.ts:217</a></li>
+								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L235">lib/editor/editor.component.ts:235</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1001,7 +1016,7 @@
 					<div class="tsd-signature tsd-kind-icon">ts<wbr>Monaco<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L225">lib/editor/editor.component.ts:225</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L243">lib/editor/editor.component.ts:243</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1015,7 +1030,7 @@
 						<div class="tsd-signature tsd-kind-icon">automatic<wbr>Layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L228">lib/editor/editor.component.ts:228</a></li>
+								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L246">lib/editor/editor.component.ts:246</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1025,7 +1040,7 @@
 						<div class="tsd-signature tsd-kind-icon">language<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;typescript&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L227">lib/editor/editor.component.ts:227</a></li>
+								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L245">lib/editor/editor.component.ts:245</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1035,7 +1050,7 @@
 						<div class="tsd-signature tsd-kind-icon">theme<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;vs-dark&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/editor/editor.component.ts#L226">lib/editor/editor.component.ts:226</a></li>
+								<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c922a4e/projects/diazo/src/lib/editor/editor.component.ts#L244">lib/editor/editor.component.ts:244</a></li>
 							</ul>
 						</aside>
 					</section>
