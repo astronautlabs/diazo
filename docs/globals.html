@@ -83,8 +83,6 @@
 								<li class="tsd-kind-class"><a href="classes/diazoslotcomponent.html" class="tsd-kind-icon">Diazo<wbr>Slot<wbr>Component</a></li>
 								<li class="tsd-kind-class"><a href="classes/diazoslotcontext.html" class="tsd-kind-icon">Diazo<wbr>Slot<wbr>Context</a></li>
 								<li class="tsd-kind-class"><a href="classes/diazotypebase.html" class="tsd-kind-icon">Diazo<wbr>Type<wbr>Base</a></li>
-								<li class="tsd-kind-class"><a href="classes/omnisearchpipe.html" class="tsd-kind-icon">Omnisearch<wbr>Pipe</a></li>
-								<li class="tsd-kind-class"><a href="classes/trusthtmlpipe.html" class="tsd-kind-icon">Trust<wbr>Html<wbr>Pipe</a></li>
 								<li class="tsd-kind-class"><a href="classes/wildcardtype.html" class="tsd-kind-icon">Wildcard<wbr>Type</a></li>
 							</ul>
 						</section>
@@ -118,7 +116,6 @@
 						<section class="tsd-index-section ">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable"><a href="globals.html#declarations" class="tsd-kind-icon">DECLARATIONS</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#multiple_values" class="tsd-kind-icon">MULTIPLE_<wbr>VALUES</a></li>
 							</ul>
 						</section>
@@ -134,22 +131,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Variables</h2>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="declarations" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> DECLARATIONS</h3>
-					<div class="tsd-signature tsd-kind-icon">DECLARATIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><a href="classes/omnisearchpipe.html" class="tsd-signature-type">OmnisearchPipe</a><span class="tsd-signature-symbol"> | </span><a href="classes/diazocomponent.html" class="tsd-signature-type">DiazoComponent</a><span class="tsd-signature-symbol"> | </span><a href="classes/diazodynamicnodecomponent.html" class="tsd-signature-type">DiazoDynamicNodeComponent</a><span class="tsd-signature-symbol"> | </span><a href="classes/diazonodecomponent.html" class="tsd-signature-type">DiazoNodeComponent</a><span class="tsd-signature-symbol"> | </span><a href="classes/diazonodehostcomponent.html" class="tsd-signature-type">DiazoNodeHostComponent</a><span class="tsd-signature-symbol"> | </span><a href="classes/diazoslotcomponent.html" class="tsd-signature-type">DiazoSlotComponent</a><span class="tsd-signature-symbol"> | </span><a href="classes/diazoeditorcomponent.html" class="tsd-signature-type">DiazoEditorComponent</a><span class="tsd-signature-symbol"> | </span><a href="classes/diazonodesourcecomponent.html" class="tsd-signature-type">DiazoNodeSourceComponent</a><span class="tsd-signature-symbol"> | </span><a href="classes/custompropertyeditorhostcomponent.html" class="tsd-signature-type">CustomPropertyEditorHostComponent</a><span class="tsd-signature-symbol"> | </span><a href="classes/trusthtmlpipe.html" class="tsd-signature-type">TrustHtmlPipe</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [OmnisearchPipe,DiazoComponent,DiazoDynamicNodeComponent,DiazoNodeComponent,DiazoNodeHostComponent,DiazoSlotComponent,DiazoEditorComponent,DiazoNodeSourceComponent,CustomPropertyEditorHostComponent,TrustHtmlPipe]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/3580285/projects/diazo/src/lib/diazo.module.ts#L32">lib/diazo.module.ts:32</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="multiple_values" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> MULTIPLE_<wbr>VALUES</h3>
 					<div class="tsd-signature tsd-kind-icon">MULTIPLE_<wbr>VALUES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unique symbol</span><span class="tsd-signature-symbol"> = Symbol(&#x27;Multiple values&#x27;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/3580285/projects/diazo/src/lib/accessor.ts#L11">lib/accessor.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/95c90a4/projects/diazo/src/lib/accessor.ts#L11">lib/accessor.ts:11</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -175,9 +162,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/3580285/projects/diazo/src/lib/template.ts#L3">lib/template.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/95c90a4/projects/diazo/src/lib/template.ts#L14">lib/template.ts:14</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Given a context object and a template string, interpolates
+										any present template directives and outputs the resulting
+										string. Template directives can take one of the following
+									formats:</p>
+									<ul>
+										<li><code>{{path.to.property}}</code> -- takes the value from the given
+										jsonpath and uses it to replace the template directive</li>
+										<li><code>{{path.to.property | default}}</code> -- same as the above,
+											but if <code>path.to.property</code> is falsey, uses the text &quot;default&quot;
+										instead.</li>
+									</ul>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -249,12 +251,6 @@
 						<a href="classes/diazotypebase.html" class="tsd-kind-icon">Diazo<wbr>Type<wbr>Base</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/omnisearchpipe.html" class="tsd-kind-icon">Omnisearch<wbr>Pipe</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/trusthtmlpipe.html" class="tsd-kind-icon">Trust<wbr>Html<wbr>Pipe</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="classes/wildcardtype.html" class="tsd-kind-icon">Wildcard<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -322,9 +318,6 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/size.html" class="tsd-kind-icon">Size</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#declarations" class="tsd-kind-icon">DECLARATIONS</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#multiple_values" class="tsd-kind-icon">MULTIPLE_<wbr>VALUES</a>
