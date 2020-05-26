@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DiazoPropertyContext | diazo</title>
+	<title>DynamicNodeComponent | diazo</title>
 	<meta name="description" content="Documentation for diazo">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,21 +54,28 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="diazopropertycontext.html">DiazoPropertyContext</a>
+					<a href="dynamicnodecomponent.html">DynamicNodeComponent</a>
 				</li>
 			</ul>
-			<h1>Class DiazoPropertyContext</h1>
+			<h1>Class DynamicNodeComponent</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Provides a <dz-node> which supports custom</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DiazoPropertyContext</span>
+						<span class="target">DynamicNodeComponent</span>
 					</li>
 				</ul>
 			</section>
@@ -79,22 +86,17 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="diazopropertycontext.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="dynamicnodecomponent.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazopropertycontext.html#graphcontext" class="tsd-kind-icon">graph<wbr>Context</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazopropertycontext.html#property" class="tsd-kind-icon">property</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazopropertycontext.html#selectednodes" class="tsd-kind-icon">selected<wbr>Nodes</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Accessors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="diazopropertycontext.html#accessor" class="tsd-kind-icon">accessor</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="diazopropertycontext.html#manipulator" class="tsd-kind-icon">manipulator</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="dynamicnodecomponent.html#m" class="tsd-kind-icon">M</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="dynamicnodecomponent.html#component" class="tsd-kind-icon">component</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="dynamicnodecomponent.html#drafted" class="tsd-kind-icon">drafted</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="dynamicnodecomponent.html#instance" class="tsd-kind-icon">instance</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="dynamicnodecomponent.html#node" class="tsd-kind-icon">node</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,16 +108,16 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Diazo<wbr>Property<wbr>Context<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="diazopropertycontext.html" class="tsd-signature-type">DiazoPropertyContext</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Dynamic<wbr>Node<wbr>Component<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="dynamicnodecomponent.html" class="tsd-signature-type">DynamicNodeComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/context.ts#L71">lib/context.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/dynamic-node/dynamic-node.component.ts#L13">lib/dynamic-node/dynamic-node.component.ts:13</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="diazopropertycontext.html" class="tsd-signature-type">DiazoPropertyContext</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="dynamicnodecomponent.html" class="tsd-signature-type">DynamicNodeComponent</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -123,71 +125,54 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="graphcontext" class="tsd-anchor"></a>
-					<h3>graph<wbr>Context</h3>
-					<div class="tsd-signature tsd-kind-icon">graph<wbr>Context<span class="tsd-signature-symbol">:</span> <a href="diazocontext.html" class="tsd-signature-type">DiazoContext</a></div>
+					<a name="m" class="tsd-anchor"></a>
+					<h3>M</h3>
+					<div class="tsd-signature tsd-kind-icon">M<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/context.ts#L111">lib/context.ts:111</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/dynamic-node/dynamic-node.component.ts#L33">lib/dynamic-node/dynamic-node.component.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="property" class="tsd-anchor"></a>
-					<h3>property</h3>
-					<div class="tsd-signature tsd-kind-icon">property<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazoproperty.html" class="tsd-signature-type">DiazoProperty</a></div>
+					<a name="component" class="tsd-anchor"></a>
+					<h3>component</h3>
+					<div class="tsd-signature tsd-kind-icon">component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/context.ts#L113">lib/context.ts:113</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/dynamic-node/dynamic-node.component.ts#L31">lib/dynamic-node/dynamic-node.component.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="selectednodes" class="tsd-anchor"></a>
-					<h3>selected<wbr>Nodes</h3>
-					<div class="tsd-signature tsd-kind-icon">selected<wbr>Nodes<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="drafted" class="tsd-anchor"></a>
+					<h3>drafted</h3>
+					<div class="tsd-signature tsd-kind-icon">drafted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/context.ts#L112">lib/context.ts:112</a></li>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/dynamic-node/dynamic-node.component.ts#L25">lib/dynamic-node/dynamic-node.component.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="accessor" class="tsd-anchor"></a>
-					<h3>accessor</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> accessor<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="accessor.html" class="tsd-signature-type">Accessor</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/context.ts#L118">lib/context.ts:118</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="accessor.html" class="tsd-signature-type">Accessor</a></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="instance" class="tsd-anchor"></a>
+					<h3>instance</h3>
+					<div class="tsd-signature tsd-kind-icon">instance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/dynamic-node/dynamic-node.component.ts#L34">lib/dynamic-node/dynamic-node.component.ts:34</a></li>
+						</ul>
+					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="manipulator" class="tsd-anchor"></a>
-					<h3>manipulator</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> manipulator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/context.ts#L122">lib/context.ts:122</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="node" class="tsd-anchor"></a>
+					<h3>node</h3>
+					<div class="tsd-signature tsd-kind-icon">node<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/c4a0765/projects/diazo/src/lib/dynamic-node/dynamic-node.component.ts#L28">lib/dynamic-node/dynamic-node.component.ts:28</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -204,25 +189,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="diazopropertycontext.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Context</a>
+						<a href="dynamicnodecomponent.html" class="tsd-kind-icon">Dynamic<wbr>Node<wbr>Component</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="diazopropertycontext.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="dynamicnodecomponent.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="diazopropertycontext.html#graphcontext" class="tsd-kind-icon">graph<wbr>Context</a>
+								<a href="dynamicnodecomponent.html#m" class="tsd-kind-icon">M</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="diazopropertycontext.html#property" class="tsd-kind-icon">property</a>
+								<a href="dynamicnodecomponent.html#component" class="tsd-kind-icon">component</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="diazopropertycontext.html#selectednodes" class="tsd-kind-icon">selected<wbr>Nodes</a>
+								<a href="dynamicnodecomponent.html#drafted" class="tsd-kind-icon">drafted</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="diazopropertycontext.html#accessor" class="tsd-kind-icon">accessor</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="dynamicnodecomponent.html#instance" class="tsd-kind-icon">instance</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="diazopropertycontext.html#manipulator" class="tsd-kind-icon">manipulator</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="dynamicnodecomponent.html#node" class="tsd-kind-icon">node</a>
 							</li>
 						</ul>
 					</li>
