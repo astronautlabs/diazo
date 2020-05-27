@@ -1,4 +1,4 @@
-# ![diazo](/logo.svg)
+# ![diazo](logo.svg)
 
 [Documentation](https://astronautlabs.github.io/diazo/) | [Example](https://github.com/astronautlabs/diazo-example)
 
