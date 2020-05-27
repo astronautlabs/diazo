@@ -1,6 +1,6 @@
 # ![diazo](logo.svg)
 
-[Documentation](https://astronautlabs.github.io/diazo/) | [Example](https://astronautlabs.github.io/diazo-example/)
+[Documentation](https://astronautlabs.github.io/diazo/) | [Example](https://github.com/astronautlabs/diazo-example)
 
 An MIT-licensed slot-driven directed-acyclical-graph (DAG) editor for Angular. This 
 component was built for use in Astronaut Labs' Livefire product suite because 
