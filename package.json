@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc -p .",
     "docs": "typedoc .",
-    "test": "exit 0"
+    "test": "npm run build"
   },
   "author": "",
   "license": "MIT",
