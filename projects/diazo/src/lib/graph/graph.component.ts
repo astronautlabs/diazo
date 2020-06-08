@@ -12,7 +12,7 @@ import { WildcardType } from '../value-types';
  * @category Component
  */
 @Component({
-selector: 'dz-container',
+    selector: 'dz-container',
     templateUrl: './graph.component.html',
     styleUrls: ['./graph.component.scss'],
     providers: [ DiazoContext ]
@@ -26,6 +26,9 @@ export class GraphComponent {
     }
     
     ngOnInit() {
+        if (!this.context)
+            throw new Error(`Error: No context available on this graph (BUG)`);
+
         this.contextChanged.next(this.context);
         this.context.panChanged.subscribe(pos => this.updatePan());
         this.context.zoomChanged.subscribe(zoom => this.updateZoom());
