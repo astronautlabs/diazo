@@ -1,6 +1,10 @@
 {
   "name": "@diazo/model",
   "version": "1.0.0",
+  "access": "public",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
