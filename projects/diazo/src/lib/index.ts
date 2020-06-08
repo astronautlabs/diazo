@@ -11,4 +11,5 @@ export * from './editor/editor.component';
 export * from './property-editor-host/property-editor-host.component';
 export * from './accessor';
 export * from './trust-html.pipe';
+export * from './value-types';
 export * from './diazo.module';
