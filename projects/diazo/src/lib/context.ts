@@ -4,7 +4,7 @@ import { SubSink } from 'subsink';
 import * as uuid from 'uuid';
 import { Accessor } from './accessor';
 import { Position, Size } from './common';
-import { DiazoGraph, DiazoSlot, DiazoValue, DiazoNode, DiazoProperty, DiazoEdge } from './model';
+import { DiazoGraph, DiazoSlot, DiazoValue, DiazoNode, DiazoProperty, DiazoEdge } from '@diazo/model';
 
 /**
  * Represents a single slot on a single node within a Diazo. 

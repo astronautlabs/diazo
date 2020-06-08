@@ -1,5 +1,5 @@
 import { DiazoSlotContext, DiazoValueType } from './context';
-import { DiazoValue } from './model';
+import { DiazoValue } from '@diazo/model';
 
 /**
  * Provides an abstract base class for new Diazo value types that provides

@@ -1,5 +1,5 @@
 export * from './common';
-export * from './model';
+export * from '@diazo/model';
 export * from './context';
 export * from './graph/graph.component';
 export * from './dynamic-node/dynamic-node.component';

@@ -5,7 +5,7 @@ import * as uuid from 'uuid/v4';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { Position, pointOnLine } from '../common';
-import { DiazoGraph, DiazoNode, DiazoEdge } from '../model';
+import { DiazoGraph, DiazoNode, DiazoEdge } from '@diazo/model';
 import { WildcardType } from '../value-types';
 
 /**

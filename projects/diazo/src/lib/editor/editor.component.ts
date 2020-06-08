@@ -6,7 +6,7 @@ import { Accessor, MULTIPLE_VALUES } from '../accessor';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { GraphComponent } from '../graph/graph.component';
 import * as uuid from 'uuid/v4';
-import { DiazoGraph, DiazoNodeSet, DiazoNode, DiazoPropertySet, DiazoPropertyOptionGroup, DiazoCustomPropertyType, DiazoProperty } from '../model';
+import { DiazoGraph, DiazoNodeSet, DiazoNode, DiazoPropertySet, DiazoPropertyOptionGroup, DiazoCustomPropertyType, DiazoProperty } from '@diazo/model';
 import { Position } from '../common';
 
 /**
