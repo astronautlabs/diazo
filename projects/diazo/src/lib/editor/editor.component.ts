@@ -769,6 +769,9 @@ export class EditorComponent {
      * @hidden
      */
     acquireGraphContext(context : DiazoContext) {
+        if (!context)
+            return;
+        
         setTimeout(() => {
             this.graphContext = context;
             this.contextChanged.next(context);
