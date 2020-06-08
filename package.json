@@ -6,8 +6,12 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docs": "typedoc .",
+    "test": "exit 0"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typedoc": "^0.17.7"
+  }
 }
