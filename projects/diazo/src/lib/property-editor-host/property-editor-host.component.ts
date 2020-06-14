@@ -1,6 +1,7 @@
-import { Component, Input, ComponentFactoryResolver, ReflectiveInjector, Injector, ViewContainerRef, ComponentRef, Provider } from '@angular/core';
-import { DiazoPropertyContext, DiazoContext } from '../context';
-import { DiazoProperty, DiazoNode } from '@diazo/model';
+import { Component, Input, ComponentFactoryResolver, ReflectiveInjector, 
+    Injector, ViewContainerRef, ComponentRef, Provider } from '@angular/core';
+import { DiazoPropertyContext, DiazoContext, DiazoProperty, 
+    DiazoNode } from '@diazo/model';
 
 /**
  * @category Component

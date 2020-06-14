@@ -1,6 +1,5 @@
 import { Component, Input, ComponentFactoryResolver, Injector } from '@angular/core';
-import { Accessor } from '../accessor';
-import { DiazoNode } from '@diazo/model';
+import { Accessor, DiazoNode } from '@diazo/model';
 
 /**
  * Provides a <dz-node> which supports custom 

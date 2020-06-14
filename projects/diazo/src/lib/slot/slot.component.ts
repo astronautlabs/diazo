@@ -1,5 +1,7 @@
-import { Component, Input, HostBinding, ElementRef, ViewChild, HostListener } from '@angular/core';
-import { DiazoNodeContext, DiazoSlotContext, DiazoContext } from '../context';
+import { Component, Input, HostBinding, ElementRef, ViewChild, 
+    HostListener } from '@angular/core';
+import { DiazoNodeContext, DiazoSlotContext, 
+    DiazoContext } from '@diazo/model';
 import { SubSink } from 'subsink';
 
 /**

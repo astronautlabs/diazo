@@ -1,13 +1,15 @@
-import { Component, Input, Output, Provider, ViewChild, ElementRef } from "@angular/core";
-import { DiazoContext, DiazoNodeContext, DiazoValueType } from '../context';
+import { Component, Input, Output, Provider, 
+    ViewChild, ElementRef } from "@angular/core";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
-import { Accessor, MULTIPLE_VALUES } from '../accessor';
+import { DiazoContext, DiazoNodeContext, DiazoValueType, 
+    Accessor, MULTIPLE_VALUES, Position } from '@diazo/model';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { GraphComponent } from '../graph/graph.component';
 import * as uuid from 'uuid/v4';
-import { DiazoGraph, DiazoNodeSet, DiazoNode, DiazoPropertySet, DiazoPropertyOptionGroup, DiazoCustomPropertyType, DiazoProperty } from '@diazo/model';
-import { Position } from '../common';
+import { DiazoGraph, DiazoNodeSet, DiazoNode, DiazoPropertySet, 
+    DiazoPropertyOptionGroup, DiazoCustomPropertyType, 
+    DiazoProperty } from '@diazo/model';
 
 /**
  * Provides a full-featured Diazo editor, including a searchable 

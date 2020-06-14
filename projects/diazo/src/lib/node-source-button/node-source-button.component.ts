@@ -1,9 +1,7 @@
 import { Component, HostListener, Input, Output } from "@angular/core";
-import { DiazoContext } from '../context';
 import * as uuid from 'uuid/v4';
 import { Subject } from 'rxjs';
-import { DiazoNode } from '@diazo/model';
-import { Position } from '../common';
+import { DiazoContext, Position, DiazoNode } from '@diazo/model';
 
 /**
  * @category Component

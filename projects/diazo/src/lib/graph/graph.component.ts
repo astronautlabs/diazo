@@ -1,12 +1,12 @@
-import { Component, HostListener, ViewChild, ElementRef, Input, HostBinding, Output } from "@angular/core";
-import { DiazoContext } from '../context';
+import { Component, HostListener, ViewChild, ElementRef, 
+    Input, Output } from "@angular/core";
 import { BehaviorSubject, Subject } from 'rxjs';
 import * as uuid from 'uuid/v4';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { CdkDrag } from '@angular/cdk/drag-drop';
-import { Position, pointOnLine } from '../common';
 import { DiazoGraph, DiazoNode, DiazoEdge } from '@diazo/model';
-import { WildcardType } from '../value-types';
+import { Position, pointOnLine, 
+    DiazoContext, WildcardType } from '@diazo/model';
 
 /**
  * @category Component

@@ -1,4 +1,5 @@
-import { Input, ComponentFactoryResolver, ViewContainerRef, Injector, Output, Component } from '@angular/core';
+import { Input, ComponentFactoryResolver, ViewContainerRef, 
+    Injector, Output, Component } from '@angular/core';
 import { Subject } from 'rxjs';
 
 /**
