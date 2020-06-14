@@ -8,6 +8,11 @@
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "url": "https://github.com/astronautlabs/diazo-model.git",
+    "type": "git"
+  },
+  "homepage": "https://github.com/astronautlabs/diazo-model",
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc -p .",
