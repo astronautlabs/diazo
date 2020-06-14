@@ -3,7 +3,7 @@
 [NPM](https://npmjs.com/package/diazo)
 | [Angular Documentation](https://astronautlabs.github.io/diazo/) 
 | [Model Documentation](https://astronautlabs.github.io/diazo-model)
-| [Example](https://github.com/astronautlabs/diazo-example)
+| [Try it out](https://astronautlabs.github.io/diazo-example/)
 
 ![screenshot](/screenshot.png)
 

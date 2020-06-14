@@ -4,7 +4,7 @@
 | [NPM](https://npmjs.com/package/diazo)
 | [Angular Documentation](https://astronautlabs.github.io/diazo/) 
 | [Model Documentation](https://astronautlabs.github.io/diazo-model)
-| [Example](https://github.com/astronautlabs/diazo-example)
+| [Try it out](https://astronautlabs.github.io/diazo-example/)
 
 An MIT-licensed slot-driven directed-acyclical-graph (DAG) editor for Angular. This 
 component was built for use in [Astronaut Labs](https://astronautlabs.com)' Livefire product suite because 
