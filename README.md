@@ -1,7 +1,8 @@
 # ![diazo](logo.svg)
 
 [NPM](https://npmjs.com/package/diazo)
-| [Documentation](https://astronautlabs.github.io/diazo/) 
+| [Angular Documentation](https://astronautlabs.github.io/diazo/) 
+| [Model Documentation](https://astronautlabs.github.io/diazo-model)
 | [Example](https://github.com/astronautlabs/diazo-example)
 
 ![screenshot](/screenshot.png)
@@ -16,6 +17,13 @@ Unreal Engine. Diazo itself is just the editor that would power such
 an experience, and the library itself is completely domain-agnostic. 
 You can use Diazo in your apps to introduce visual node-graph functionality 
 in any domain where it makes sense to apply it, and we encourage you to do so!
+
+# Where are the types for DiazoGraph?
+
+The underlying data model and context layer are separate from this package, 
+which is just the Angular components which implement the editor. The DiazoGraph
+types and the DiazoContext layer exist in 
+[@diazo/model](https://github.com/astronautlabs/diazo-model).
 
 # Getting Started
 
