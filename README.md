@@ -7,10 +7,11 @@
 
 ![screenshot](/screenshot.png)
 
-An MIT-licensed slot-driven directed-acyclical-graph (DAG) editor for Angular. This 
-component was built for use in [Astronaut Labs](https://astronautlabs.com)' Livefire product suite because 
-there was no good existing open-source editor. We wanted to fix that, so we 
-hope you find lots of great ways to use this editor in your projects!
+An MIT-licensed slot-driven directed-acyclical-graph (DAG) editor for Angular. 
+This component was built for use in [Astronaut Labs](https://astronautlabs.com)' 
+Livefire product suite because there was no good existing open-source editor. 
+We wanted to fix that, so we hope you find lots of great ways to use this 
+editor in your projects!
 
 Diazo is inspired by Blueprint, the visual programming language of 
 Unreal Engine. Diazo itself is just the editor that would power such
