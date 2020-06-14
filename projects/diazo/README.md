@@ -52,7 +52,7 @@ the editor.
 
 One might satisfy this binding by declaring `myGraph` as seen below.
 ```typescript
-import { Diazo } from '@astronautlabs/diazo';
+import { Diazo } from 'diazo';
 
 export class MyComponent {
     myGraph : Diazo = { nodes: [], edges: [] };
@@ -68,7 +68,7 @@ right clicking). `availableNodes` is an array of NodeSets.
 Each NodeSet defines a labelled group of template nodes. Let's add a 
 node set with a few simple template nodes:
 ```typescript
-import { Diazo } from '@astronautlabs/diazo';
+import { Diazo } from 'diazo';
 
 export class MyComponent {
     myGraph : Diazo = { nodes: [], edges: [] };
