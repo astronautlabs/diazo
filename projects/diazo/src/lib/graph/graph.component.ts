@@ -1,7 +1,7 @@
 import { Component, HostListener, ViewChild, ElementRef, 
     Input, Output } from "@angular/core";
 import { BehaviorSubject, Subject } from 'rxjs';
-import * as uuid from 'uuid/v4';
+import * as uuid from 'uuid';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { DiazoGraph, DiazoNode, DiazoEdge } from '@diazo/model';
@@ -554,7 +554,7 @@ export class GraphComponent {
                 
                 // create reroute node
                 let node : DiazoNode = {
-                    id: uuid(),
+                    id: uuid.v4(),
                     data: {
                         type: 'passthrough',
                         unit: 'reroute'

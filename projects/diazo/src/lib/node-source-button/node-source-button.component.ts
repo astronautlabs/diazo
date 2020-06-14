@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, Output } from "@angular/core";
-import * as uuid from 'uuid/v4';
+import * as uuid from 'uuid';
 import { Subject } from 'rxjs';
 import { DiazoContext, Position, DiazoNode } from '@diazo/model';
 
@@ -43,7 +43,7 @@ export class NodeSourceButtonComponent {
             {}, 
             this.template,
             <Partial<DiazoNode>>{ 
-                id: uuid(),
+                id: uuid.v4(),
                 x: (this.position || {}).left || 0,
                 y: (this.position || {}).top || 0
             }

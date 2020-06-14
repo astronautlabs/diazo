@@ -6,7 +6,7 @@ import { DiazoContext, DiazoNodeContext, DiazoValueType,
     Accessor, MULTIPLE_VALUES, Position } from '@diazo/model';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { GraphComponent } from '../graph/graph.component';
-import * as uuid from 'uuid/v4';
+import * as uuid from 'uuid';
 import { DiazoGraph, DiazoNodeSet, DiazoNode, DiazoPropertySet, 
     DiazoPropertyOptionGroup, DiazoCustomPropertyType, 
     DiazoProperty } from '@diazo/model';
@@ -497,7 +497,7 @@ export class EditorComponent {
             {}, 
             template,
             <Partial<DiazoNode>>{ 
-                id: uuid(),
+                id: uuid.v4(),
                 x: (this.newNodePosition || {}).left || 0,
                 y: (this.newNodePosition || {}).top || 0
             }
