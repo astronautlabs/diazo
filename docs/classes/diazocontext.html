@@ -1,0 +1,2309 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>DiazoContext | @diazo/model</title>
+	<meta name="description" content="Documentation for @diazo/model">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@diazo/model</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="diazocontext.html">DiazoContext</a>
+				</li>
+			</ul>
+			<h1>Class DiazoContext</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Manages the runtime state of the Diazo editor including logic around
+						user interactions.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">DiazoContext</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="diazocontext.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#_selectionchanged" class="tsd-kind-icon">_selection<wbr>Changed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#bufferededge" class="tsd-kind-icon">buffered<wbr>Edge</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#committing" class="tsd-kind-icon">committing</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#copiedgraph" class="tsd-kind-icon">copied<wbr>Graph</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#draftedge" class="tsd-kind-icon">draft<wbr>Edge</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#draftedgesourceevent" class="tsd-kind-icon">draft<wbr>Edge<wbr>Source<wbr>Event</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#draftnode" class="tsd-kind-icon">draft<wbr>Node</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#edgebeingreplaced" class="tsd-kind-icon">edge<wbr>Being<wbr>Replaced</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#edgeundercursor" class="tsd-kind-icon">edge<wbr>Under<wbr>Cursor</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#graphchanged" class="tsd-kind-icon">graph<wbr>Changed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#gridsizex" class="tsd-kind-icon">grid<wbr>SizeX</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#gridsizey" class="tsd-kind-icon">grid<wbr>SizeY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#locked" class="tsd-kind-icon">locked</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#maxzoom" class="tsd-kind-icon">max<wbr>Zoom</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#minzoom" class="tsd-kind-icon">min<wbr>Zoom</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#mouseinside" class="tsd-kind-icon">mouse<wbr>Inside</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#nodetypemap" class="tsd-kind-icon">node<wbr>Type<wbr>Map</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#nodes" class="tsd-kind-icon">nodes</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#nodesinselectionbox" class="tsd-kind-icon">nodes<wbr>InSelection<wbr>Box</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#notificationmessage" class="tsd-kind-icon">notification<wbr>Message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#panx" class="tsd-kind-icon">panX</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#pany" class="tsd-kind-icon">panY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#readonly" class="tsd-kind-icon">readonly</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#redostates" class="tsd-kind-icon">redo<wbr>States</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#selectednodes" class="tsd-kind-icon">selected<wbr>Nodes</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#selectionboxend" class="tsd-kind-icon">selection<wbr>Box<wbr>End</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#selectionboxstart" class="tsd-kind-icon">selection<wbr>Box<wbr>Start</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#startdraftedge" class="tsd-kind-icon">start<wbr>Draft<wbr>Edge</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#undostates" class="tsd-kind-icon">undo<wbr>States</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="diazocontext.html#zoom" class="tsd-kind-icon">zoom</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="diazocontext.html#edgecancelled" class="tsd-kind-icon">edge<wbr>Cancelled</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="diazocontext.html#edges" class="tsd-kind-icon">edges</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="diazocontext.html#graph" class="tsd-kind-icon">graph</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="diazocontext.html#panchanged" class="tsd-kind-icon">pan<wbr>Changed</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="diazocontext.html#selectionchanged" class="tsd-kind-icon">selection<wbr>Changed</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="diazocontext.html#valuetypeschanged" class="tsd-kind-icon">value<wbr>Types<wbr>Changed</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="diazocontext.html#zoomchanged" class="tsd-kind-icon">zoom<wbr>Changed</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#addedgetosubgraph" class="tsd-kind-icon">add<wbr>Edge<wbr>ToSubgraph</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#addnodetosubgraph" class="tsd-kind-icon">add<wbr>Node<wbr>ToSubgraph</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#addtoselection" class="tsd-kind-icon">add<wbr>ToSelection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#allvaluetypes" class="tsd-kind-icon">all<wbr>Value<wbr>Types</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#applynoderules" class="tsd-kind-icon">apply<wbr>Node<wbr>Rules</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#canceledge" class="tsd-kind-icon">cancel<wbr>Edge</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#clampzoom" class="tsd-kind-icon">clamp<wbr>Zoom</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#clearselectionbox" class="tsd-kind-icon">clear<wbr>Selection<wbr>Box</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#clone" class="tsd-kind-icon">clone</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#collectsubgraph" class="tsd-kind-icon">collect<wbr>Subgraph</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#commit" class="tsd-kind-icon">commit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#commitselectionbox" class="tsd-kind-icon">commit<wbr>Selection<wbr>Box</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#copy" class="tsd-kind-icon">copy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#createcopy" class="tsd-kind-icon">create<wbr>Copy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#deregisternode" class="tsd-kind-icon">deregister<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#draftedgesnap" class="tsd-kind-icon">draft<wbr>Edge<wbr>Snap</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#draftedgeunsnap" class="tsd-kind-icon">draft<wbr>Edge<wbr>Unsnap</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#edgesareequal" class="tsd-kind-icon">edges<wbr>Are<wbr>Equal</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#findedgetoreplace" class="tsd-kind-icon">find<wbr>Edge<wbr>ToReplace</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#findidenticaledge" class="tsd-kind-icon">find<wbr>Identical<wbr>Edge</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#finishedge" class="tsd-kind-icon">finish<wbr>Edge</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#getentrynodes" class="tsd-kind-icon">get<wbr>Entry<wbr>Nodes</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#getnodebyid" class="tsd-kind-icon">get<wbr>Node<wbr>ById</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#getnodebystate" class="tsd-kind-icon">get<wbr>Node<wbr>ByState</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#getslotbyids" class="tsd-kind-icon">get<wbr>Slot<wbr>ByIds</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#getvaluetypebyid" class="tsd-kind-icon">get<wbr>Value<wbr>Type<wbr>ById</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#isnodeselected" class="tsd-kind-icon">is<wbr>Node<wbr>Selected</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#onnodeadded" class="tsd-kind-icon">on<wbr>Node<wbr>Added</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#onnodeupdated" class="tsd-kind-icon">on<wbr>Node<wbr>Updated</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#paste" class="tsd-kind-icon">paste</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#redo" class="tsd-kind-icon">redo</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#registernode" class="tsd-kind-icon">register<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="diazocontext.html#registervaluetype" class="tsd-kind-icon">register<wbr>Value<wbr>Type</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#releasedraftnode" class="tsd-kind-icon">release<wbr>Draft<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#removeedge" class="tsd-kind-icon">remove<wbr>Edge</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#removeedgesfornode" class="tsd-kind-icon">remove<wbr>Edges<wbr>For<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#removefromselection" class="tsd-kind-icon">remove<wbr>From<wbr>Selection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#removenode" class="tsd-kind-icon">remove<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#removeselectednodes" class="tsd-kind-icon">remove<wbr>Selected<wbr>Nodes</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#screentograph" class="tsd-kind-icon">screen<wbr>ToGraph</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#selectall" class="tsd-kind-icon">select<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#selectnode" class="tsd-kind-icon">select<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#setpan" class="tsd-kind-icon">set<wbr>Pan</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#setselectionboxend" class="tsd-kind-icon">set<wbr>Selection<wbr>Box<wbr>End</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#setzoom" class="tsd-kind-icon">set<wbr>Zoom</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#startedge" class="tsd-kind-icon">start<wbr>Edge</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#startselectionat" class="tsd-kind-icon">start<wbr>Selection<wbr>At</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#undo" class="tsd-kind-icon">undo</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#unselectall" class="tsd-kind-icon">unselect<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#unselectnode" class="tsd-kind-icon">unselect<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="diazocontext.html#valuescompatible" class="tsd-kind-icon">values<wbr>Compatible</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Diazo<wbr>Context<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="diazocontext.html" class="tsd-signature-type">DiazoContext</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L462">context.ts:462</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="diazocontext.html" class="tsd-signature-type">DiazoContext</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="_selectionchanged" class="tsd-anchor"></a>
+					<h3>_selection<wbr>Changed</h3>
+					<div class="tsd-signature tsd-kind-icon">_selection<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BehaviorSubject</span><span class="tsd-signature-symbol">&lt;</span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new BehaviorSubject&lt;DiazoNodeContext[]&gt;([])</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L971">context.ts:971</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="bufferededge" class="tsd-anchor"></a>
+					<h3>buffered<wbr>Edge</h3>
+					<div class="tsd-signature tsd-kind-icon">buffered<wbr>Edge<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol"> = null</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1351">context.ts:1351</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="committing" class="tsd-anchor"></a>
+					<h3>committing</h3>
+					<div class="tsd-signature tsd-kind-icon">committing<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L477">context.ts:477</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="copiedgraph" class="tsd-anchor"></a>
+					<h3>copied<wbr>Graph</h3>
+					<div class="tsd-signature tsd-kind-icon">copied<wbr>Graph<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1445">context.ts:1445</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="draftedge" class="tsd-anchor"></a>
+					<h3>draft<wbr>Edge</h3>
+					<div class="tsd-signature tsd-kind-icon">draft<wbr>Edge<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L795">context.ts:795</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="draftedgesourceevent" class="tsd-anchor"></a>
+					<h3>draft<wbr>Edge<wbr>Source<wbr>Event</h3>
+					<div class="tsd-signature tsd-kind-icon">draft<wbr>Edge<wbr>Source<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">MouseEvent</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L797">context.ts:797</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="draftnode" class="tsd-anchor"></a>
+					<h3>draft<wbr>Node</h3>
+					<div class="tsd-signature tsd-kind-icon">draft<wbr>Node<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L793">context.ts:793</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="edgebeingreplaced" class="tsd-anchor"></a>
+					<h3>edge<wbr>Being<wbr>Replaced</h3>
+					<div class="tsd-signature tsd-kind-icon">edge<wbr>Being<wbr>Replaced<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1340">context.ts:1340</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="edgeundercursor" class="tsd-anchor"></a>
+					<h3>edge<wbr>Under<wbr>Cursor</h3>
+					<div class="tsd-signature tsd-kind-icon">edge<wbr>Under<wbr>Cursor<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L784">context.ts:784</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="graphchanged" class="tsd-anchor"></a>
+					<h3>graph<wbr>Changed</h3>
+					<div class="tsd-signature tsd-kind-icon">graph<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BehaviorSubject</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new BehaviorSubject&lt;DiazoGraph&gt;(null)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L781">context.ts:781</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="gridsizex" class="tsd-anchor"></a>
+					<h3>grid<wbr>SizeX</h3>
+					<div class="tsd-signature tsd-kind-icon">grid<wbr>SizeX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 15</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L787">context.ts:787</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="gridsizey" class="tsd-anchor"></a>
+					<h3>grid<wbr>SizeY</h3>
+					<div class="tsd-signature tsd-kind-icon">grid<wbr>SizeY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 15</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L788">context.ts:788</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="locked" class="tsd-anchor"></a>
+					<h3>locked</h3>
+					<div class="tsd-signature tsd-kind-icon">locked<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L479">context.ts:479</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="maxzoom" class="tsd-anchor"></a>
+					<h3>max<wbr>Zoom</h3>
+					<div class="tsd-signature tsd-kind-icon">max<wbr>Zoom<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 2</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L786">context.ts:786</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="minzoom" class="tsd-anchor"></a>
+					<h3>min<wbr>Zoom</h3>
+					<div class="tsd-signature tsd-kind-icon">min<wbr>Zoom<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0.3</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L785">context.ts:785</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="mouseinside" class="tsd-anchor"></a>
+					<h3>mouse<wbr>Inside</h3>
+					<div class="tsd-signature tsd-kind-icon">mouse<wbr>Inside<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L791">context.ts:791</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="nodetypemap" class="tsd-anchor"></a>
+					<h3>node<wbr>Type<wbr>Map</h3>
+					<div class="tsd-signature tsd-kind-icon">node<wbr>Type<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L714">context.ts:714</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="nodes" class="tsd-anchor"></a>
+					<h3>nodes</h3>
+					<div class="tsd-signature tsd-kind-icon">nodes<span class="tsd-signature-symbol">:</span> <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L783">context.ts:783</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="nodesinselectionbox" class="tsd-anchor"></a>
+					<h3>nodes<wbr>InSelection<wbr>Box</h3>
+					<div class="tsd-signature tsd-kind-icon">nodes<wbr>InSelection<wbr>Box<span class="tsd-signature-symbol">:</span> <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1088">context.ts:1088</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="notificationmessage" class="tsd-anchor"></a>
+					<h3>notification<wbr>Message</h3>
+					<div class="tsd-signature tsd-kind-icon">notification<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subject</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/diazoeditornotification.html" class="tsd-signature-type">DiazoEditorNotification</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Subject&lt;DiazoEditorNotification&gt;()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L738">context.ts:738</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="panx" class="tsd-anchor"></a>
+					<h3>panX</h3>
+					<div class="tsd-signature tsd-kind-icon">panX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L789">context.ts:789</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="pany" class="tsd-anchor"></a>
+					<h3>panY</h3>
+					<div class="tsd-signature tsd-kind-icon">panY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L790">context.ts:790</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="readonly" class="tsd-anchor"></a>
+					<h3>readonly</h3>
+					<div class="tsd-signature tsd-kind-icon">readonly<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L478">context.ts:478</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="redostates" class="tsd-anchor"></a>
+					<h3>redo<wbr>States</h3>
+					<div class="tsd-signature tsd-kind-icon">redo<wbr>States<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazoundostate.html" class="tsd-signature-type">DiazoUndoState</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L476">context.ts:476</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="selectednodes" class="tsd-anchor"></a>
+					<h3>selected<wbr>Nodes</h3>
+					<div class="tsd-signature tsd-kind-icon">selected<wbr>Nodes<span class="tsd-signature-symbol">:</span> <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L969">context.ts:969</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="selectionboxend" class="tsd-anchor"></a>
+					<h3>selection<wbr>Box<wbr>End</h3>
+					<div class="tsd-signature tsd-kind-icon">selection<wbr>Box<wbr>End<span class="tsd-signature-symbol">:</span> <a href="../interfaces/position.html" class="tsd-signature-type">Position</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1071">context.ts:1071</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="selectionboxstart" class="tsd-anchor"></a>
+					<h3>selection<wbr>Box<wbr>Start</h3>
+					<div class="tsd-signature tsd-kind-icon">selection<wbr>Box<wbr>Start<span class="tsd-signature-symbol">:</span> <a href="../interfaces/position.html" class="tsd-signature-type">Position</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1070">context.ts:1070</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="startdraftedge" class="tsd-anchor"></a>
+					<h3>start<wbr>Draft<wbr>Edge</h3>
+					<div class="tsd-signature tsd-kind-icon">start<wbr>Draft<wbr>Edge<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L796">context.ts:796</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="undostates" class="tsd-anchor"></a>
+					<h3>undo<wbr>States</h3>
+					<div class="tsd-signature tsd-kind-icon">undo<wbr>States<span class="tsd-signature-symbol">:</span> <a href="../interfaces/diazoundostate.html" class="tsd-signature-type">DiazoUndoState</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L475">context.ts:475</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="zoom" class="tsd-anchor"></a>
+					<h3>zoom</h3>
+					<div class="tsd-signature tsd-kind-icon">zoom<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 1</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L798">context.ts:798</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="edgecancelled" class="tsd-anchor"></a>
+					<h3>edge<wbr>Cancelled</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> edgeCancelled<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1361">context.ts:1361</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="edges" class="tsd-anchor"></a>
+					<h3>edges</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> edges<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> edges<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L942">context.ts:942</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L949">context.ts:949</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="graph" class="tsd-anchor"></a>
+					<h3>graph</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> graph<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> graph<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L466">context.ts:466</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L470">context.ts:470</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="panchanged" class="tsd-anchor"></a>
+					<h3>pan<wbr>Changed</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> panChanged<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/position.html" class="tsd-signature-type">Position</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L932">context.ts:932</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/position.html" class="tsd-signature-type">Position</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="selectionchanged" class="tsd-anchor"></a>
+					<h3>selection<wbr>Changed</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> selectionChanged<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L973">context.ts:973</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="valuetypeschanged" class="tsd-anchor"></a>
+					<h3>value<wbr>Types<wbr>Changed</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> valueTypesChanged<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L718">context.ts:718</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="zoomchanged" class="tsd-anchor"></a>
+					<h3>zoom<wbr>Changed</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> zoomChanged<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L928">context.ts:928</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addedgetosubgraph" class="tsd-anchor"></a>
+					<h3>add<wbr>Edge<wbr>ToSubgraph</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Edge<wbr>ToSubgraph<span class="tsd-signature-symbol">(</span>subgraph<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a>, edge<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L578">context.ts:578</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>subgraph: <a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a></h5>
+								</li>
+								<li>
+									<h5>edge: <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addnodetosubgraph" class="tsd-anchor"></a>
+					<h3>add<wbr>Node<wbr>ToSubgraph</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Node<wbr>ToSubgraph<span class="tsd-signature-symbol">(</span>subgraph<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a>, node<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L571">context.ts:571</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>subgraph: <a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a></h5>
+								</li>
+								<li>
+									<h5>node: <a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addtoselection" class="tsd-anchor"></a>
+					<h3>add<wbr>ToSelection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>ToSelection<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1007">context.ts:1007</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="allvaluetypes" class="tsd-anchor"></a>
+					<h3>all<wbr>Value<wbr>Types</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">all<wbr>Value<wbr>Types<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/diazovaluetype.html" class="tsd-signature-type">DiazoValueType</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L730">context.ts:730</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/diazovaluetype.html" class="tsd-signature-type">DiazoValueType</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="applynoderules" class="tsd-anchor"></a>
+					<h3>apply<wbr>Node<wbr>Rules</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">apply<wbr>Node<wbr>Rules<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L501">context.ts:501</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="canceledge" class="tsd-anchor"></a>
+					<h3>cancel<wbr>Edge</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">cancel<wbr>Edge<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1353">context.ts:1353</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="clampzoom" class="tsd-anchor"></a>
+					<h3>clamp<wbr>Zoom</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">clamp<wbr>Zoom<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L953">context.ts:953</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="clearselectionbox" class="tsd-anchor"></a>
+					<h3>clear<wbr>Selection<wbr>Box</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">clear<wbr>Selection<wbr>Box<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1065">context.ts:1065</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="clone" class="tsd-anchor"></a>
+					<h3>clone</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">clone<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L639">context.ts:639</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>object: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="collectsubgraph" class="tsd-anchor"></a>
+					<h3>collect<wbr>Subgraph</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">collect<wbr>Subgraph<span class="tsd-signature-symbol">(</span>entryNode<span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a>, subgraph<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L585">context.ts:585</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>entryNode: <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h5>
+								</li>
+								<li>
+									<h5>subgraph: <a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="commit" class="tsd-anchor"></a>
+					<h3>commit</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">commit<span class="tsd-signature-symbol">(</span>cause<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>graph<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a>, revert<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>silently<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L597">context.ts:597</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>cause: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>callback: <span class="tsd-signature-symbol">(</span>graph<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a>, revert<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>silently<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>graph<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a>, revert<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>silently<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>graph: <a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a></h5>
+														</li>
+														<li>
+															<h5>revert: <span class="tsd-signature-symbol">(</span>silently<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+															<ul class="tsd-parameters">
+																<li class="tsd-parameter-signature">
+																	<ul class="tsd-signatures tsd-kind-type-literal">
+																		<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>silently<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+																	</ul>
+																	<ul class="tsd-descriptions">
+																		<li class="tsd-description">
+																			<h4 class="tsd-parameters-title">Parameters</h4>
+																			<ul class="tsd-parameters">
+																				<li>
+																					<h5><span class="tsd-flag ts-flagOptional">Optional</span> silently: <span class="tsd-signature-type">boolean</span></h5>
+																				</li>
+																			</ul>
+																			<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+																		</li>
+																	</ul>
+																</li>
+															</ul>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="commitselectionbox" class="tsd-anchor"></a>
+					<h3>commit<wbr>Selection<wbr>Box</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">commit<wbr>Selection<wbr>Box<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1042">context.ts:1042</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="copy" class="tsd-anchor"></a>
+					<h3>copy</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">copy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1447">context.ts:1447</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createcopy" class="tsd-anchor"></a>
+					<h3>create<wbr>Copy</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Copy<span class="tsd-signature-symbol">(</span>graph<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1488">context.ts:1488</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>graph: <a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/diazograph.html" class="tsd-signature-type">DiazoGraph</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="deregisternode" class="tsd-anchor"></a>
+					<h3>deregister<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">deregister<wbr>Node<span class="tsd-signature-symbol">(</span>nodeContext<span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1184">context.ts:1184</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>nodeContext: <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="draftedgesnap" class="tsd-anchor"></a>
+					<h3>draft<wbr>Edge<wbr>Snap</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">draft<wbr>Edge<wbr>Snap<span class="tsd-signature-symbol">(</span>slot<span class="tsd-signature-symbol">: </span><a href="diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1289">context.ts:1289</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>slot: <a href="diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="draftedgeunsnap" class="tsd-anchor"></a>
+					<h3>draft<wbr>Edge<wbr>Unsnap</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">draft<wbr>Edge<wbr>Unsnap<span class="tsd-signature-symbol">(</span>slot<span class="tsd-signature-symbol">: </span><a href="diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1342">context.ts:1342</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>slot: <a href="diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="edgesareequal" class="tsd-anchor"></a>
+					<h3>edges<wbr>Are<wbr>Equal</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">edges<wbr>Are<wbr>Equal<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a>, b<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L840">context.ts:840</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>a: <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></h5>
+								</li>
+								<li>
+									<h5>b: <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="findedgetoreplace" class="tsd-anchor"></a>
+					<h3>find<wbr>Edge<wbr>ToReplace</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Edge<wbr>ToReplace<span class="tsd-signature-symbol">(</span>edge<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1219">context.ts:1219</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>edge: <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="findidenticaledge" class="tsd-anchor"></a>
+					<h3>find<wbr>Identical<wbr>Edge</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Identical<wbr>Edge<span class="tsd-signature-symbol">(</span>edge<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1192">context.ts:1192</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>edge: <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="finishedge" class="tsd-anchor"></a>
+					<h3>finish<wbr>Edge</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">finish<wbr>Edge<span class="tsd-signature-symbol">(</span>removedEdge<span class="tsd-signature-symbol">?: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1427">context.ts:1427</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> removedEdge: <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getentrynodes" class="tsd-anchor"></a>
+					<h3>get<wbr>Entry<wbr>Nodes</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Entry<wbr>Nodes<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L481">context.ts:481</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getnodebyid" class="tsd-anchor"></a>
+					<h3>get<wbr>Node<wbr>ById</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Node<wbr>ById<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1175">context.ts:1175</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getnodebystate" class="tsd-anchor"></a>
+					<h3>get<wbr>Node<wbr>ByState</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Node<wbr>ByState<span class="tsd-signature-symbol">(</span>state<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1171">context.ts:1171</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>state: <a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getslotbyids" class="tsd-anchor"></a>
+					<h3>get<wbr>Slot<wbr>ByIds</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Slot<wbr>ByIds<span class="tsd-signature-symbol">(</span>nodeId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, slotId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1162">context.ts:1162</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>nodeId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>slotId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getvaluetypebyid" class="tsd-anchor"></a>
+					<h3>get<wbr>Value<wbr>Type<wbr>ById</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Value<wbr>Type<wbr>ById<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/diazovaluetype.html" class="tsd-signature-type">DiazoValueType</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L734">context.ts:734</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/diazovaluetype.html" class="tsd-signature-type">DiazoValueType</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isnodeselected" class="tsd-anchor"></a>
+					<h3>is<wbr>Node<wbr>Selected</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Node<wbr>Selected<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L991">context.ts:991</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isvalid" class="tsd-anchor"></a>
+					<h3>is<wbr>Valid</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<span class="tsd-signature-symbol">(</span>edge<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a>, checkValue<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1238">context.ts:1238</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>edge: <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> checkValue: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onnodeadded" class="tsd-anchor"></a>
+					<h3>on<wbr>Node<wbr>Added</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Node<wbr>Added<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L493">context.ts:493</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onnodeupdated" class="tsd-anchor"></a>
+					<h3>on<wbr>Node<wbr>Updated</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Node<wbr>Updated<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L497">context.ts:497</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/diazonode.html" class="tsd-signature-type">DiazoNode</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="paste" class="tsd-anchor"></a>
+					<h3>paste</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">paste<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="../interfaces/position.html" class="tsd-signature-type">Position</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1524">context.ts:1524</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>position: <a href="../interfaces/position.html" class="tsd-signature-type">Position</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="redo" class="tsd-anchor"></a>
+					<h3>redo</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">redo<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L694">context.ts:694</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="registernode" class="tsd-anchor"></a>
+					<h3>register<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">register<wbr>Node<span class="tsd-signature-symbol">(</span>nodeContext<span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1179">context.ts:1179</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>nodeContext: <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+					<a name="registervaluetype" class="tsd-anchor"></a>
+					<h3>register<wbr>Value<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">register<wbr>Value<wbr>Type&lt;T&gt;<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L724">context.ts:724</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>constructor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">T</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="releasedraftnode" class="tsd-anchor"></a>
+					<h3>release<wbr>Draft<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">release<wbr>Draft<wbr>Node<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L900">context.ts:900</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removeedge" class="tsd-anchor"></a>
+					<h3>remove<wbr>Edge</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Edge<span class="tsd-signature-symbol">(</span>edge<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1214">context.ts:1214</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>edge: <a href="../interfaces/diazoedge.html" class="tsd-signature-type">DiazoEdge</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removeedgesfornode" class="tsd-anchor"></a>
+					<h3>remove<wbr>Edges<wbr>For<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Edges<wbr>For<wbr>Node<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L803">context.ts:803</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removefromselection" class="tsd-anchor"></a>
+					<h3>remove<wbr>From<wbr>Selection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>From<wbr>Selection<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1014">context.ts:1014</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removenode" class="tsd-anchor"></a>
+					<h3>remove<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Node<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L833">context.ts:833</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removeselectednodes" class="tsd-anchor"></a>
+					<h3>remove<wbr>Selected<wbr>Nodes</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Selected<wbr>Nodes<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L866">context.ts:866</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="screentograph" class="tsd-anchor"></a>
+					<h3>screen<wbr>ToGraph</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">screen<wbr>ToGraph<span class="tsd-signature-symbol">(</span>pos<span class="tsd-signature-symbol">: </span><a href="../interfaces/position.html" class="tsd-signature-type">Position</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>left<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>top<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1073">context.ts:1073</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>pos: <a href="../interfaces/position.html" class="tsd-signature-type">Position</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>left<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>top<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>left<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>top<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="selectall" class="tsd-anchor"></a>
+					<h3>select<wbr>All</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">select<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L981">context.ts:981</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="selectnode" class="tsd-anchor"></a>
+					<h3>select<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">select<wbr>Node<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1026">context.ts:1026</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setpan" class="tsd-anchor"></a>
+					<h3>set<wbr>Pan</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Pan<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L936">context.ts:936</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>y: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setselectionboxend" class="tsd-anchor"></a>
+					<h3>set<wbr>Selection<wbr>Box<wbr>End</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Selection<wbr>Box<wbr>End<span class="tsd-signature-symbol">(</span>pos<span class="tsd-signature-symbol">: </span><a href="../interfaces/position.html" class="tsd-signature-type">Position</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1083">context.ts:1083</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>pos: <a href="../interfaces/position.html" class="tsd-signature-type">Position</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setzoom" class="tsd-anchor"></a>
+					<h3>set<wbr>Zoom</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Zoom<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L962">context.ts:962</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="startedge" class="tsd-anchor"></a>
+					<h3>start<wbr>Edge</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">start<wbr>Edge<span class="tsd-signature-symbol">(</span>startNode<span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a>, startSlot<span class="tsd-signature-symbol">: </span><a href="diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a>, event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MouseEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1364">context.ts:1364</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>startNode: <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h5>
+								</li>
+								<li>
+									<h5>startSlot: <a href="diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a></h5>
+								</li>
+								<li>
+									<h5>event: <span class="tsd-signature-type">MouseEvent</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="startselectionat" class="tsd-anchor"></a>
+					<h3>start<wbr>Selection<wbr>At</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">start<wbr>Selection<wbr>At<span class="tsd-signature-symbol">(</span>pos<span class="tsd-signature-symbol">: </span><a href="../interfaces/position.html" class="tsd-signature-type">Position</a>, additive<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L1031">context.ts:1031</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>pos: <a href="../interfaces/position.html" class="tsd-signature-type">Position</a></h5>
+								</li>
+								<li>
+									<h5>additive: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="undo" class="tsd-anchor"></a>
+					<h3>undo</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">undo<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L675">context.ts:675</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="unselectall" class="tsd-anchor"></a>
+					<h3>unselect<wbr>All</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">unselect<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L986">context.ts:986</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="unselectnode" class="tsd-anchor"></a>
+					<h3>unselect<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">unselect<wbr>Node<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L855">context.ts:855</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="diazonodecontext.html" class="tsd-signature-type">DiazoNodeContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="valuescompatible" class="tsd-anchor"></a>
+					<h3>values<wbr>Compatible</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">values<wbr>Compatible<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazovalue.html" class="tsd-signature-type">DiazoValue</a>, b<span class="tsd-signature-symbol">: </span><a href="../interfaces/diazovalue.html" class="tsd-signature-type">DiazoValue</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L740">context.ts:740</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>a: <a href="../interfaces/diazovalue.html" class="tsd-signature-type">DiazoValue</a></h5>
+								</li>
+								<li>
+									<h5>b: <a href="../interfaces/diazovalue.html" class="tsd-signature-type">DiazoValue</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="accessor.html" class="tsd-kind-icon">Accessor</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="diazocontext.html" class="tsd-kind-icon">Diazo<wbr>Context</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="diazocontext.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#_selectionchanged" class="tsd-kind-icon">_selection<wbr>Changed</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#bufferededge" class="tsd-kind-icon">buffered<wbr>Edge</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#committing" class="tsd-kind-icon">committing</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#copiedgraph" class="tsd-kind-icon">copied<wbr>Graph</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#draftedge" class="tsd-kind-icon">draft<wbr>Edge</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#draftedgesourceevent" class="tsd-kind-icon">draft<wbr>Edge<wbr>Source<wbr>Event</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#draftnode" class="tsd-kind-icon">draft<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#edgebeingreplaced" class="tsd-kind-icon">edge<wbr>Being<wbr>Replaced</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#edgeundercursor" class="tsd-kind-icon">edge<wbr>Under<wbr>Cursor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#graphchanged" class="tsd-kind-icon">graph<wbr>Changed</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#gridsizex" class="tsd-kind-icon">grid<wbr>SizeX</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#gridsizey" class="tsd-kind-icon">grid<wbr>SizeY</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#locked" class="tsd-kind-icon">locked</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#maxzoom" class="tsd-kind-icon">max<wbr>Zoom</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#minzoom" class="tsd-kind-icon">min<wbr>Zoom</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#mouseinside" class="tsd-kind-icon">mouse<wbr>Inside</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#nodetypemap" class="tsd-kind-icon">node<wbr>Type<wbr>Map</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#nodes" class="tsd-kind-icon">nodes</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#nodesinselectionbox" class="tsd-kind-icon">nodes<wbr>InSelection<wbr>Box</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#notificationmessage" class="tsd-kind-icon">notification<wbr>Message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#panx" class="tsd-kind-icon">panX</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#pany" class="tsd-kind-icon">panY</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#readonly" class="tsd-kind-icon">readonly</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#redostates" class="tsd-kind-icon">redo<wbr>States</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#selectednodes" class="tsd-kind-icon">selected<wbr>Nodes</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#selectionboxend" class="tsd-kind-icon">selection<wbr>Box<wbr>End</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#selectionboxstart" class="tsd-kind-icon">selection<wbr>Box<wbr>Start</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#startdraftedge" class="tsd-kind-icon">start<wbr>Draft<wbr>Edge</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#undostates" class="tsd-kind-icon">undo<wbr>States</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="diazocontext.html#zoom" class="tsd-kind-icon">zoom</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="diazocontext.html#edgecancelled" class="tsd-kind-icon">edge<wbr>Cancelled</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="diazocontext.html#edges" class="tsd-kind-icon">edges</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="diazocontext.html#graph" class="tsd-kind-icon">graph</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="diazocontext.html#panchanged" class="tsd-kind-icon">pan<wbr>Changed</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="diazocontext.html#selectionchanged" class="tsd-kind-icon">selection<wbr>Changed</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="diazocontext.html#valuetypeschanged" class="tsd-kind-icon">value<wbr>Types<wbr>Changed</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="diazocontext.html#zoomchanged" class="tsd-kind-icon">zoom<wbr>Changed</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#addedgetosubgraph" class="tsd-kind-icon">add<wbr>Edge<wbr>ToSubgraph</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#addnodetosubgraph" class="tsd-kind-icon">add<wbr>Node<wbr>ToSubgraph</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#addtoselection" class="tsd-kind-icon">add<wbr>ToSelection</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#allvaluetypes" class="tsd-kind-icon">all<wbr>Value<wbr>Types</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#applynoderules" class="tsd-kind-icon">apply<wbr>Node<wbr>Rules</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#canceledge" class="tsd-kind-icon">cancel<wbr>Edge</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#clampzoom" class="tsd-kind-icon">clamp<wbr>Zoom</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#clearselectionbox" class="tsd-kind-icon">clear<wbr>Selection<wbr>Box</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#clone" class="tsd-kind-icon">clone</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#collectsubgraph" class="tsd-kind-icon">collect<wbr>Subgraph</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#commit" class="tsd-kind-icon">commit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#commitselectionbox" class="tsd-kind-icon">commit<wbr>Selection<wbr>Box</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#copy" class="tsd-kind-icon">copy</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#createcopy" class="tsd-kind-icon">create<wbr>Copy</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#deregisternode" class="tsd-kind-icon">deregister<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#draftedgesnap" class="tsd-kind-icon">draft<wbr>Edge<wbr>Snap</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#draftedgeunsnap" class="tsd-kind-icon">draft<wbr>Edge<wbr>Unsnap</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#edgesareequal" class="tsd-kind-icon">edges<wbr>Are<wbr>Equal</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#findedgetoreplace" class="tsd-kind-icon">find<wbr>Edge<wbr>ToReplace</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#findidenticaledge" class="tsd-kind-icon">find<wbr>Identical<wbr>Edge</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#finishedge" class="tsd-kind-icon">finish<wbr>Edge</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#getentrynodes" class="tsd-kind-icon">get<wbr>Entry<wbr>Nodes</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#getnodebyid" class="tsd-kind-icon">get<wbr>Node<wbr>ById</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#getnodebystate" class="tsd-kind-icon">get<wbr>Node<wbr>ByState</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#getslotbyids" class="tsd-kind-icon">get<wbr>Slot<wbr>ByIds</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#getvaluetypebyid" class="tsd-kind-icon">get<wbr>Value<wbr>Type<wbr>ById</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#isnodeselected" class="tsd-kind-icon">is<wbr>Node<wbr>Selected</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#onnodeadded" class="tsd-kind-icon">on<wbr>Node<wbr>Added</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#onnodeupdated" class="tsd-kind-icon">on<wbr>Node<wbr>Updated</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#paste" class="tsd-kind-icon">paste</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#redo" class="tsd-kind-icon">redo</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#registernode" class="tsd-kind-icon">register<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+								<a href="diazocontext.html#registervaluetype" class="tsd-kind-icon">register<wbr>Value<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#releasedraftnode" class="tsd-kind-icon">release<wbr>Draft<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#removeedge" class="tsd-kind-icon">remove<wbr>Edge</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#removeedgesfornode" class="tsd-kind-icon">remove<wbr>Edges<wbr>For<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#removefromselection" class="tsd-kind-icon">remove<wbr>From<wbr>Selection</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#removenode" class="tsd-kind-icon">remove<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#removeselectednodes" class="tsd-kind-icon">remove<wbr>Selected<wbr>Nodes</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#screentograph" class="tsd-kind-icon">screen<wbr>ToGraph</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#selectall" class="tsd-kind-icon">select<wbr>All</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#selectnode" class="tsd-kind-icon">select<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#setpan" class="tsd-kind-icon">set<wbr>Pan</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#setselectionboxend" class="tsd-kind-icon">set<wbr>Selection<wbr>Box<wbr>End</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#setzoom" class="tsd-kind-icon">set<wbr>Zoom</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#startedge" class="tsd-kind-icon">start<wbr>Edge</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#startselectionat" class="tsd-kind-icon">start<wbr>Selection<wbr>At</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#undo" class="tsd-kind-icon">undo</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#unselectall" class="tsd-kind-icon">unselect<wbr>All</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#unselectnode" class="tsd-kind-icon">unselect<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="diazocontext.html#valuescompatible" class="tsd-kind-icon">values<wbr>Compatible</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="diazonodecontext.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="diazopropertycontext.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="diazoslotcontext.html" class="tsd-kind-icon">Diazo<wbr>Slot<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="diazotypebase.html" class="tsd-kind-icon">Diazo<wbr>Type<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="wildcardtype.html" class="tsd-kind-icon">Wildcard<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazocustompropertytype.html" class="tsd-kind-icon">Diazo<wbr>Custom<wbr>Property<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazoedge.html" class="tsd-kind-icon">Diazo<wbr>Edge</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazoeditornotification.html" class="tsd-kind-icon">Diazo<wbr>Editor<wbr>Notification</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazograph.html" class="tsd-kind-icon">Diazo<wbr>Graph</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazonode.html" class="tsd-kind-icon">Diazo<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazonoderules.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Rules</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazonodeset.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Set</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazoproperty.html" class="tsd-kind-icon">Diazo<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazopropertybitmask.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Bitmask</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazopropertycell.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Cell</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazopropertyinlinematrix.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Inline<wbr>Matrix</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazopropertymatrix.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Matrix</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazopropertyoption.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazopropertyoptiongroup.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Option<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazopropertyset.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Set</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazoslot.html" class="tsd-kind-icon">Diazo<wbr>Slot</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazoslotrule.html" class="tsd-kind-icon">Diazo<wbr>Slot<wbr>Rule</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazoundostate.html" class="tsd-kind-icon">Diazo<wbr>Undo<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazovalue.html" class="tsd-kind-icon">Diazo<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/diazovaluetype.html" class="tsd-kind-icon">Diazo<wbr>Value<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/position.html" class="tsd-kind-icon">Position</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/size.html" class="tsd-kind-icon">Size</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#diazo_model" class="tsd-kind-icon">DIAZO_<wbr>MODEL</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#multiple_values" class="tsd-kind-icon">MULTIPLE_<wbr>VALUES</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#pointonline" class="tsd-kind-icon">point<wbr>OnLine</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#template" class="tsd-kind-icon">template</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

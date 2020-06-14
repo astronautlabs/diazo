@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DiazoPropertyMatrix | @diazo/model</title>
+	<title>DiazoEditorNotification | @diazo/model</title>
 	<meta name="description" content="Documentation for @diazo/model">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="diazopropertymatrix.html">DiazoPropertyMatrix</a>
+					<a href="diazoeditornotification.html">DiazoEditorNotification</a>
 				</li>
 			</ul>
-			<h1>Interface DiazoPropertyMatrix</h1>
+			<h1>Interface DiazoEditorNotification</h1>
 		</div>
 	</div>
 </header>
@@ -66,13 +66,20 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Used to represent a text notification that should be shown in the UI.
+							This is used by the <a href="../classes/diazocontext.html">context</a> layer to signal the
+							{@link DiazoEditorComponent | Diazo editor} to show a message
+							via the snack bar (floating notifications shown along the bottom of
+						the viewport).</p>
+					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DiazoPropertyMatrix</span>
+						<span class="target">DiazoEditorNotification</span>
 					</li>
 				</ul>
 			</section>
@@ -83,9 +90,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazopropertymatrix.html#cells" class="tsd-kind-icon">cells</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazopropertymatrix.html#height" class="tsd-kind-icon">height</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazopropertymatrix.html#width" class="tsd-kind-icon">width</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazoeditornotification.html#message" class="tsd-kind-icon">message</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,32 +99,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="cells" class="tsd-anchor"></a>
-					<h3>cells</h3>
-					<div class="tsd-signature tsd-kind-icon">cells<span class="tsd-signature-symbol">:</span> <a href="diazopropertycell.html" class="tsd-signature-type">DiazoPropertyCell</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/model/property-matrix.ts#L9">model/property-matrix.ts:9</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="height" class="tsd-anchor"></a>
-					<h3>height</h3>
-					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/model/property-matrix.ts#L8">model/property-matrix.ts:8</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="width" class="tsd-anchor"></a>
-					<h3>width</h3>
-					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/model/property-matrix.ts#L7">model/property-matrix.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L62">context.ts:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -162,9 +147,18 @@
 					<li class=" tsd-kind-interface">
 						<a href="diazoedge.html" class="tsd-kind-icon">Diazo<wbr>Edge</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="diazoeditornotification.html" class="tsd-kind-icon">Diazo<wbr>Editor<wbr>Notification</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazoeditornotification.html#message" class="tsd-kind-icon">message</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="diazograph.html" class="tsd-kind-icon">Diazo<wbr>Graph</a>
 					</li>
@@ -189,24 +183,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="diazopropertyinlinematrix.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Inline<wbr>Matrix</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="diazopropertymatrix.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Matrix</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diazopropertymatrix.html#cells" class="tsd-kind-icon">cells</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diazopropertymatrix.html#height" class="tsd-kind-icon">height</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diazopropertymatrix.html#width" class="tsd-kind-icon">width</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="diazopropertyoption.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Option</a>
 					</li>

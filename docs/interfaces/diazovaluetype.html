@@ -1,0 +1,602 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>DiazoValueType | @diazo/model</title>
+	<meta name="description" content="Documentation for @diazo/model">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@diazo/model</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="diazovaluetype.html">DiazoValueType</a>
+				</li>
+			</ul>
+			<h1>Interface DiazoValueType</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Value types define the appearance and behavior of node slots within a graph.
+							Types are cooperatively convertible. This means that when a user is creating
+						an edge between two slots with different value types:</p>
+						<ul>
+							<li>If either the source or destination value type allows an
+								implicit conversion<ul>
+									<li>Then, the conversion is allowed and the connection
+									is created.</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<p>All edges are validated using this simple type system. From this simple
+						interface we can construct a large number of possible schemes for validating
+					a connection between two slots in the graph.</p>
+					<p>For instance, <a href="../classes/diazotypebase.html"><code>DiazoTypeBase</code></a> provides an easy way to implement
+						this interface, providing validation based on the inheritance heirarchy of
+						the classes involved. For most applications of value types this is the
+						obvious solution, and the low-level <code>isCompatible()</code> API is provided as an
+						escape hatch to implement a wide variety of possible connection validation
+						strategies. We use this within the Diazo editor to implement
+					<a href="../classes/wildcardtype.html"><code>WildcardType</code></a> for example.</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">DiazoValueType</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/wildcardtype.html" class="tsd-signature-type">WildcardType</a></li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazovaluetype.html#color" class="tsd-kind-icon">color</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazovaluetype.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazovaluetype.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazovaluetype.html#linewidth" class="tsd-kind-icon">line<wbr>Width</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazovaluetype.html#mergeable" class="tsd-kind-icon">mergeable</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazovaluetype.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazovaluetype.html#slotshape" class="tsd-kind-icon">slot<wbr>Shape</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazovaluetype.html#splittable" class="tsd-kind-icon">splittable</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="diazovaluetype.html#getcolorbycontext" class="tsd-kind-icon">get<wbr>Color<wbr>ByContext</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="diazovaluetype.html#getnamebycontext" class="tsd-kind-icon">get<wbr>Name<wbr>ByContext</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="diazovaluetype.html#getslotshapebycontext" class="tsd-kind-icon">get<wbr>Slot<wbr>Shape<wbr>ByContext</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="diazovaluetype.html#iscompatible" class="tsd-kind-icon">is<wbr>Compatible</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="color" class="tsd-anchor"></a>
+					<h3>color</h3>
+					<div class="tsd-signature tsd-kind-icon">color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L394">context.ts:394</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The HTML/CSS color which should be used to render edges
+							which have a value of this type.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="description" class="tsd-anchor"></a>
+					<h3>description</h3>
+					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L405">context.ts:405</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A short description for this value type</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L388">context.ts:388</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Specifies the registered ID for this value type.
+								This must be distinct across the editor where this
+								value type is loaded. A slot will reference this ID
+							in its <code>value</code> definition:</p>
+						</div>
+						<pre><code class="language-typescript"><span class="hljs-keyword">let</span> slot : DiazoSlot = {
+  <span class="hljs-comment">// ...</span>
+  value: { <span class="hljs-keyword">type</span>: <span class="hljs-string">'IDHERE'</span> }
+}</code></pre>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="linewidth" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> line<wbr>Width</h3>
+					<div class="tsd-signature tsd-kind-icon">line<wbr>Width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L416">context.ts:416</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The line width for edges that have a value of this type</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="mergeable" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> mergeable</h3>
+					<div class="tsd-signature tsd-kind-icon">mergeable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L430">context.ts:430</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>When true, the editor will consider edges where the destination slot is
+								already connected to be valid. Otherwise such edges will be considered
+							invalid.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L400">context.ts:400</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of this value, this will be used in tooltips and
+							other hints in the UI.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="slotshape" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> slot<wbr>Shape</h3>
+					<div class="tsd-signature tsd-kind-icon">slot<wbr>Shape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"circle"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"square"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"arrow"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L411">context.ts:411</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The shape that should be used for the slot handle on the node within
+							the editor.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="splittable" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> splittable</h3>
+					<div class="tsd-signature tsd-kind-icon">splittable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L423">context.ts:423</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>When true, the editor will consider edges where the source slot is
+								already connected to be valid. Otherwise such edges will be considered
+							invalid.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getcolorbycontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> get<wbr>Color<wbr>ByContext</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Color<wbr>ByContext<span class="tsd-signature-symbol">(</span>slot<span class="tsd-signature-symbol">: </span><a href="../classes/diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L446">context.ts:446</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>When defined, the editor will call this function to determine what color
+										to use for edges of this value type within the editor, passing in the slot
+										related to the request. This can be used to customize the color used for
+									this value type based on the context of where it appears.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>slot: <a href="../classes/diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getnamebycontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> get<wbr>Name<wbr>ByContext</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Name<wbr>ByContext<span class="tsd-signature-symbol">(</span>slot<span class="tsd-signature-symbol">: </span><a href="../classes/diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L438">context.ts:438</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>When defined, the editor will call this function to determine what name
+										to show within the editor, passing in the slot related to the request.
+										This can be used to customize the name shown for this value type based
+									on the context of where it appears.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>slot: <a href="../classes/diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getslotshapebycontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> get<wbr>Slot<wbr>Shape<wbr>ByContext</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Slot<wbr>Shape<wbr>ByContext<span class="tsd-signature-symbol">(</span>slot<span class="tsd-signature-symbol">: </span><a href="../classes/diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"circle"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"square"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"arrow"</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L453">context.ts:453</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>When defined, the editor will call this function to determine what shape
+									to use for the editor handles of slots which have values of this type.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>slot: <a href="../classes/diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">"circle"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"square"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"arrow"</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="iscompatible" class="tsd-anchor"></a>
+					<h3>is<wbr>Compatible</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Compatible<span class="tsd-signature-symbol">(</span>output<span class="tsd-signature-symbol">: </span><a href="../classes/diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a>, input<span class="tsd-signature-symbol">: </span><a href="../classes/diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L370">context.ts:370</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This function should analyze a pair of slots, represented
+										as editor context objects, and determine if a connection is
+										allowed between them. The graph state at this point does not
+										reflect the new connection between the two, only edges existing
+									before the new edge was added will be present.</p>
+								</div>
+								<p>It is guaranteed that at least one of the <code>output</code> and/or <code>input</code>
+									slots have specified a value of this type. This method is only
+								called for interactions which involve this value type.</p>
+								<p>Implementations could:</p>
+								<ul>
+									<li>Consider what existing edges already exist between the slots</li>
+									<li>Consider the <code>value</code> of the input and the output slots</li>
+									<li>Consider the state of the graph as a whole</li>
+									<li>Consider the state of the containing application</li>
+									<li>Anything else inferrable given the context of your domain</li>
+								</ul>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>output: <a href="../classes/diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a></h5>
+								</li>
+								<li>
+									<h5>input: <a href="../classes/diazoslotcontext.html" class="tsd-signature-type">DiazoSlotContext</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="../classes/accessor.html" class="tsd-kind-icon">Accessor</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/diazocontext.html" class="tsd-kind-icon">Diazo<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/diazonodecontext.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/diazopropertycontext.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/diazoslotcontext.html" class="tsd-kind-icon">Diazo<wbr>Slot<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/diazotypebase.html" class="tsd-kind-icon">Diazo<wbr>Type<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/wildcardtype.html" class="tsd-kind-icon">Wildcard<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazocustompropertytype.html" class="tsd-kind-icon">Diazo<wbr>Custom<wbr>Property<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazoedge.html" class="tsd-kind-icon">Diazo<wbr>Edge</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazoeditornotification.html" class="tsd-kind-icon">Diazo<wbr>Editor<wbr>Notification</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazograph.html" class="tsd-kind-icon">Diazo<wbr>Graph</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazonode.html" class="tsd-kind-icon">Diazo<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazonoderules.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Rules</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazonodeset.html" class="tsd-kind-icon">Diazo<wbr>Node<wbr>Set</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazoproperty.html" class="tsd-kind-icon">Diazo<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazopropertybitmask.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Bitmask</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazopropertycell.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Cell</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazopropertyinlinematrix.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Inline<wbr>Matrix</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazopropertymatrix.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Matrix</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazopropertyoption.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazopropertyoptiongroup.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Option<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazopropertyset.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Set</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazoslot.html" class="tsd-kind-icon">Diazo<wbr>Slot</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazoslotrule.html" class="tsd-kind-icon">Diazo<wbr>Slot<wbr>Rule</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazoundostate.html" class="tsd-kind-icon">Diazo<wbr>Undo<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="diazovalue.html" class="tsd-kind-icon">Diazo<wbr>Value</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
+						<a href="diazovaluetype.html" class="tsd-kind-icon">Diazo<wbr>Value<wbr>Type</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#color" class="tsd-kind-icon">color</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#description" class="tsd-kind-icon">description</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#linewidth" class="tsd-kind-icon">line<wbr>Width</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#mergeable" class="tsd-kind-icon">mergeable</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#slotshape" class="tsd-kind-icon">slot<wbr>Shape</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#splittable" class="tsd-kind-icon">splittable</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#getcolorbycontext" class="tsd-kind-icon">get<wbr>Color<wbr>ByContext</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#getnamebycontext" class="tsd-kind-icon">get<wbr>Name<wbr>ByContext</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#getslotshapebycontext" class="tsd-kind-icon">get<wbr>Slot<wbr>Shape<wbr>ByContext</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="diazovaluetype.html#iscompatible" class="tsd-kind-icon">is<wbr>Compatible</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="position.html" class="tsd-kind-icon">Position</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="size.html" class="tsd-kind-icon">Size</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#diazo_model" class="tsd-kind-icon">DIAZO_<wbr>MODEL</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#multiple_values" class="tsd-kind-icon">MULTIPLE_<wbr>VALUES</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#pointonline" class="tsd-kind-icon">point<wbr>OnLine</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#template" class="tsd-kind-icon">template</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

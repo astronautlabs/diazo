@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DiazoPropertyMatrix | @diazo/model</title>
+	<title>DiazoUndoState | @diazo/model</title>
 	<meta name="description" content="Documentation for @diazo/model">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="diazopropertymatrix.html">DiazoPropertyMatrix</a>
+					<a href="diazoundostate.html">DiazoUndoState</a>
 				</li>
 			</ul>
-			<h1>Interface DiazoPropertyMatrix</h1>
+			<h1>Interface DiazoUndoState</h1>
 		</div>
 	</div>
 </header>
@@ -66,13 +66,16 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a saved Undo/Redo state within the <a href="../classes/diazocontext.html">context</a> layer.</p>
+					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DiazoPropertyMatrix</span>
+						<span class="target">DiazoUndoState</span>
 					</li>
 				</ul>
 			</section>
@@ -83,9 +86,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazopropertymatrix.html#cells" class="tsd-kind-icon">cells</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazopropertymatrix.html#height" class="tsd-kind-icon">height</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazopropertymatrix.html#width" class="tsd-kind-icon">width</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazoundostate.html#cause" class="tsd-kind-icon">cause</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazoundostate.html#graphafter" class="tsd-kind-icon">graph<wbr>After</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diazoundostate.html#graphbefore" class="tsd-kind-icon">graph<wbr>Before</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,32 +97,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="cells" class="tsd-anchor"></a>
-					<h3>cells</h3>
-					<div class="tsd-signature tsd-kind-icon">cells<span class="tsd-signature-symbol">:</span> <a href="diazopropertycell.html" class="tsd-signature-type">DiazoPropertyCell</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="cause" class="tsd-anchor"></a>
+					<h3>cause</h3>
+					<div class="tsd-signature tsd-kind-icon">cause<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/model/property-matrix.ts#L9">model/property-matrix.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L72">context.ts:72</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="height" class="tsd-anchor"></a>
-					<h3>height</h3>
-					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="graphafter" class="tsd-anchor"></a>
+					<h3>graph<wbr>After</h3>
+					<div class="tsd-signature tsd-kind-icon">graph<wbr>After<span class="tsd-signature-symbol">:</span> <a href="diazograph.html" class="tsd-signature-type">DiazoGraph</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/model/property-matrix.ts#L8">model/property-matrix.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L71">context.ts:71</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="width" class="tsd-anchor"></a>
-					<h3>width</h3>
-					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="graphbefore" class="tsd-anchor"></a>
+					<h3>graph<wbr>Before</h3>
+					<div class="tsd-signature tsd-kind-icon">graph<wbr>Before<span class="tsd-signature-symbol">:</span> <a href="diazograph.html" class="tsd-signature-type">DiazoGraph</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/model/property-matrix.ts#L7">model/property-matrix.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/rezonant/diazo-model/blob/3be5700/src/context.ts#L70">context.ts:70</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,24 +192,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="diazopropertyinlinematrix.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Inline<wbr>Matrix</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="diazopropertymatrix.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Matrix</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diazopropertymatrix.html#cells" class="tsd-kind-icon">cells</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diazopropertymatrix.html#height" class="tsd-kind-icon">height</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diazopropertymatrix.html#width" class="tsd-kind-icon">width</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="diazopropertyoption.html" class="tsd-kind-icon">Diazo<wbr>Property<wbr>Option</a>
 					</li>
@@ -222,9 +210,24 @@
 					<li class=" tsd-kind-interface">
 						<a href="diazoslotrule.html" class="tsd-kind-icon">Diazo<wbr>Slot<wbr>Rule</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="diazoundostate.html" class="tsd-kind-icon">Diazo<wbr>Undo<wbr>State</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazoundostate.html#cause" class="tsd-kind-icon">cause</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazoundostate.html#graphafter" class="tsd-kind-icon">graph<wbr>After</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="diazoundostate.html#graphbefore" class="tsd-kind-icon">graph<wbr>Before</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="diazovalue.html" class="tsd-kind-icon">Diazo<wbr>Value</a>
 					</li>
