@@ -1,7 +1,7 @@
 # @diazo/model
 
 [Github](https://github.com/astronautlabs/diazo-model) 
-| [NPM](https://npmjs.com/package/@astronautlabs/diazo-model)
+| [NPM](https://npmjs.com/package/@diazo/model)
 | [Angular Documentation](https://astronautlabs.github.io/diazo/) 
 | [Model Documentation](https://astronautlabs.github.io/diazo-model)
 
