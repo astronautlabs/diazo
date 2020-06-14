@@ -2,7 +2,8 @@
 
 [GitHub](https://github.com/astronautlabs/diazo)
 | [NPM](https://npmjs.com/package/diazo)
-| [Documentation](https://astronautlabs.github.io/diazo/) 
+| [Angular Documentation](https://astronautlabs.github.io/diazo/) 
+| [Model Documentation](https://astronautlabs.github.io/diazo-model)
 | [Example](https://github.com/astronautlabs/diazo-example)
 
 An MIT-licensed slot-driven directed-acyclical-graph (DAG) editor for Angular. This 
@@ -15,6 +16,13 @@ Unreal Engine. Diazo itself is just the editor that would power such
 an experience, and the library itself is completely domain-agnostic. 
 You can use Diazo in your apps to introduce visual node-graph functionality 
 in any domain where it makes sense to apply it, and we encourage you to do so!
+
+## Where can I find docs for DiazoGraph?
+
+The types for the actual graph data that Diazo edits can be found 
+in the [@diazo/model](https://github.com/) module. 
+[Click here](https://astronautlabs.github.io/diazo-model) to jump to its
+documentation.
 
 ## Concepts
 
