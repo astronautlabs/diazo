@@ -5,9 +5,9 @@
 | [Angular Documentation](https://astronautlabs.github.io/diazo/) 
 | [Model Documentation](https://astronautlabs.github.io/diazo-model)
 
-This package specifies Typescript types for [Diazo](https://github.com/
-astronautlabs/diazo) graphs, as well as defines its "context" layer, which is 
-the non-UI specific portions of the editor.
+This package specifies Typescript types for 
+[Diazo](https://github.com/astronautlabs/diazo) graphs, as well as defines 
+its "context" layer, which is the non-UI specific portions of the editor.
 
 # Installation 
 
