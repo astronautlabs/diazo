@@ -321,6 +321,7 @@ export class EditorComponent {
     }
     set availableNodes(value) {
         this._availableNodes = value;
+        this.updateSelectedNodeSets();
         if (this._graph)
             this.inflateGraph(this._graph);
     }
