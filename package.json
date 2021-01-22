@@ -25,7 +25,7 @@
   "devDependencies": {
     "@types/uuid": "^8.0.0",
     "rimraf": "^3.0.2",
-    "typedoc": "^0.17.7"
+    "typedoc": "^0.17.8"
   },
   "dependencies": {
     "@astronautlabs/jsonpath": "^1.0.8",
