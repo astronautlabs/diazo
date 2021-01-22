@@ -20,7 +20,10 @@
     "docs": "typedoc .",
     "test": "npm run build"
   },
-  "author": "",
+  "author": {
+    "name": "Astronaut Labs, LLC.",
+    "url": "https://astronautlabs.com/"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/uuid": "^8.0.0",
