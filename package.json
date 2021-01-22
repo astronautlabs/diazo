@@ -5,6 +5,7 @@
     "name": "Astronaut Labs, LLC.",
     "url": "https://astronautlabs.com/"
   },
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
