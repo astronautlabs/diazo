@@ -1,6 +1,10 @@
 {
   "name": "@astronautlabs/diazo-workspace",
   "version": "0.0.1",
+  "author": {
+    "name": "Astronaut Labs, LLC.",
+    "url": "https://astronautlabs.com/"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
