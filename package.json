@@ -16,6 +16,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc -p .",
+    "prepublishOnly": "npm run build && npm run docs",
     "docs": "typedoc .",
     "test": "npm run build"
   },
