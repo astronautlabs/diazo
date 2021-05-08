@@ -2,13 +2,15 @@
     <label *ngIf="node.style !== 'inline'">
         {{M?.label}}
     </label>
-    <main>
+    <div class="component">
         <dz-node-host 
             *ngIf="component"
             [component]="component" 
             (instanceChanged)="instance = $event"
             ></dz-node-host>
+    </div>
 
+    <main>
         <div class="inputs">
             <ng-container *ngFor="let slot of (instance?.slots || node?.slots || [])">
                 <dz-slot 
