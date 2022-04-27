@@ -28,18 +28,6 @@
             "tsConfig": "projects/diazo/tsconfig.spec.json",
             "karmaConfig": "projects/diazo/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/diazo/tsconfig.lib.json",
-              "projects/diazo/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     }},
