@@ -3,34 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "diazo": {
-      "projectType": "library",
-      "root": "projects/diazo",
-      "sourceRoot": "projects/diazo/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/diazo/tsconfig.lib.json",
-            "project": "projects/diazo/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/diazo/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/diazo/src/test.ts",
-            "tsConfig": "projects/diazo/tsconfig.spec.json",
-            "karmaConfig": "projects/diazo/karma.conf.js"
-          }
-        }
-      }
-    },
     "diazo-example": {
       "projectType": "application",
       "schematics": {
@@ -38,8 +10,8 @@
           "style": "scss"
         }
       },
-      "root": "projects/diazo-example",
-      "sourceRoot": "projects/diazo-example/src",
+      "root": "",
+      "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
@@ -47,18 +19,18 @@
           "options": {
             "preserveSymlinks": true,
             "outputPath": "dist",
-            "index": "projects/diazo-example/src/index.html",
-            "main": "projects/diazo-example/src/main.ts",
-            "polyfills": "projects/diazo-example/src/polyfills.ts",
-            "tsConfig": "projects/diazo-example/tsconfig.app.json",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/diazo-example/src/favicon.ico",
-              "projects/diazo-example/src/assets"
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "projects/diazo-example/src/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -156,8 +128,8 @@
       }
     }
   },
+  "defaultProject": "diazo-example",
   "cli": {
-    "analytics": "e10ae426-62cf-4a19-bfed-291233281245"
-  },
-  "defaultProject": "diazo-example"
+    "analytics": "155cc17b-bcc4-4bf9-881d-9779adfa3d7b"
+  }
 }

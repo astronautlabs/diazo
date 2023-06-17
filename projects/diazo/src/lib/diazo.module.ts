@@ -9,7 +9,7 @@ import { EditorComponent } from './editor/editor.component';
 import { NodeSourceButtonComponent } from './node-source-button/node-source-button.component';
 import { TrustHtmlPipe } from './trust-html.pipe';
 import { PropertyEditorHostComponent } from './property-editor-host/property-editor-host.component';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { MonacoEditorModule } from '@astronautlabs/monaco';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';

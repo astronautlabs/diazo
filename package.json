@@ -30,7 +30,7 @@
     "@angular/router": "~13.3.4",
     "@astronautlabs/jsonpath": "1.1",
     "@types/uuid": "^8.0.0",
-    "ngx-monaco-editor": "^12.0.0",
+    "ngx-monaco-editor": "^14.0.0",
     "rxjs": "~6.5.4",
     "subsink": "^1.0.1",
     "tslib": "^2.0.0",

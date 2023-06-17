@@ -1,0 +1,15 @@
+
+<h1>Diazo Example</h1>
+
+<mat-checkbox [(ngModel)]="readonly">Readonly</mat-checkbox>
+&nbsp;
+<mat-checkbox [(ngModel)]="active">Active</mat-checkbox>
+
+<dz-editor 
+    [graph]="myGraph"
+    [readonly]="readonly"
+    [active]="active"
+    (graphChanged)="onGraphChanged($event)"
+    (contextChanged)="onContextChanged($event)"
+    (saveRequested)="onSaveRequested()"
+    [availableNodes]="availableNodes"></dz-editor>
