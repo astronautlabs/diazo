@@ -34,11 +34,11 @@ Diazo uses Angular Material. Make sure it is installed before continuing:
 ng add @angular/material
 ```
 
-Diazo also depends on `ngx-monaco-editor` (an Angular package for using 
+Diazo also depends on `@astronautlabs/monaco` (an Angular package for using 
 Microsoft's Monaco code editor component):
 
 ```
-npm i ngx-monaco-editor diazo
+npm i diazo @astronautlabs/monaco
 ```
 
 Now add DiazoModule to your Angular module's list of imports:

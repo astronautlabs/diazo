@@ -1,0 +1,24 @@
+{
+  "name": "@diazo/workspace",
+  "version": "1.0.0",
+  "description": "[NPM](https://npmjs.com/package/diazo) | [Angular Documentation](https://astronautlabs.github.io/diazo/)  | [Model Documentation](https://astronautlabs.github.io/diazo-model) | [Try it out](https://astronautlabs.github.io/diazo-example/)",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/astronautlabs/diazo.git"
+  },
+  "author": "Astronaut Labs, LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/astronautlabs/diazo/issues"
+  },
+  "workspaces": [
+    "packages/frontend",
+    "packages/model"
+  ],
+  "homepage": "https://github.com/astronautlabs/diazo#readme"
+}
