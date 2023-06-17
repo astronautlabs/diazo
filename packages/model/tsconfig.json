@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "target": "ES5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "declarationDir": "dist",
+        "outDir": "dist"
+    },
+    "typedocOptions": {
+        "mode": "file",
+        "out": "docs",
+        "target": "ES5",
+        "excludeExternals": true,
+        "excludePrivate": true,
+        "externalPattern": "**/node_modules/**",
+        "exclude": "**/node_modules/**"
+    }
+}

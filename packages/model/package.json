@@ -1,0 +1,39 @@
+{
+  "name": "@diazo/model",
+  "version": "1.0.7",
+  "access": "public",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "url": "https://github.com/astronautlabs/diazo-model.git",
+    "type": "git"
+  },
+  "homepage": "https://github.com/astronautlabs/diazo-model",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc -p .",
+    "prepublishOnly": "npm run build && npm run docs",
+    "docs": "typedoc .",
+    "test": "npm run build"
+  },
+  "author": {
+    "name": "Astronaut Labs, LLC.",
+    "url": "https://astronautlabs.com/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/uuid": "^8.0.0",
+    "rimraf": "^3.0.2",
+    "typedoc": "^0.17.8"
+  },
+  "dependencies": {
+    "@astronautlabs/jsonpath": "^1.0.8",
+    "rxjs": "^6.5.5",
+    "subsink": "^1.0.1",
+    "uuid": "^8.1.0"
+  }
+}
