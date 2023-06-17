@@ -113,13 +113,13 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "projects/diazo-example/src/test.ts",
+            "polyfills": "projects/diazo-example/src/polyfills.ts",
+            "tsConfig": "projects/diazo-example/tsconfig.spec.json",
+            "karmaConfig": "projects/diazo-example/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/diazo-example/src/favicon.ico",
+              "projects/diazo-example/src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -132,9 +132,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "projects/diazo-example/tsconfig.app.json",
+              "projects/diazo-example/tsconfig.spec.json",
+              "projects/diazo-example/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
