@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "[NPM](https://npmjs.com/package/diazo) | [Angular Documentation](https://astronautlabs.github.io/diazo/)  | [Model Documentation](https://astronautlabs.github.io/diazo-model) | [Try it out](https://astronautlabs.github.io/diazo-example/)",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "lerna": "^5.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +13,10 @@
     "type": "git",
     "url": "git+https://github.com/astronautlabs/diazo.git"
   },
+  "workspaces": [
+    "packages/frontend",
+    "packages/model"
+  ],
   "author": "Astronaut Labs, LLC",
   "license": "MIT",
   "bugs": {
