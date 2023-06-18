@@ -632,15 +632,15 @@ export class EditorComponent {
      * @hidden
      */
     findTemplateNode(node : DiazoNode) {
-        if (!node.data || !node.data.unit)
+        if (!node.data?.unit)
             return null;
         
         for (let set of this.availableNodes) {
             let templateNode : DiazoNode;
 
-            templateNode = set.nodes.find(x => x.data.variant && x.data.variant === node.data.variant);
+            templateNode = set.nodes.find(x => x.data?.variant && x.data?.variant === node.data?.variant);
             if (!templateNode)
-                templateNode = set.nodes.find(x => x.data.unit === node.data.unit);
+                templateNode = set.nodes.find(x => x.data?.unit === node.data?.unit);
 
             if (templateNode)
                 return templateNode;
