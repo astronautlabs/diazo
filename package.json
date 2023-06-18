@@ -16,9 +16,5 @@
   "bugs": {
     "url": "https://github.com/astronautlabs/diazo/issues"
   },
-  "workspaces": [
-    "packages/frontend",
-    "packages/model"
-  ],
   "homepage": "https://github.com/astronautlabs/diazo#readme"
 }
