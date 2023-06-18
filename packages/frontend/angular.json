@@ -158,6 +158,5 @@
   },
   "cli": {
     "analytics": "e10ae426-62cf-4a19-bfed-291233281245"
-  },
-  "defaultProject": "diazo-example"
+  }
 }
