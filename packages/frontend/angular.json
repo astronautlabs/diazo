@@ -46,7 +46,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "preserveSymlinks": true,
-            "outputPath": "dist",
+            "outputPath": "dist/example",
             "index": "projects/diazo-example/src/index.html",
             "main": "projects/diazo-example/src/main.ts",
             "polyfills": "projects/diazo-example/src/polyfills.ts",
