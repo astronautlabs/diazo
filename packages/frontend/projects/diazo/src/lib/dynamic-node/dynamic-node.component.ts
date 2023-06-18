@@ -1,4 +1,4 @@
-import { Component, Input, ComponentFactoryResolver, Injector } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Accessor, DiazoNode } from '@diazo/model';
 
 /**

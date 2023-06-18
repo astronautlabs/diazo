@@ -76,7 +76,14 @@
         <div class="toolbar">
             <ng-container *ngIf="showProperties">
                 <label>
-                    Properties
+                    <span #customEmptySidebarLabel>
+                        <ng-container *ngIf="selectedNodes.length === 0">
+                            <ng-content select=".empty-sidebar-label"></ng-content>
+                        </ng-container>
+                    </span>
+                    <ng-container *ngIf="selectedNodes.length > 0 || customEmptySidebarLabel?.childElementCount === 0">
+                        Properties
+                    </ng-container>
                 </label>
                 <div class="spacer"></div>
             </ng-container>
@@ -90,7 +97,8 @@
 
         <ng-container *ngIf="showProperties">
             <ng-container *ngIf="selectedNodes.length === 0">
-                <div class="nothing-selected">
+                <div #customEmptySidebar><ng-content select=".empty-sidebar"></ng-content></div>
+                <div class="nothing-selected" *ngIf="customEmptySidebar.childElementCount === 0">
                     <em>Select a node to view its properties.</em>
                 </div>
             </ng-container>

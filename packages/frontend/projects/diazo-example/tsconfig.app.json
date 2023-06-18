@@ -2,7 +2,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "diazo": ["../diazo/src/public-api"]
+    }
   },
   "files": [
     "src/main.ts",

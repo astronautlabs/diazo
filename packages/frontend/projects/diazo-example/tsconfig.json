@@ -17,6 +17,7 @@
     ],
     "paths": {
       "diazo": [
+        "../../dist/diazo/diazo",
         "../../dist/diazo"
       ]
     },
