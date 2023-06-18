@@ -9,7 +9,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "ng build diazo-example --configuration production",
     "build:watch": "ng build --watch",
     "start:lib": "ng build diazo --watch",
     "build:lib": "ng build diazo --configuration production",

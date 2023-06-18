@@ -8,6 +8,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
+import { MonacoEditorModule } from '@astronautlabs/monaco';
 @NgModule({
   declarations: [
     AppComponent
@@ -17,6 +18,9 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     FormsModule,
     DiazoModule,
+    MonacoEditorModule.forRoot({
+      baseUrl: './assets'
+    }),
     MatCheckboxModule,
     MatSnackBarModule
   ],

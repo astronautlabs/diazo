@@ -100,12 +100,18 @@ export class AppComponent {
                         id: 'output-options',
                         label: 'Output Options',
                         properties: [
-                            {
-                                type: 'text',
-                                path: '$.data.textProperty',
-                                label: 'A Text Property',
-                                description: 'This is an example of a text property!'
-                            }
+                          {
+                              type: 'text',
+                              path: '$.data.textProperty',
+                              label: 'A Text Property',
+                              description: 'This is an example of a text property!'
+                          },
+                          {
+                              type: 'json',
+                              path: '$.data.jsonProperty',
+                              label: 'A JSON Property',
+                              description: 'This is an example of a JSON property!'
+                          }
                         ]
                     }
                 ]
