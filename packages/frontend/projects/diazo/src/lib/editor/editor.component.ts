@@ -873,4 +873,10 @@ export class EditorComponent {
             }
         });
     }
+
+    mousePosition: Position;
+
+    onMousePositionChanged(position: Position) {
+        this.mousePosition = position;
+    }
 }

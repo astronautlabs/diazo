@@ -87,6 +87,9 @@ export class GraphComponent {
     @Output()
     nodeMenuPositionChanged = new BehaviorSubject<Position>({ top: 0, left: 0 });
 
+    @Output()
+    mousePositionChanged = new BehaviorSubject<Position>({ top: 0, left: 0 });
+
     @ViewChild('plate')
     plateRef : ElementRef<HTMLElement>;
     
@@ -131,6 +134,7 @@ export class GraphComponent {
     @HostListener('mousemove', ['$event'])
     onMouseMove(event : MouseEvent) {
         this.mousePosition = this.screenToLocal({ top: event.clientY, left: event.clientX });
+        this.mousePositionChanged.next(this.mousePosition);
 
         if (this.context.draftNode) {
 
