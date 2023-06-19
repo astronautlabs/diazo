@@ -7,6 +7,9 @@
         "declarationDir": "dist",
         "outDir": "dist"
     },
+    "include": [
+        "./src/**/*.ts"
+    ],
     "typedocOptions": {
         "mode": "file",
         "out": "docs",

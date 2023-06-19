@@ -8,14 +8,15 @@
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "module": "dist.esm/index.js",
   "repository": {
     "url": "https://github.com/astronautlabs/diazo-model.git",
     "type": "git"
   },
   "homepage": "https://github.com/astronautlabs/diazo-model",
   "scripts": {
-    "clean": "rimraf dist",
-    "build": "npm run clean && tsc -p .",
+    "clean": "rimraf dist dist.esm",
+    "build": "npm run clean && tsc -b && tsc -b tsconfig.esm.json",
     "prepublishOnly": "npm run build && npm run docs",
     "docs": "typedoc .",
     "test": "npm run build"
