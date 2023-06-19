@@ -14,10 +14,17 @@ export class DynamicNodeComponent {
     constructor() {
         let accessor = new Accessor();
         this.M = new Proxy({}, {
-            get: (target, key, receiver) => 
-                accessor.get([ this.instance || this.node ], '$.' + key.toString()),
-            set: (target, key, value, receiver) => 
-                accessor.set([ this.instance || this.node ], '$.' + key.toString(), value),
+            get: (target, key, receiver) => {
+                if (typeof key === 'symbol')
+                    return (this.instance || this.node)[key];
+
+                return accessor.get([ this.instance || this.node ], '$.' + key.toString());
+            }, set: (target, key, value, receiver) => {
+                if (typeof key === 'symbol')
+                    return (this.instance || this.node)[key] = value;
+
+                return accessor.set([ this.instance || this.node ], '$.' + key.toString(), value);
+            }
         });
     }
 
