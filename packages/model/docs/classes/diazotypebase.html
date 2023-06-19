@@ -74,8 +74,8 @@
 						grant implicit conversions which broaden the &quot;value&quot; of the edge and deny
 					conversions which narrow the &quot;value of the edge.</p>
 					<p>Given:</p>
-					<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TypeA <span class="hljs-keyword">extends</span> DiazoTypeBase {}
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TypeB <span class="hljs-keyword">extends</span> TypeA {}</code></pre>
+					<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TypeA</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DiazoTypeBase</span> </span>{}
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TypeB</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TypeA</span> </span>{}</code></pre>
 					<ul>
 						<li>A connection from an output slot of <code>TypeB</code> <strong>can be assigned</strong> to an input slot of
 						<code>TypeA</code></li>
@@ -132,7 +132,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/diazo-model/blob/113a7fa/src/value-types.ts#L30">value-types.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/f57bb0b/packages/model/src/value-types.ts#L30">value-types.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -158,7 +158,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/diazo-model/blob/113a7fa/src/value-types.ts#L45">value-types.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/f57bb0b/packages/model/src/value-types.ts#L45">value-types.ts:45</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -184,7 +184,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/astronautlabs/diazo-model/blob/113a7fa/src/value-types.ts#L40">value-types.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/astronautlabs/firegraph/blob/f57bb0b/packages/model/src/value-types.ts#L40">value-types.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -315,6 +315,9 @@
 						<a href="../interfaces/diazovaluetype.html" class="tsd-kind-icon">Diazo<wbr>Value<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="../interfaces/grapheditor.html" class="tsd-kind-icon">Graph<wbr>Editor</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/position.html" class="tsd-kind-icon">Position</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -362,6 +365,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
