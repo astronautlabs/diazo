@@ -3,5 +3,5 @@
  */
 export interface DiazoValue {
     type : string;
-    params : Record<string,any>;
+    params? : Record<string,any>;
 }
