@@ -17,7 +17,7 @@
   "scripts": {
     "clean": "rimraf dist dist.esm",
     "build": "npm run clean && tsc -b && tsc -b tsconfig.esm.json",
-    "prepublishOnly": "npm run build && npm run docs",
+    "prepublishOnly": "npm run build",
     "docs": "typedoc .",
     "test": "npm run build"
   },
