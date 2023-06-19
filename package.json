@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/astronautlabs/diazo/issues"
   },
-  "homepage": "https://github.com/astronautlabs/diazo#readme"
+  "homepage": "https://github.com/astronautlabs/diazo#readme",
+  "dependencies": {
+    "@types/ws": "^8.5.4"
+  }
 }

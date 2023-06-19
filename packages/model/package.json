@@ -31,7 +31,7 @@
     "typedoc": "^0.17.8"
   },
   "dependencies": {
-    "@astronautlabs/jsonpath": "^1.0.8",
+    "@astronautlabs/jsonpath": "^1.1.1",
     "rxjs": "^6.5.5",
     "subsink": "^1.0.1",
     "uuid": "^8.1.0"
