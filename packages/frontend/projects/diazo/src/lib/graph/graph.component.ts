@@ -1,6 +1,6 @@
 import { Component, HostListener, ViewChild, ElementRef, 
     Input, Output } from "@angular/core";
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 import * as uuid from 'uuid';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { CdkDrag } from '@angular/cdk/drag-drop';
@@ -82,7 +82,7 @@ export class GraphComponent {
     nodeMenuEl : ElementRef<HTMLElement>;
 
     @Output()
-    graphChanged = new BehaviorSubject<DiazoGraph>({ nodes: [], edges: [] });
+    graphChanged = new ReplaySubject<DiazoGraph>(1);
     
     @Output()
     nodeMenuPositionChanged = new BehaviorSubject<Position>({ top: 0, left: 0 });

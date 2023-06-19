@@ -1,6 +1,6 @@
 import * as uuid from 'uuid';
 
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject, ReplaySubject } from 'rxjs';
 import { SubSink } from 'subsink';
 import { Accessor } from './accessor';
 import { Position, Size } from './common';
@@ -873,7 +873,7 @@ export class DiazoContext {
     }
 
     private _graph : DiazoGraph = { nodes: [], edges: [] };
-    graphChanged = new BehaviorSubject<DiazoGraph>(null);
+    graphChanged = new ReplaySubject<DiazoGraph>(1);
 
     nodes : DiazoNodeContext[] = [];
     edgeUnderCursor : DiazoEdge;
