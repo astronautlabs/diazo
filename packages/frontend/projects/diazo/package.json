@@ -18,7 +18,7 @@
   "homepage": "https://github.com/astronautlabs/diazo",
   "dependencies": {
     "@astronautlabs/jsonpath": "^1.1.2",
-    "@diazo/model": "^1.0.12",
+    "@diazo/model": "^1.0.13",
     "subsink": "^1.0.1",
     "tslib": "^2.0.0"
   }
