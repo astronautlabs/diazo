@@ -19,6 +19,11 @@ export interface DiazoSlot {
     label : string;
 
     /**
+     * Optional place to put arbitrary data.
+     */
+    data?: Record<string, any>;
+
+    /**
      * The type of slot this is. 
      * - `input` - Accepts incoming connections from other nodes
      * - `output` - Accepts outgoing connections to other nodes
