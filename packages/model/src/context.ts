@@ -67,6 +67,20 @@ export interface DiazoEditorNotification {
  * @category Editor
  */
 export interface DiazoUndoState {
+    /**
+     * Performs the edit itself. This is called when the action first happens and when 
+     * the action is redone.
+     * @param editor 
+     * @returns 
+     */
+    forward: (editor: GraphEditor) => void;
+
+    /**
+     * Called when the edit is undone.
+     * @returns 
+     */
+    rollback: () => void;
+
     graphBefore : DiazoGraph;
     graphAfter : DiazoGraph;
     cause : string;
@@ -81,7 +95,8 @@ export class DiazoPropertyContext {
         this._manipulator = new Proxy({}, {
             set: (target, key, value) => {
 
-                this.graphContext.commit('Edit properties', (graph, revert) => {
+                this.graphContext.edit('Edit properties', editor => {
+                    let graph = editor.graph;
                     let nodes = this.selectedNodes
                         .map(x => graph.nodes.find(y => y.id === x.id))
                     ;
@@ -93,7 +108,7 @@ export class DiazoPropertyContext {
                     );
 
                     if (!changed) {
-                        revert(true);
+                        editor.abort(true);
                         return;
                     }
 
@@ -226,9 +241,19 @@ export class DiazoNodeContext {
         return this._positionChanged;
     }
 
+    /**
+     * Visit all nodes in an edit transaction. 
+     * @deprecated Use editAllNodes() instead
+     * @param cause 
+     * @param callback 
+     */
     modify(cause : string, callback : (node : DiazoNode) => void) {
-        this.graph.commit(cause, graph => {
-            callback(graph.nodes.find(x => x.id === this.id));
+        this.editAllNodes(cause, (node, editor) => callback(node));
+    }
+
+    editAllNodes(cause : string, callback : (node : DiazoNode, editor: GraphEditor) => void) {
+        this.graph.edit(cause, editor => {
+            callback(editor.graph.nodes.find(x => x.id === this.id), editor);
         });
     }
 
@@ -594,9 +619,23 @@ export class DiazoContext {
         }
     }
 
-    commit(cause : string, callback : (graph : DiazoGraph, revert : (silently? : boolean) => void) => void) {
+    /**
+     * Commit a change to this graph. Creates an undo entry when successful. Use abort() to abort the commit 
+     * and discard all changes to the graph. The graph provided to the callback is a copy of the current graph, so 
+     * it is safe to abort even if it has been changed.
+     * 
+     * @deprecated Use edit() instead
+     * @param cause 
+     * @param callback 
+     * @returns 
+     */
+    commit(cause : string, callback : (graph : DiazoGraph, abort : (silently? : boolean) => void) => void) {
+        this.edit(cause, editor => callback(editor.graph, editor.abort));
+    }
+
+    edit(cause: string, callback: (editor: GraphEditor) => void) {
         if (this.committing)
-            throw new Error(`Cannot commit a graph state: Already committing a graph state`);
+            throw new Error(`Edit already in progress`);
         
         this.committing = true;
 
@@ -608,9 +647,44 @@ export class DiazoContext {
             node.positionDeltaY = 0;
         }
 
-        let graphAfter = this.clone(this.graph);
+        let graphAfter = this.clone(this.graph) as DiazoGraph;
+        graphAfter.edges ??= [];
+        graphAfter.nodes ??= [];
+
+        let rollbacks: (() => void)[] = [];
+        let editor = <GraphEditor>{
+            whenUndone: (callback) => rollbacks.push(callback),
+            graph: graphAfter,
+            abort: (silently? : boolean) => { throw new Error(silently? `revert:silently` : `revert`); },
+            getNodeById: id => graphAfter.nodes.find(x => x.id === id),
+            addNode: (node) => graphAfter.nodes.push(node),
+            addEdge: edge => graphAfter.edges.push(edge),
+            removeEdge: edge => graphAfter.edges = graphAfter.edges.filter(x => !this.edgesAreEqual(x, edge)),
+            removeNode: (node) => {
+                let affectedEdges = graphAfter.edges
+                    .filter(x => [x.fromNodeId, x.toNodeId].includes(node.id))
+                    .slice()
+                ;
+
+                for (let edge of affectedEdges) {
+                    if (edge.fromNodeId === node.id || edge.toNodeId === node.id) {
+                        this.removeEdgeFromGraph(graphAfter, edge);
+                    }
+                }
+
+                let index = graphAfter.nodes.findIndex(x => x.id === node.id);
+
+                if (index < 0) {
+                    console.warn(`Cannot remove node context that is not registered`);
+                    return;
+                }
+
+                graphAfter.nodes.splice(index, 1);
+            },
+        }
+
         try {
-            callback(graphAfter, (silently? : boolean) => { throw new Error(silently? `revert:silently` : `revert`); });
+            callback(editor);
         } catch (e) {
             if (e.message === 'revert') {
                 console.warn(`REVERT: No changes during: ${cause}`);
@@ -623,17 +697,46 @@ export class DiazoContext {
             return;
         }
 
+        this.cleanupGraph(editor);
+
         console.warn(`COMMIT: Committing: ${cause}`);
         this.committing = false;
 
         this.undoStates.push({
             cause,
+            forward: callback,
+            rollback: () => rollbacks.forEach(cb => cb()),
             graphBefore,
             graphAfter
         });
 
         this.redoStates = [];
         this.graph = this.clone(graphAfter);
+    }
+
+    /**
+     * Remove unused edges and other post-edit cleanup.
+     * @param graph 
+     */
+    private cleanupGraph(editor: GraphEditor) {
+        let removedEdges: DiazoEdge[] = [];
+
+        for (let edge of editor.graph.edges) {
+            let fromNode = editor.getNodeById(edge.fromNodeId);
+            let fromSlot = fromNode?.slots?.find(x => x.id === edge.fromSlotId);
+            let toNode = editor.getNodeById(edge.toNodeId);
+            let toSlot = toNode?.slots?.find(x => x.id === edge.toSlotId);
+
+            if (!fromSlot || !toSlot)
+                removedEdges.push(edge);
+        }
+
+        for (let edge of removedEdges) {
+            let index = editor.graph.edges.indexOf(edge);
+            if (index >= 0) {
+                editor.graph.edges.splice(index, 1);
+            }
+        }
     }
 
     clone(object) {
@@ -680,6 +783,8 @@ export class DiazoContext {
             return;
         }
 
+        state.rollback();
+
         this.graph = this.clone(state.graphBefore);
         this.redoStates.push(state);
         // TODO: show a cookie message at bottom saying "Undo: <cause>"
@@ -693,21 +798,11 @@ export class DiazoContext {
 
     redo() {
         let state = this.redoStates.pop();
-
-        if (!state) {
-            //console.warn(`REDO: Nothing to redo.`);
+        if (!state)
             return;
-        }
         
-        this.graph = this.clone(state.graphAfter);
-        this.undoStates.push(state);
-        // TODO: show a cookie message at bottom saying: "Redo: <cause>"
-        
-        this.notificationMessage.next({
-            message: `Redo: ${state.cause}`
-        });
-
-        console.warn(`REDO: ${state.cause}`);
+        this.edit(state.cause, state.forward);
+        this.notificationMessage.next({ message: `Redo: ${state.cause}` });
     }
 
 
@@ -808,33 +903,9 @@ export class DiazoContext {
         }
     }
 
-    private removeNodeFromGraph(graph : DiazoGraph, node : DiazoNodeContext) {
-        let affectedEdges = graph.edges
-            .filter(x => [x.fromNodeId, x.toNodeId].includes(node.id))
-            .slice()
-        ;
-
-        for (let edge of affectedEdges) {
-            if (edge.fromNodeId === node.id || edge.toNodeId === node.id) {
-                this.removeEdgeFromGraph(graph, edge);
-            }
-        }
-
-        let index = graph.nodes.findIndex(x => x.id === node.id);
-
-        if (index < 0) {
-            console.warn(`Cannot remove node context that is not registered`);
-            return;
-        }
-
-        graph.nodes.splice(index, 1);
-    }
-
     removeNode(node : DiazoNodeContext) {
         this.unselectNode(node);
-        this.commit('Remove node', graph => {
-            this.removeNodeFromGraph(graph, node);
-        });
+        this.edit('Remove node', editor => editor.removeNode(node));
     }
 
     edgesAreEqual(a : DiazoEdge, b : DiazoEdge) {
@@ -867,7 +938,8 @@ export class DiazoContext {
         if (this.readonly)
             return;
         
-        this.commit('Delete nodes', graph => {
+        this.edit('Delete nodes', editor => {
+            let graph = editor.graph;
             for (let selectedNode of this.selectedNodes.slice()) {
                 this.unselectNode(selectedNode);
 
@@ -892,9 +964,7 @@ export class DiazoContext {
 
                 graph.nodes.splice(index, 1);
             }
-
         });
-        
     }
 
     releaseDraftNode() {
@@ -915,13 +985,11 @@ export class DiazoContext {
 
         console.log(`Adding node ${JSON.stringify(candidate)}`);
 
-        this.commit('Add node', graph => {
-            graph.nodes.push(candidate);
+        this.edit('Add node', editor => {
+            editor.addNode(candidate);
             this.onNodeAdded(candidate);
-
-            if (candidateEdge) {
-                graph.edges.push(candidateEdge);
-            }
+            if (candidateEdge)
+                editor.addEdge(candidateEdge);
         });
     }
 
@@ -1212,8 +1280,7 @@ export class DiazoContext {
     }
 
     removeEdge(edge : DiazoEdge) {
-        this.commit('Remove edge', graph => this.removeEdgeFromGraph(graph, edge));
-        
+        this.edit('Remove edge', editor => editor.removeEdge(edge));
     }
 
     findEdgeToReplace(edge : DiazoEdge): DiazoEdge {
@@ -1431,11 +1498,10 @@ export class DiazoContext {
         // this.draftEdge.toNodeId = endSlot.node.id;
         // this.draftEdge.toSlotId = endSlot.id;
 
-        this.commit('Add edge', graph => {
+        this.edit('Add edge', editor => {
             if (removedEdge)
-                graph.edges = graph.edges.filter(x => !this.edgesAreEqual(x, removedEdge));
-            
-            graph.edges.push(this.draftEdge);
+                editor.removeEdge(removedEdge);
+            editor.addEdge(this.draftEdge);
         });
 
         console.dir(this.edges);
@@ -1529,7 +1595,9 @@ export class DiazoContext {
             return;
 
         
-        this.commit('Paste', graph => {
+        this.edit('Paste', editor => {
+            let graph = editor.graph;
+
             console.log(`Pasting at ${position.left},${position.top}`);
             let subgraph = this.createCopy(this.copiedGraph);
 
@@ -1558,4 +1626,22 @@ export class DiazoContext {
         });
 
     }
+}
+
+export interface GraphEditor {
+    graph: DiazoGraph;
+
+    getNodeById(id: string): DiazoNode;
+    addNode(node: DiazoNode);
+    removeNode(node: DiazoNode | DiazoNodeContext);
+    addEdge(edge: DiazoEdge);
+    removeEdge(edge: DiazoEdge);
+
+    /**
+     * Specify a callback which will run when the edit is undone.
+     * @param callback 
+     */
+    whenUndone(callback: () => void);
+
+    abort(silently?: boolean): void;
 }
