@@ -102,7 +102,13 @@ export interface DiazoNode {
      * - `unit` typically specifies the subtype of the node (where {@link `DiazoNode.type`
      *   indicates the primary categorization) 
      */
-    data? : any;
+    data? : Record<string, any>;
+
+    /**
+     * Optional place to put behaviorial information about this node.
+     * May be elided in the frontend.
+     */
+    behavior?: Record<string, any>;
 
     /**
      * The set of connectable input/output "slots" that are part of this node. 

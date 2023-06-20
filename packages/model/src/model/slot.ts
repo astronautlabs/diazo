@@ -24,6 +24,12 @@ export interface DiazoSlot {
     data?: Record<string, any>;
 
     /**
+     * Optional place to put behaviorial information about this node.
+     * May be elided in the frontend.
+     */
+    behavior?: Record<string, any>;
+
+    /**
      * The type of slot this is. 
      * - `input` - Accepts incoming connections from other nodes
      * - `output` - Accepts outgoing connections to other nodes
