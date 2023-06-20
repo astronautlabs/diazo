@@ -183,10 +183,6 @@ export class WildcardType extends DiazoTypeBase implements DiazoValueType {
             return true;
         }
 
-        // console.log(`Checking compat:`);
-        // console.dir(outputValue);
-        // console.dir(inputValue);
-
         return output.graph.valuesCompatible(outputValue, inputValue);
     }
 

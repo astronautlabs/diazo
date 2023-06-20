@@ -27,8 +27,8 @@ export class NodeComponent {
         this.nodeContext.getSize = () => {
             let el = this.elementRef.nativeElement;
             return { 
-                width: el.getBoundingClientRect().width,
-                height: el.getBoundingClientRect().height
+                width: el.getBoundingClientRect().width / context.zoom,
+                height: el.getBoundingClientRect().height / context.zoom
             };
         }
 

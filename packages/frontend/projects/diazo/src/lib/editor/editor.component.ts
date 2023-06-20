@@ -464,8 +464,8 @@ export class EditorComponent {
         
         this.nodeMenuPosition = position;
         this.newNodePosition = {
-            left: position.left - this.graphContext.panX - 20,
-            top: position.top - this.graphContext.panY - 20
+            left: (position.left - this.graphContext.panX) / this.graphContext.zoom - 20,
+            top: (position.top - this.graphContext.panY) / this.graphContext.zoom - 20
         };
     }
 
@@ -872,11 +872,5 @@ export class EditorComponent {
                 })
             }
         });
-    }
-
-    mousePosition: Position;
-
-    onMousePositionChanged(position: Position) {
-        this.mousePosition = position;
     }
 }

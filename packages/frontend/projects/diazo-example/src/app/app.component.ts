@@ -1,6 +1,31 @@
 import { Component } from '@angular/core';
-import { DiazoGraph, DiazoNodeSet, DiazoContext } from 'diazo';
+import { DiazoGraph, DiazoNodeSet, DiazoContext, DiazoNode } from 'diazo';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+function range<T>(count: number, maker: (index: number) => T): T[] {
+  let array: T[] = [];
+  for (let i = 0, max = count; i < max; ++i) {
+    array.push(maker(i));
+  }
+
+  return array;
+}
+
+const HEAVY_SET: DiazoNode[] = range(10, i => (
+  {
+    id: `id_${i}`,
+    data: { 
+      unit: 'my-input',
+      textProperty: 'hello'
+    },
+    label: 'My Input',
+    x: i * 100, 
+    y: 0,
+    slots: [
+      { id: 'output', type: 'output', label: 'Output' }
+    ]
+  }
+));
 
 @Component({
   selector: 'app-root',
@@ -40,45 +65,16 @@ export class AppComponent {
 
   onContextChanged(context : DiazoContext) {
     this.graphContext = context;
-
-    console.log(`Received graph context from <dz-editor>:`);
-    console.dir(context);
   }
 
   onGraphChanged(graph : DiazoGraph) {
     this.dirty = true;
-    this.matSnackbar.open('You have changed the graph!', undefined, {
-      duration: 1000
-    });
   }
 
+  freeID = 0;
   myGraph : DiazoGraph = {
     edges: [], 
-    nodes: [
-      {
-        id: 'one',
-        data: { 
-          unit: 'my-input',
-          textProperty: 'hello'
-        },
-        label: 'My Input',
-        x: 50, 
-        y: 50,
-        slots: [
-          { id: 'output', type: 'output', label: 'Output' }
-        ]
-      },
-      {
-        id: 'two',
-        data: { unit: 'my-output' },
-        label: 'My Output',
-        x: 300, 
-        y: 100,
-        slots: [
-          { id: 'input', type: 'input', label: 'Input' }
-        ]
-      }
-    ]
+    nodes: HEAVY_SET
   };
   
   availableNodes : DiazoNodeSet[] = [

@@ -1,5 +1,5 @@
 import { Component, HostListener, ViewChild, ElementRef, 
-    Input, Output } from "@angular/core";
+    Input, Output, inject, NgZone } from "@angular/core";
 import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 import * as uuid from 'uuid';
 import { MatMenuTrigger } from '@angular/material/menu';
@@ -18,11 +18,12 @@ import { Position, pointOnLine,
     providers: [ DiazoContext ]
 })
 export class GraphComponent {
-    constructor(
-        private context : DiazoContext,
-        private elementRef : ElementRef<HTMLElement>
-    ) {
-        context.registerValueType(WildcardType);
+    private context = inject(DiazoContext);
+    private elementRef = inject(ElementRef) as ElementRef<HTMLElement>;
+    private ngZone = inject(NgZone);
+
+    constructor() {
+        this.context.registerValueType(WildcardType);
     }
     
     ngOnInit() {
@@ -43,6 +44,7 @@ export class GraphComponent {
     }
 
     ngAfterViewInit() {
+        this.installMouseHandlers();
         this.startRendering();
     }
 
@@ -69,9 +71,6 @@ export class GraphComponent {
 
     menuPosition : any = { y: 0, x: 0 };
 
-    @ViewChild('graphMenuTrigger', { read: MatMenuTrigger })
-    graphMenuTrigger : MatMenuTrigger;
-
     @ViewChild('menuContents')
     menuContents : ElementRef<HTMLElement>;
     
@@ -86,9 +85,6 @@ export class GraphComponent {
     
     @Output()
     nodeMenuPositionChanged = new BehaviorSubject<Position>({ top: 0, left: 0 });
-
-    @Output()
-    mousePositionChanged = new BehaviorSubject<Position>({ top: 0, left: 0 });
 
     @ViewChild('plate')
     plateRef : ElementRef<HTMLElement>;
@@ -121,32 +117,29 @@ export class GraphComponent {
     @Output()
     contextChanged = new BehaviorSubject(null);
 
-    @HostListener('mouseenter', ['$event'])
-    onMouseEnter(event : MouseEvent) {
-        this.context.mouseInside = true;
-    }
+    installMouseHandlers() {
+        let element = this.elementRef.nativeElement;
+        this.ngZone.runOutsideAngular(() => {
+            element.addEventListener('mouseenter', () => this.context.mouseInside = true);
+            element.addEventListener('mouseleave', () => this.context.mouseInside = false);
+            element.addEventListener('mousemove', event => {
+                this.mousePosition = this.screenToLocal({ top: event.clientY, left: event.clientX });
+        
+                if (this.context.draftNode) {
+                    this.ngZone.run(() => {
+                        this.nodeMenuVisible = false;
+                        let state = this.context.getNodeByState(this.context.draftNode);
+                        if (state) {
+                            state.setPosition(
+                                (this.mousePosition.left - this.context.panX) / this.context.zoom , 
+                                (this.mousePosition.top - this.context.panY) / this.context.zoom
+                            );
+                        }
+                    });
+                }
 
-    @HostListener('mouseleave', ['$event'])
-    onMouseLeave(event : MouseEvent) {
-        this.context.mouseInside = false;
-    }
-
-    @HostListener('mousemove', ['$event'])
-    onMouseMove(event : MouseEvent) {
-        this.mousePosition = this.screenToLocal({ top: event.clientY, left: event.clientX });
-        this.mousePositionChanged.next(this.mousePosition);
-
-        if (this.context.draftNode) {
-
-            this.nodeMenuVisible = false;
-            let state = this.context.getNodeByState(this.context.draftNode);
-            if (state) {
-                state.setPosition(
-                    (this.mousePosition.left - this.context.panX) / this.context.zoom , 
-                    (this.mousePosition.top - this.context.panY) / this.context.zoom
-                );
-            }
-        }
+            });
+        });
     }
 
     mousePosition : Position = { top: 0, left: 0 };
@@ -155,16 +148,95 @@ export class GraphComponent {
         if (!this.plateRef)
             return;
         
+        //this.updatePanAndZoom();
         this.plateRef.nativeElement.style.transform = `scale(${this.context.zoom})`;
+        this.updateVisibleNodes();
+    }
+
+    private updatePanAndZoom() {
+        this.plateRef.nativeElement.style.transform = `scale(${this.context.zoom}) translate(${this.context.panX}px, ${this.context.panY}px)`;
+        this.updateVisibleNodes();
+    }
+
+    enableNodeOcclusion = true;
+    
+    get hasLargeAmountOfNodes() {
+        return this.graph.nodes.length > 450;
+    }
+
+    private updateVisibleNodes() {
+        if (!this.enableNodeOcclusion)
+            return;
+
+        let host = this.elementRef.nativeElement;
+        let hostRect = host.getBoundingClientRect();
+        let nodes = host.getElementsByTagName('dz-dynamic-node');
+
+        let visibleX = -this.context.panX / this.context.zoom;
+        let visibleY = -this.context.panY / this.context.zoom;
+        let visibleHeight = hostRect.height / this.context.zoom;
+        let visibleWidth = hostRect.width / this.context.zoom;
+
+        for (let i = 0, max = nodes.length; i < max; ++i) {
+            let nodeEl = nodes.item(i) as HTMLElement;
+            let occluded = false;
+
+            if (this.hasLargeAmountOfNodes) {
+                let actualNodeEl = nodeEl.querySelector('dz-node') as HTMLElement;
+                let nodeId = nodeEl.dataset.nodeid;
+                if (!nodeId) {
+                    continue;
+                }
+
+                let node = this.graph.nodes.find(x => x.id === nodeId);
+                if (!node) {
+                    continue;
+                }
+
+                let nodeX = node.x;
+                let nodeY = node.y;
+                let nodeWidth = 0;
+                let nodeHeight = 0;
+                if (nodeEl.dataset.occluded) {
+                    nodeWidth = Number(nodeEl.dataset.width);
+                    nodeHeight = Number(nodeEl.dataset.height);
+                } else {
+                    let nodeRect = actualNodeEl.getBoundingClientRect();
+                    nodeWidth = nodeRect.width / this.context.zoom;
+                    nodeHeight = nodeRect.height / this.context.zoom;
+                }
+
+                occluded = nodeX + nodeWidth < visibleX 
+                    || nodeX > visibleX + visibleWidth
+                    || nodeY + nodeHeight < visibleY
+                    || nodeY > visibleY + visibleHeight
+                ;
+
+                if (nodeEl.dataset.width !== String(nodeWidth))
+                    nodeEl.dataset.width = String(nodeWidth);
+                if (nodeEl.dataset.height !== String(nodeHeight))
+                    nodeEl.dataset.height = String(nodeHeight);
+                
+                // nodeEl.dataset.x = String(node.x);
+                // nodeEl.dataset.y = String(node.y);
+            }
+
+            if (nodeEl.dataset.occluded === undefined || (nodeEl.dataset.occluded === 'true') !== occluded) {
+                nodeEl.dataset.occluded = String(occluded);
+                nodeEl.style.display = occluded ? 'none' : '';
+            }
+        }
     }
 
     private updatePan() {
         if (!this.plateRef)
             return;
         
+        //this.updatePanAndZoom();
         let el = this.plateRef.nativeElement;
         el.style.left = `${this.context.panX}px`;
         el.style.top = `${this.context.panY}px`;
+        this.updateVisibleNodes();
     }
 
     private screenToLocal(position : Position): Position {
@@ -232,9 +304,10 @@ export class GraphComponent {
         this.canvasContext = this.canvas.getContext('2d');
         this.lastFrameTime = Date.now();
         
-        let drawFrame = () => (this.drawFrame(), requestAnimationFrame(drawFrame));
-
-        drawFrame();
+        this.ngZone.runOutsideAngular(() => {
+            let drawFrame = () => (this.drawFrame(), requestAnimationFrame(drawFrame));
+            drawFrame();
+        });
     }
 
     private drawFrame() {
@@ -402,8 +475,6 @@ export class GraphComponent {
 
     @HostListener('keydown', ['$event'])
     onKeyDown(event : KeyboardEvent) {
-        console.log(event.key);
-
         let targetEl = <HTMLElement>event.target;
         if (targetEl.nodeName === 'INPUT') {
             return;
@@ -548,9 +619,7 @@ export class GraphComponent {
 
             if (this.context.readonly)
                 return;
-            
-            console.log("Adding reroute node...");
-            
+
             let pos = this.context.screenToGraph(this.mousePosition);
             let splitEdge = this.context.edgeUnderCursor;
 
@@ -757,18 +826,20 @@ export class GraphComponent {
             this.context.startSelectionAt(this.mousePosition, startEvent.ctrlKey);
             
             let move = () => {
+                let graphPoint = this.context.screenToGraph(this.mousePosition);
                 this.context.setSelectionBoxEnd(this.mousePosition);
             };
             
             let release = () => {
-                document.removeEventListener('mouseup', release);
-                document.removeEventListener('mousemove', move);
+                document.removeEventListener('mouseup', release, { capture: true });
+                document.removeEventListener('mousemove', move, { capture: true });
                 this.context.commitSelectionBox();
             };
             
             
-            document.addEventListener('mouseup', release);
-            document.addEventListener('mousemove', move);
+            document.addEventListener('mouseup', release, { capture: true });
+            document.addEventListener('mousemove', move, { capture: true });
+            
         } else if (startEvent.button === 2) {
             let startLeft = this.context.panX;
             let startTop = this.context.panY;
@@ -776,8 +847,8 @@ export class GraphComponent {
             this.eligibleForContextMenu = true;
 
             let release = () => {
-                document.removeEventListener('mouseup', release);
-                document.removeEventListener('mousemove', move);
+                document.removeEventListener('mouseup', release, { capture: true });
+                document.removeEventListener('mousemove', move, { capture: true });
             };
 
             let move = (event : MouseEvent) => {
@@ -793,8 +864,11 @@ export class GraphComponent {
                 );
             };
 
-            document.addEventListener('mouseup', release);
-            document.addEventListener('mousemove', move);
+            document.addEventListener('mouseup', release, { capture: true });
+            
+            this.ngZone.runOutsideAngular(() => {
+                document.addEventListener('mousemove', move, { capture: true });
+            });
         }   
     }
     

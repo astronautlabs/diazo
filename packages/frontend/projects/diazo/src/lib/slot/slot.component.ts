@@ -183,7 +183,6 @@ export class SlotComponent {
 
         if (drafted && drafted.fromNodeId !== this.nodeContext.id) {
             // _we_ could be the connection for this
-            console.log(`slot: allowing snap`);
             this.graphContext.draftEdgeSnap(this.context);
         }
     }

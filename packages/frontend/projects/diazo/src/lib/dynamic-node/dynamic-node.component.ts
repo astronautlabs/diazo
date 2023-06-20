@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 import { Accessor, DiazoNode } from '@diazo/model';
 
 /**
@@ -27,6 +27,9 @@ export class DynamicNodeComponent {
             }
         });
     }
+
+    @HostBinding('attr.data-nodeId')
+    get nodeId() { return this.node?.id; }
 
     @Input()
     drafted : boolean;

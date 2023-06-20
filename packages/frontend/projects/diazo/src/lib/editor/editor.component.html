@@ -28,7 +28,6 @@
         [nodeTypeMap]="nodeTypeMap"
         (graphChanged)="onGraphChanged($event)"
         (saveRequested)="saveRequested.next()"
-        (mousePositionChanged)="onMousePositionChanged($event)"
         >
         <div class="node-menu">
             <form (submit)="insertSelectedNode()">

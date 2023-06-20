@@ -36,8 +36,6 @@ export class NodeSourceButtonComponent {
             console.warn(`dz-node-source-button: No template specified, cannot instantiate node`);
             return;
         }
-        
-        console.log(`Drafting node from ${JSON.stringify(this.template)}`);
 
         this.context.draftNode = Object.assign(
             {}, 

@@ -228,7 +228,6 @@ export class DiazoNodeContext {
                 setTimeout(() => {
                     if (!this.state)
                         return;
-                    //console.log(`UPDATING POSITION ${this.x}, ${this.y}`);
                     this.updatePosition();
                 })
             })
@@ -834,7 +833,6 @@ export class DiazoContext {
 
     valuesCompatible(a : DiazoValue, b : DiazoValue) {
         if (a === b) {
-            console.log(`Virtual slot compat check: PASS [trivial]`);
             return true;
         }
 
@@ -860,14 +858,8 @@ export class DiazoContext {
 
 
         if (aType.isCompatible(virtualSlotA, virtualSlotB) || bType.isCompatible(virtualSlotA, virtualSlotB)) {
-            console.log(`Virtual slot compat check: GOOD`);
-            console.dir(aType);
-            console.dir(bType);
-
             return true;
         }
-
-        console.log(`Virtual slot compat check: FAIL`);
 
         return false;
     }
@@ -982,8 +974,6 @@ export class DiazoContext {
 
         if (!this.mouseInside)
             return;
-
-        console.log(`Adding node ${JSON.stringify(candidate)}`);
 
         this.edit('Add node', editor => {
             editor.addNode(candidate);
@@ -1101,7 +1091,6 @@ export class DiazoContext {
         this.nodesInSelectionBox = [];
 
         if (!additive) {
-            console.log(`not additive, clearing`);
             this.selectedNodes = [];
             this.notifySelectionChanged();
         }
@@ -1121,7 +1110,6 @@ export class DiazoContext {
                 selected.push(node);
         }
 
-        console.log(`Committed selection box: ${selected.length} now selected (originally=${originalCount})`);
         this.selectedNodes = selected;
         this.clearSelectionBox();
 
@@ -1224,7 +1212,6 @@ export class DiazoContext {
         }
 
         this.nodesInSelectionBox = selected;
-        //console.log(`Nodes in box: ${selected.length}`);
     }
 
     getSlotByIds(nodeId : string, slotId : string) {
@@ -1387,7 +1374,6 @@ export class DiazoContext {
         if (startSlot.type === 'passthrough') {
             // if the startSlot is an output, reverse the order
             if (endSlot.type === 'output') {
-                console.log('Reversing edge order (output -> passthrough)');
                 fullEdge.fromNodeId = endSlot.node.id;
                 fullEdge.fromSlotId = endSlot.id;
                 fullEdge.toNodeId = startSlot.node.id;
@@ -1407,7 +1393,6 @@ export class DiazoContext {
     edgeBeingReplaced : DiazoEdge;
 
     draftEdgeUnsnap(slot : DiazoSlotContext) {
-        console.log('UNSNAP');
         if (this.startDraftEdge) {
             this.draftEdge = this.startDraftEdge;
             this.startDraftEdge = null;
@@ -1462,7 +1447,6 @@ export class DiazoContext {
 
                 let canPlace = !this.readonly;
 
-                console.log(`Global canPlace: ${canPlace}`);
                 if (canPlace) {
                     let fromNode = this.getNodeById(this.draftEdge.fromNodeId);
                     let toNode = this.getNodeById(this.draftEdge.toNodeId);
@@ -1471,8 +1455,6 @@ export class DiazoContext {
                         canPlace = false;
                     if (toNode && toNode.readonly)
                         canPlace = false;
-                    
-                    console.log(`Per-node canPlace: ${canPlace}`);
                 }
 
                 let isValid = this.isValid(this.draftEdge) && !this.findIdenticalEdge(this.draftEdge);
@@ -1597,10 +1579,7 @@ export class DiazoContext {
         
         this.edit('Paste', editor => {
             let graph = editor.graph;
-
-            console.log(`Pasting at ${position.left},${position.top}`);
             let subgraph = this.createCopy(this.copiedGraph);
-
             let minX : number, maxX : number, minY : number, maxY : number;
 
             for (let node of subgraph.nodes) {

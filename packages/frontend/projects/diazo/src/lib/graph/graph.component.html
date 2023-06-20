@@ -1,14 +1,3 @@
-<mat-menu #graphMenu="matMenu">
-    <button mat-menu-item>item</button>
-</mat-menu>
-
-<button #graphMenuTrigger mat-button 
-    class="graph-menu-trigger"
-    [style.left]="mousePosition?.left+'px'"
-    [style.top]="mousePosition?.top+'px'"
-    [matMenuTriggerFor]="graphMenu"
-    >Menu</button>
-
 <div #plate class="plate">
     <ng-content></ng-content>
 
@@ -42,7 +31,8 @@
     </div>
 </div>
 
-<div class="underlay" 
+<div #underlay 
+    class="underlay" 
     (click)="onClick($event)" 
     (dblclick)="onDoubleClick($event)" 
     (mousedown)="onMouseDown($event)" 
