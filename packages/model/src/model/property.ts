@@ -15,6 +15,12 @@ export interface DiazoProperty {
     slottable? : boolean;
     slotValue? : DiazoValue;
     allowAnnotation? : boolean;
+
+    /**
+     * Default value to use when this property has been mapped to a slot,
+     * but that slot is not occupied by an edge.
+     */
+    defaultValue?: any;
     
     type : 'number' | 'text' | 'bitmask' | 'json'
             | 'textarea' | 'select' | 'flags' | 'position' 
