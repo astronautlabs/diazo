@@ -324,7 +324,18 @@ export class EditorComponent {
         this.updateSelectedNodeSets();
         if (this._graph)
             this.inflateGraph(this._graph);
+
+        this.nodeRegistry.clear();
+        
+        value
+            .map(x => x.nodes)
+            .flat()
+            .filter(x => x.behavior?.id)
+            .forEach(node => this.nodeRegistry.set(node.behavior?.id, node))
+        ;
     }
+
+    private nodeRegistry = new Map<string, DiazoNode>();
 
     /**
      * Allows the consumer to specify dynamic option sources for use with 
@@ -632,21 +643,10 @@ export class EditorComponent {
      * @hidden
      */
     findTemplateNode(node : DiazoNode) {
-        if (!node.data?.unit)
+        if (!node.behavior?.id)
             return null;
-        
-        for (let set of this.availableNodes) {
-            let templateNode : DiazoNode;
 
-            templateNode = set.nodes.find(x => x.data?.variant && x.data?.variant === node.data?.variant);
-            if (!templateNode)
-                templateNode = set.nodes.find(x => x.data?.unit === node.data?.unit);
-
-            if (templateNode)
-                return templateNode;
-        }
-
-        return null;
+        return this.nodeRegistry.get(node.behavior.id);
     }
 
     /**

@@ -108,7 +108,7 @@ export interface DiazoNode {
      * Optional place to put behaviorial information about this node.
      * May be elided in the frontend.
      */
-    behavior?: Record<string, any>;
+    behavior?: { id?: string } & Record<string, any>;
 
     /**
      * The set of connectable input/output "slots" that are part of this node. 
