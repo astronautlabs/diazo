@@ -17,6 +17,11 @@ export interface DiazoProperty {
     allowAnnotation? : boolean;
 
     /**
+     * Whether a value is required for this property or not. 
+     */
+    required?: boolean;
+
+    /**
      * Default value to use when this property has been mapped to a slot,
      * but that slot is not occupied by an edge.
      */
