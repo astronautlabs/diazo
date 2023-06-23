@@ -69,7 +69,7 @@ export class NodeComponent {
         if (!this.state)
             return false;
 
-        return !this.state.active;
+        return this.state.active;
     }
 
     @HostBinding('class.wide')
