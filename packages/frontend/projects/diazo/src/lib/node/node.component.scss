@@ -86,6 +86,9 @@ $active-text-color: #333;
         margin-top: 1px;
     }
 
+    &.active {
+        border-color: $active-border-color;
+    }
     &.selected {
         border-color: $selected-border-color;
     }
