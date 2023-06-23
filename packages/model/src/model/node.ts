@@ -78,6 +78,11 @@ export interface DiazoNode {
      *   the available space. Shows labels on slots.
      */
     profile? : 'normal' | 'slim' | 'wide';
+
+    /**
+     * Whether this node should be displayed as "active" when shown on the graph
+     */
+    active?: boolean;
     
     /**
      * This is used by the Diazo editor to keep track of where the node is 

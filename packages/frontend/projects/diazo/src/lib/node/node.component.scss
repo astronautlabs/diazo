@@ -3,6 +3,8 @@ $border-color: #ccc;
 $node-body-color: rgba(0,0,0,0.5);
 $selected-border-color: #ff7100;
 $selected-text-color: #333;
+$active-border-color: #0fa24b;
+$active-text-color: #333;
 
 :host {
     border: 3px solid $border-background-color;
@@ -26,6 +28,15 @@ $selected-text-color: #333;
         .titlebar {
             background-color: $selected-border-color;
             color: $selected-text-color;
+        }
+    }
+
+    &.active {
+        border-color: $active-border-color;
+
+        .titlebar {
+            background-color: $active-border-color;
+            color: $active-text-color;
         }
     }
 }

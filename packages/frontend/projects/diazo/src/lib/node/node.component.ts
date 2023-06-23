@@ -64,6 +64,14 @@ export class NodeComponent {
         return this.state.profile === 'slim';
     }
 
+    @HostBinding('class.active')
+    get isActive() {
+        if (!this.state)
+            return false;
+
+        return !this.state.active;
+    }
+
     @HostBinding('class.wide')
     get isWide() {
         if (!this.state)
