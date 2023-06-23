@@ -380,6 +380,7 @@ export class GraphComponent {
                 context.strokeStyle = 'maroon';
             }
 
+            context.setLineDash([]);
             this.drawEdge(context, startPos, endPos);
 
             if (edge.active || this.active === true) {
