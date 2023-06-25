@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DiazoGraph, DiazoNodeSet, DiazoContext, DiazoNode } from 'diazo';
+import { DiazoGraph, DiazoNodeSet, DiazoContext, DiazoNode, DiazoEdge } from 'diazo';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 function range<T>(count: number, maker: (index: number) => T): T[] {
@@ -12,20 +12,35 @@ function range<T>(count: number, maker: (index: number) => T): T[] {
 }
 
 const HEAVY_SET: DiazoNode[] = range(10, i => (
-  {
+  <DiazoNode>{
     id: `id_${i}`,
     data: { 
       unit: 'my-input',
       textProperty: 'hello'
     },
+    compact: true,
+    style: 'inline',
+    profile: 'wide',
     label: 'My Input',
     x: i * 100, 
-    y: 0,
+    y: i * 100,
     slots: [
+      { id: 'input', type: 'input', label: 'Input' },
       { id: 'output', type: 'output', label: 'Output' }
     ]
   }
 ));
+
+const HEAVY_EDGES: DiazoEdge[] = range(5, i => (
+  <DiazoEdge>{
+    fromNodeId: `id_${i}`,
+    toNodeId: `id_${i+1}`,
+    fromSlotId: `output`,
+    toSlotId: `input`,
+    active: i === 1
+  }
+))
+
 
 @Component({
   selector: 'app-root',
@@ -73,7 +88,7 @@ export class AppComponent {
 
   freeID = 0;
   myGraph : DiazoGraph = {
-    edges: [], 
+    edges: HEAVY_EDGES, 
     nodes: HEAVY_SET
   };
   
@@ -119,6 +134,19 @@ export class AppComponent {
                 label: 'My Output',
                 slots: [
                     { id: 'input', type: 'input', label: 'Input' }
+                ]
+            },
+            {
+                data: {
+                    unit: 'my-filter'
+                },
+                label: 'My Filter',
+                profile: 'wide',
+                slots: [
+                  { id: 'inputA', type: 'input', label: 'Input A', disabled: true },
+                  { id: 'inputB', type: 'input', label: 'Input B' },
+                  { id: 'outputA', type: 'output', label: 'Output A' },
+                  { id: 'outputB', type: 'output', label: 'Output B' }
                 ]
             }
         ]

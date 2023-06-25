@@ -37,7 +37,7 @@ export class NodeSourceButtonComponent {
             return;
         }
 
-        this.context.draftNode = Object.assign(
+        let node = Object.assign(
             {}, 
             this.template,
             <Partial<DiazoNode>>{ 
@@ -46,6 +46,8 @@ export class NodeSourceButtonComponent {
                 y: (this.position || {}).top || 0
             }
         );
+        node.slots.forEach(slot => slot.default = true);
+        this.context.draftNode = node;
         this.context.draftEdge = null;
 
         if (this.context.bufferedEdge) {

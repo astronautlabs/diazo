@@ -505,7 +505,7 @@ export class EditorComponent {
     insertSelectedNode() {
         let template = this.matchingNodes[this.selectedMatchingNodeIndex];
 
-        this.graphContext.draftNode = Object.assign(
+        let node = Object.assign(
             {}, 
             template,
             <Partial<DiazoNode>>{ 
@@ -514,6 +514,10 @@ export class EditorComponent {
                 y: (this.newNodePosition || {}).top || 0
             }
         );
+
+        node.slots.forEach(slot => slot.default = true);
+        
+        this.graphContext.draftNode = node;
         this.graphContext.draftEdge = null;
         
         if (this.graphContext.bufferedEdge) {
@@ -819,7 +823,7 @@ export class EditorComponent {
      * @hidden
      */
     isPropSlotted(prop : DiazoProperty) {
-        return this.selectedNodes.some(node => node.slots.some(x => x.id === `property:${prop.path}`))
+        return this.selectedNodes.some(node => node.slots.some(x => x.id === `property:${prop.path}` && !x.disabled))
     }
     
     /**
@@ -838,7 +842,14 @@ export class EditorComponent {
             for (let node of nodes) {
                 if (node.slots) {
                     let slotId = `property:${property.path}`;
-                    node.slots = node.slots.filter(x => x.id !== slotId);
+                    let slot = node.slots.find(x => x.id === slotId);
+
+                    if (slot?.default) {
+                        slot.disabled = true;
+                    } else {
+                        node.slots = node.slots.filter(x => x.id !== slotId);
+                    }
+
                     graph.edges = graph.edges.filter(x => !(x.toNodeId === node.id && x.toSlotId === slotId));
                 }
             }
@@ -862,14 +873,20 @@ export class EditorComponent {
                 if (!node.slots)
                     node.slots = [];
 
-                node.slots.push({
-                    id: `property:${property.path}`,
-                    label: property.label,
-                    value: property.slotValue,
-                    type: 'input',
-                    dynamic: true,
-                    hidden: false
-                })
+                let existingSlot = node.slots.find(x => x.id === `property:${property.path}`);
+
+                if (existingSlot) {
+                    existingSlot.disabled = false;
+                } else {
+                    node.slots.push({
+                        id: `property:${property.path}`,
+                        label: property.label,
+                        value: property.slotValue,
+                        type: 'input',
+                        dynamic: true,
+                        hidden: false
+                    })
+                }
             }
         });
     }

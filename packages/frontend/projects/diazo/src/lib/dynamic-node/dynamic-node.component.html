@@ -18,7 +18,7 @@
                     [id]="slot.id" 
                     [type]="slot.type"
                     [label]="slot.label"
-                    [hidden]="slot.hidden"
+                    [hidden]="slot.hidden || slot.disabled"
                     [value]="slot.value"
                     >{{slot.label}}</dz-slot>
             </ng-container>
@@ -35,7 +35,7 @@
                     [id]="slot.id" 
                     [type]="slot.type"
                     [label]="slot.label"
-                    [hidden]="slot.hidden"
+                    [hidden]="slot.hidden || slot.disabled"
                     [value]="slot.value"
                     >{{slot.label}}</dz-slot>
             </ng-container>

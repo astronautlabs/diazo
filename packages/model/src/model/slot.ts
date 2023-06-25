@@ -24,6 +24,26 @@ export interface DiazoSlot {
     data?: Record<string, any>;
 
     /**
+     * Whether this slot is part of the template that this node was created from.
+     * When true, Diazo will not delete the slot when the user uses "Remove Slot" 
+     * from the Property Sheets UI, but instead mark it as disabled. This enables 
+     * automatic upgrade features for Diazo applications by ensuring that intentionally
+     * removed slots are not re-added during the upgrade process.
+     */
+    default?: boolean;
+
+    /**
+     * When true, this slot is not shown on the graph. This is set by Diazo automatically
+     * if the slot is default and the user removes it via the Property Sheet. It is set to true
+     * by Diazo if the user adds a slot via Property Sheet and the slot's ID matches what would
+     * be created.
+     * 
+     * This is distinct from `hidden` which is just not visually shown (and can even maintain edges
+     * when hidden).
+     */
+    disabled?: boolean;
+
+    /**
      * Optional place to put behaviorial information about this node.
      * May be elided in the frontend.
      */
@@ -42,6 +62,8 @@ export interface DiazoSlot {
      * If true, this slot will not be shown on the node within the editor.
      * This is controlled in the "Slots" section of the Properties sidebar,
      * and can be included in a template node to have a slot hidden by default.
+     * 
+     * Edges on hidden slots are maintained, they are just not shown. 
      */
     hidden? : boolean;
 

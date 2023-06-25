@@ -110,10 +110,25 @@ export interface DiazoNode {
     data? : Record<string, any>;
 
     /**
-     * Optional place to put behaviorial information about this node.
-     * May be elided in the frontend.
+     * Catalog information for this node. This is where the node's template ID is stored, as well 
+     * as optional metadata that can be used within the Catalog. Missing information is taken from the 
+     * node directly instead.
      */
-    behavior?: { id?: string } & Record<string, any>;
+    catalog?: { 
+        id?: string;
+        label?: string;
+        icon?: string;
+        description?: string;
+        alpha?: boolean;
+        beta?: boolean;
+    }
+
+    /**
+     * Optional place to put behaviorial information about this node.
+     * May be elided in the frontend. The format of this depends on the 
+     * application and is unused by Diazo itself.
+     */
+    behavior?: Record<string, any>;
 
     /**
      * The set of connectable input/output "slots" that are part of this node. 
