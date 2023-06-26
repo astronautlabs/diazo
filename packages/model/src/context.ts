@@ -658,7 +658,22 @@ export class DiazoContext {
             getNodeById: id => graphAfter.nodes.find(x => x.id === id),
             addNode: (node) => graphAfter.nodes.push(node),
             addEdge: edge => graphAfter.edges.push(edge),
-            removeEdge: edge => graphAfter.edges = graphAfter.edges.filter(x => !this.edgesAreEqual(x, edge)),
+            removeEdge: edge => {
+                let fromNode = graphAfter.nodes.find(x => x.id === edge.fromNodeId);
+                let fromSlot = fromNode?.slots?.find(x => x.id === edge.fromSlotId);
+                let toNode = graphAfter.nodes.find(x => x.id === edge.toNodeId);
+                let toSlot = toNode?.slots?.find(x => x.id === edge.toSlotId);
+
+                graphAfter.edges = graphAfter.edges.filter(x => !this.edgesAreEqual(x, edge));
+
+                if (toSlot?.removeWhenEmpty && graphAfter.edges.filter(x => x.toNodeId === toNode.id && x.toSlotId === toSlot.id).length === 0) {
+                    toNode.slots = toNode.slots.filter(x => x !== toSlot);
+                }
+
+                if (fromSlot?.removeWhenEmpty && graphAfter.edges.filter(x => x.fromNodeId === fromNode.id && x.fromSlotId === fromSlot.id).length === 0) {
+                    fromNode.slots = fromNode.slots.filter(x => x !== fromSlot);
+                }
+            },
             removeNode: (node) => {
                 let affectedEdges = graphAfter.edges
                     .filter(x => [x.fromNodeId, x.toNodeId].includes(node.id))

@@ -79,3 +79,7 @@ i {
 :host.hidden:not(.attached):not(.drafted) {
     display: none;
 }
+
+.label.invalid {
+    color: red;
+}

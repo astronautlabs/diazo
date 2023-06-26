@@ -143,8 +143,8 @@ export class AppComponent {
                 label: 'My Filter',
                 profile: 'wide',
                 slots: [
-                  { id: 'inputA', type: 'input', label: 'Input A', disabled: true },
-                  { id: 'inputB', type: 'input', label: 'Input B' },
+                  { id: 'inputA', type: 'input', label: 'Input A' },
+                  { id: 'inputB', type: 'input', label: 'Input B', invalid: true, removeWhenEmpty: true },
                   { id: 'outputA', type: 'output', label: 'Output A' },
                   { id: 'outputB', type: 'output', label: 'Output B' }
                 ]

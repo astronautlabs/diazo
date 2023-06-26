@@ -44,6 +44,20 @@ export interface DiazoSlot {
     disabled?: boolean;
 
     /**
+     * When true, this slot is shown as invalid (red). This is useful as a way to indicate to the user that 
+     * something about the slot or the way its used makes the graph invalid within the business rules of the 
+     * particular Diazo application. One application is for marking a slot which is no longer part of a node 
+     * (ie as part of an upgrade process). If you are using it for this purpose, also see removeWhenEmpty.
+     */
+    invalid?: boolean;
+
+    /**
+     * When true, this slot is removed when all edges to it are removed. This has multiple uses, but its most useful
+     * in tandem with the "invalid" property when upgraded versions of nodes remove slots.
+     */
+    removeWhenEmpty?: boolean;
+
+    /**
      * Optional place to put behaviorial information about this node.
      * May be elided in the frontend.
      */

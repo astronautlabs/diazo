@@ -38,8 +38,8 @@ export class SlotComponent {
 
     valueTypeLabel : string;
 
-    @Input()
-    label : string;
+    @Input() label : string;
+    @Input() invalid = false;
 
     @HostBinding('attr.title')
     get tooltip() {
@@ -139,6 +139,11 @@ export class SlotComponent {
     updateValueType() {
         this.valueTypeLabel = null;
         this.color = 'white';
+
+        if (this.invalid) {
+            this.color = 'red';
+            return;
+        }
 
         if (this.context.valueType) {
             if (this.context.valueType.getColorByContext)
