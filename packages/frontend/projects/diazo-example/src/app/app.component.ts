@@ -132,6 +132,11 @@ export class AppComponent {
                     unit: 'my-output'
                 },
                 label: 'My Output',
+                catalog: {
+                  label: 'My Output!',
+                  icon: 'public'
+                },
+                icon: 'home',
                 slots: [
                     { id: 'input', type: 'input', label: 'Input' }
                 ]

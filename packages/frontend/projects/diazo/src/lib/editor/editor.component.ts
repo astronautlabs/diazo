@@ -516,7 +516,7 @@ export class EditorComponent {
         );
 
         node.slots.forEach(slot => slot.default = true);
-        
+
         this.graphContext.draftNode = node;
         this.graphContext.draftEdge = null;
         
@@ -661,7 +661,11 @@ export class EditorComponent {
         if (this.labelCache.has(node))
             return this.labelCache.get(node);
         
-        let label = this.accessor.get([ node ], '$.label');
+        // We do this to enable 'defaults' to work within the catalog view.
+        // It is not the same as doing `node.label`
+        
+        let label = this.accessor.get([ node ], '$.catalog.label') 
+            ?? this.accessor.get([ node ], '$.label');
         this.labelCache.set(node, label);
 
         return label;
