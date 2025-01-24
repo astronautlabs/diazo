@@ -1,6 +1,6 @@
 import { Component, Input, Output, Provider, 
     ViewChild, ElementRef } from "@angular/core";
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Subject } from 'rxjs';
 import { DiazoContext, DiazoNodeContext, DiazoValueType, 
     Accessor, MULTIPLE_VALUES, Position } from '@diazo/model';

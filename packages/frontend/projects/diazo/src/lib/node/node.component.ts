@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, 
     HostListener, HostBinding, ViewChild } from "@angular/core";
 import { DiazoContext, DiazoNodeContext, Position } from '@diazo/model';
-import { MatMenuTrigger } from '@angular/material/menu';
+import { MatLegacyMenuTrigger as MatMenuTrigger } from '@angular/material/legacy-menu';
 
 /**
  * @category Component
