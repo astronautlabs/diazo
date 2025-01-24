@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DiazoGraph, DiazoNodeSet, DiazoContext, DiazoNode, DiazoEdge } from 'diazo';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 function range<T>(count: number, maker: (index: number) => T): T[] {
   let array: T[] = [];

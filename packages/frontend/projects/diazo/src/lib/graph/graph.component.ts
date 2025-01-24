@@ -2,7 +2,6 @@ import { Component, HostListener, ViewChild, ElementRef,
     Input, Output, inject, NgZone } from "@angular/core";
 import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 import * as uuid from 'uuid';
-import { MatLegacyMenuTrigger as MatMenuTrigger } from '@angular/material/legacy-menu';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { DiazoGraph, DiazoNode, DiazoEdge } from '@diazo/model';
 import { Position, pointOnLine, 
