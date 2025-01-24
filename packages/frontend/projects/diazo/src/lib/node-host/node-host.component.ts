@@ -1,5 +1,7 @@
-import { Input, ComponentFactoryResolver, ViewContainerRef, 
-    Injector, Output, Component } from '@angular/core';
+import { Input, ViewContainerRef, 
+    Injector, Output, Component, 
+    inject,
+    Type} from '@angular/core';
 import { Subject } from 'rxjs';
 
 /**
@@ -11,16 +13,12 @@ import { Subject } from 'rxjs';
     styles: ['']
 })
 export class NodeHostComponent {
-    constructor(
-        private injector : Injector,
-        private viewContainer : ViewContainerRef,
-        private componentResolver : ComponentFactoryResolver
-    ) {
-    }
+    private injector = inject(Injector);
+    private viewContainer = inject(ViewContainerRef);
 
-    private _component : any;
+    private _component : Type<any>;
     @Input()
-    get component() : any {
+    get component() : Type<any> {
         return this._component;
     }
 
@@ -29,7 +27,7 @@ export class NodeHostComponent {
 
     instance : any;
 
-    set component(value) {
+    set component(value: Type<any>) {
         if (value === this._component)
             return;
 
@@ -38,10 +36,8 @@ export class NodeHostComponent {
 
         if (!value)
             return;
-        
-        let fac = this.componentResolver.resolveComponentFactory(value);
 
-        this.instance = this.viewContainer.createComponent(fac, 0, this.injector);
+        this.instance = this.viewContainer.createComponent(value, { injector: this.injector });
         this.instanceChanged.next(this.instance);
     }
 

@@ -1,5 +1,7 @@
-import { Component, Input, ComponentFactoryResolver, ReflectiveInjector, 
-    Injector, ViewContainerRef, ComponentRef, Provider } from '@angular/core';
+import { Component, Input, 
+    Injector, ViewContainerRef, ComponentRef,
+    StaticProvider,
+    inject} from '@angular/core';
 import { DiazoPropertyContext, DiazoContext, DiazoProperty, 
     DiazoNode } from '@diazo/model';
 
@@ -12,13 +14,9 @@ import { DiazoPropertyContext, DiazoContext, DiazoProperty,
     styles: [``]
 })
 export class PropertyEditorHostComponent {
-    constructor(
-        private factoryResolver : ComponentFactoryResolver,
-        private injector : Injector,
-        private viewContainer : ViewContainerRef
-    ) {
+    private injector = inject(Injector);
+    private viewContainer = inject(ViewContainerRef);
 
-    }
     private _componentType : any;
     private _componentRef : ComponentRef<any>;
 
@@ -62,24 +60,22 @@ export class PropertyEditorHostComponent {
     }
 
     @Input()
-    providers : Provider[] = [];
+    providers : StaticProvider[] = [];
 
     private initialize() {
-        
         // Destroy any previously loaded component
         if (this._componentRef) {
             this._componentRef.destroy();
             this._componentRef = null;
         }
 
-        let fac = this.factoryResolver.resolveComponentFactory(this.componentType);
-        let injector = ReflectiveInjector.resolveAndCreate(
-            (this.providers || []).concat([
-                { provide: DiazoPropertyContext, useValue: this._propertyContext }
-            ]), 
-            this.injector
-        );
-
-        this._componentRef = this.viewContainer.createComponent(fac, undefined, injector);
+        this._componentRef = this.viewContainer.createComponent(this.componentType, { 
+            injector: Injector.create({
+                providers: (this.providers || []).concat([
+                    { provide: DiazoPropertyContext, useValue: this._propertyContext }
+                ]),
+                parent: this.injector
+            })
+        });
     }
 }

@@ -73,4 +73,5 @@ Consult the table below for Angular version compatibility.
 | Angular Version | Diazo Version |
 | ----------------|---------------|
 | v9-v14           | v0.2.x |
-| v15-v18          | v0.3.x |
+| v15-v16          | v0.3.x |
+| v17              | v0.4.x |
