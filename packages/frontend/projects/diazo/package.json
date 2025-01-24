@@ -1,7 +1,7 @@
 {
   "name": "diazo",
   "private": false,
-  "version": "0.4.0",
+  "version": "0.4.1",
   "peerDependencies": {
     "@angular/animations": "^17.0.0",
     "@angular/cdk": "^17.0.0",
