@@ -65,3 +65,12 @@ export class AppModule {
 - use `npm link diazo` within your test app's folder to link 
   your local copy of diazo into the environment.
 - `cd dist ; npm publish` to publish the library
+
+# Versions
+
+Consult the table below for Angular version compatibility.
+
+| Angular Version | Diazo Version |
+| ----------------|---------------|
+| v9-14           | 0.2.x |
+| v15             | 0.3.x |
