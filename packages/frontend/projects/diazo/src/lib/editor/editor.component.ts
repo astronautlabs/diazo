@@ -628,14 +628,14 @@ export class EditorComponent {
             if (templateNode) {
                 node.properties = templateNode.properties;
             } else {
-                if (node.properties) {
-                    console.warn(`Node already has docs, but could not refresh them:`);
-                    console.dir(node);
-                } else if (this.availableNodes.length > 0) {
-                    //debugger;
-                    console.warn(`Could not locate documentation for graph node:`);
-                    console.dir(node);
-                }
+                // if (node.properties) {
+                //     console.warn(`Node already has docs, but could not refresh them:`);
+                //     console.dir(node);
+                // } else if (this.availableNodes.length > 0) {
+                //     //debugger;
+                //     console.warn(`Could not locate documentation for graph node:`);
+                //     console.dir(node);
+                // }
             }
         }
     }
