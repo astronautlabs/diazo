@@ -96,19 +96,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "diazo-example:build",
-            "port": 4203
+            "port": 4203,
+            "buildTarget": "diazo-example:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "diazo-example:build"
+              "buildTarget": "diazo-example:build"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "diazo-example:build"
+            "buildTarget": "diazo-example:build"
           }
         },
         "test": {
